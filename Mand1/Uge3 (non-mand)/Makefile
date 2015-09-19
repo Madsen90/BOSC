@@ -1,12 +1,13 @@
-main: forback.o testRedirect hello
+main: forback.o testRedirect
 	gcc forback.o -o main
 
-testRedirect: redirect.o testRedirect.c
-	gcc redirect.o testRedirect.c -o testRedirect
+testRedirect: pipe.o redirect.o testRedirect.c
+	gcc reader.c -o reader
+	gcc writer.c -o writer
+	gcc pipe.o redirect.o testRedirect.c -o testRedirect
 
 redirect.o: redirect.c redirect.h
 	gcc -c redirect.c
 	
-forback.o: forback.c forback.h hello.c
-	gcc -c forback.c
-	gcc hello.c -o hello
+pipe.o: pipe.c pipe.h
+	gcc -c pipe.c

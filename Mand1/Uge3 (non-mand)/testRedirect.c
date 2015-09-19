@@ -1,13 +1,11 @@
-
 #include <stdio.h>
-
-#include "redirect.h"
+#include "pipe.h"
 
 int main(int argc, char const *argv[])
 {
 	char *argv2[argc];
-	char *readFilename = (char*) "hej"; 
-	char *executeFilename = (char*) "./hello"; 
+	char *executeFilename1 = (char*) "./writer"; 
+	char *executeFilename2 = (char*) "./reader"; 
 
 	int i = 1;
 	while(i < argc){
@@ -17,7 +15,7 @@ int main(int argc, char const *argv[])
 	
 	argv2[i-1] = NULL;
 
-	redirect_stdoutcmd(executeFilename, argv2, readFilename);
+	pipecmd(executeFilename1, argv2, executeFilename2, argv2);
 
 	return 0;
 }
