@@ -1,29 +1,23 @@
-#include <unistd.h> //for STDIN_FILENO
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdlib.h>
+#include <stdio.h>
 
 #include "redirect.h"
 
 int main(int argc, char const *argv[])
 {
-	/* manipulate the file descriptor of the child process */
-	int fid = open("hej", O_RDONLY);
-	/* replace stdin of the child process with fid */
-	close(0); /* 0 = stdin */
-	dup(fid);
-	/* close fid */
-	close(fid);
+	char *argv2[argc];
+	char *readFilename = (char*) "hej"; 
+	char *executeFilename = (char*) "./hello"; 
 
-	char ch;
-	while(read(STDIN_FILENO, &ch, 1) > 0)
-	{
-		printf("%c\n",ch);
+	int i = 1;
+	while(i < argc){
+		argv2[i-1] = (char*) argv[i];
+		i++;
 	}
+	
+	argv2[i-1] = NULL;
+
+	redirect_stdoutcmd(executeFilename, argv2, readFilename);
+
 	return 0;
 }
