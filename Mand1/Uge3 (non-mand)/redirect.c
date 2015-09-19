@@ -1,9 +1,7 @@
 /* 
-
    Opgave 2
 
    redirect.c
-
  */
 
 #include <stdio.h>
@@ -17,12 +15,21 @@
 
 #include "redirect.h"
 
+
 /* start the program specified by filename with the arguments in argv 
    in a new process that has its stdin redirected to infilename and
    wait for termination */
 int redirect_stdincmd(char *filename, char *argv[], char *infilename)
 {
-  return 0;
+	/* manipulate the file descriptor of the child process */
+	int fid = open(infilename, O_RDONLY);
+	/* replace stdin of the child process with fid */
+	close(0); /* 0 = stdin */
+	dup(fid);
+	/* close fid */
+	close(fid);
+
+  	return 0;
 }
 
 /* start the program specified by filename with the arguments in argv 
