@@ -31,14 +31,12 @@ int executeshellcmd (Shellcmd *shellcmd)
 {
   printshellcmd(shellcmd);
 
-
   printf("%s\n", *(shellcmd->the_cmds->cmd));
 
-  char* argv[2];
-
-  argv[0] = "./writer";
-  argv[0] = NULL;
-  execvp( *(shellcmd->the_cmds->cmd), argv);
+  char** cmd = shellcmd->the_cmds->cmd;
+  char** argv = cmd;
+  
+  execvp(*(cmd), argv);
   
   return 0;
 }
