@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {
-	printf("Jeg læser fælgende besked: \n");
+	printf("Jeg læser falgende besked: \n");
 
 	char ch;
 	
@@ -13,6 +13,5 @@ int main(int argc, char const *argv[])
 		printf("%c\n",ch);
 	}
 
-	sleep(2);
-	return 0;
+	return (0);
 }

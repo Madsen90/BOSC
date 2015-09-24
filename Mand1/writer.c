@@ -4,8 +4,9 @@
 
 int main(int argc, char const *argv[])
 {
-	printf("Jeg skriver en besked ud \n");
-
-	sleep(2);
+	int i;
+	for(i = 0; i < argc; i++){
+		printf("%s\n", argv[i]);
+	}
 	return 0;
 }

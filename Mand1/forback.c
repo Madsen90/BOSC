@@ -14,25 +14,31 @@
 #include <string.h>
 
 #include "forback.h"
+#include "redirect.h"
 
 /* start the program specified by filename with the arguments in argv 
    in a new process and wait for termination */
-int foregroundcmd(char *filename, char *argv[])
+int foregroundcmd(char *filename, char *argv[], char* in, char* out)
 {
 	pid_t pid = fork();
 
 	if(pid == 0){
-		printf("%s\n", "im am child process");
-		execvp(filename,argv);
+		if(in != NULL){
+			redirect_stdincmd(in);
+		}
+		if(out != NULL){
+			redirect_stdoutcmd(out);
+		}	
+		if(execvp(filename,argv) == -1){
+			printf("Command not found");
+		}
 	}else{
-		printf("I am the father/mother process, and I will wait for my child\n");
 		int returnStatus;    
     	waitpid(pid, &returnStatus, 0);
+
     	if(returnStatus == 0){
-    		printf("%s\n", "My child is successful, and I am happy to terminate");
     	}
     	else{
-    		printf("%s\n", "My child was unsuccessful. I will terminate in grief");
     	}
 	}
 
@@ -41,15 +47,19 @@ int foregroundcmd(char *filename, char *argv[])
 
 /* start the program specified by filename with the arguments in argv 
    in a new process */
-int backgroundcmd(char *filename, char *argv[])
+int backgroundcmd(char *filename, char *argv[], char* in, char* out)
 {
 	pid_t pid = fork();
-
 	if(pid == 0){
-		printf("%s\n", "im am child process");
-		execvp(filename,argv);
-	}else{
-		printf("I am the father/mother process, but I wil NOT wait for it\n");
+		if(in != NULL){
+			redirect_stdincmd(in);
+		}
+		if(out != NULL){
+			redirect_stdoutcmd(out);
+		}	
+		if(execvp(filename,argv) == -1){
+			printf("Command not found");
+		}
 	}
 
 	return 0;

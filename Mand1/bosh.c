@@ -11,8 +11,10 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+
 #include "parser.h"
 #include "print.h"
+#include "forback.h"
 
 /* --- symbolic constants --- */
 #define HOSTNAMEMAX 100
@@ -30,14 +32,17 @@ char *gethostname2(char *hostname)
 int executeshellcmd (Shellcmd *shellcmd)
 {
   printshellcmd(shellcmd);
-
-  printf("%s\n", *(shellcmd->the_cmds->cmd));
-
+  /*
   char** cmd = shellcmd->the_cmds->cmd;
-  char** argv = cmd;
-  
-  execvp(*(cmd), argv);
-  
+  char* in   = shellcmd->rd_stdin;
+  char* out   = shellcmd->rd_stdout;
+
+  if(shellcmd->background == 1){   
+    backgroundcmd(*cmd, cmd, in, out);
+  }else{
+    foregroundcmd(*cmd, cmd, in, out);
+  }*/
+
   return 0;
 }
 
