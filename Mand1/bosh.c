@@ -23,16 +23,14 @@
 char *gethostname2(char *hostname)
 {
   gethostname(hostname, HOSTNAMEMAX);
- // char hostname2[HOSTNAMEMAX] = "asdasdasd";
- // hostname = &hostname2;
   return hostname;
 }
 
 /* --- execute a shell command --- */
 int executeshellcmd (Shellcmd *shellcmd)
 {
-  printshellcmd(shellcmd);
-  /*
+  //printshellcmd(shellcmd);
+  
   char** cmd = shellcmd->the_cmds->cmd;
   char* in   = shellcmd->rd_stdin;
   char* out   = shellcmd->rd_stdout;
@@ -41,7 +39,7 @@ int executeshellcmd (Shellcmd *shellcmd)
     backgroundcmd(*cmd, cmd, in, out);
   }else{
     foregroundcmd(*cmd, cmd, in, out);
-  }*/
+  }
 
   return 0;
 }
