@@ -1,7 +1,5 @@
 /* 
-
    bosh.c : BOSC shell 
-
  */
 
 #include <stdio.h>
@@ -11,6 +9,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <sys/types.h>
 
 #include "parser.h"
 #include "print.h"
@@ -30,34 +29,72 @@ char *gethostname2(char *hostname)
 /* --- execute a shell command --- */
 int executeshellcmd (Shellcmd *shellcmd)
 {
-  //printshellcmd(shellcmd);
-  
-  char** cmd = shellcmd->the_cmds->cmd;
-  char* in   = shellcmd->rd_stdin;
-  char* out  = shellcmd->rd_stdout;
+  struct _cmd *the_cmds = shellcmd->the_cmds;
+  char* in      = shellcmd->rd_stdin;
+  char* out     = shellcmd->rd_stdout;
 
-/*
-  int inFid = -1, outFid = -1;
-  if(in != NULL){
-    inFid = open(infilename, O_RDONLY);
-  } 
+  //Reversing the list for easier execution
+  struct _cmd *next = NULL;
+  struct _cmd *temp;
+  int run = 1;
 
-  if(out != NULL){
-    outFid = open(outfilename, O_RDONLY);
-  } */
-
-
-  while(){
-    if(cmd->next != NULL)    
-
-    if(shellcmd->background == 1){   
-      backgroundcmd(*cmd, cmd, in, out);
-    }else{
-      foregroundcmd(*cmd, cmd, in, out);
+  while(run){
+    if(the_cmds->next == NULL){
+      run = 0;
+    }
+    else{
+      temp = the_cmds->next;
+    }
+    
+    the_cmds->next = next;
+    
+    next = the_cmds;
+    if(run){  
+      the_cmds = temp;
     }
   }
+  //End of reversing list
+  
+  int fd[2];
+  int inId, outId, closeId;
+  outId = -1;
+  inId  = -1;
+
+  while(the_cmds != NULL){
+
+    char** cmd = the_cmds->cmd;
+    
+    if(the_cmds->next != NULL){
+      if(pipe(fd) < 0){
+        exit(1); //Not able to create pipe
+      }
+      outId = fd[1];
+    }else{
+      outId = -1;
+    }
+    
+    closeId = fd[0];
+
+    if(shellcmd->background){
+      backgroundcmd(*cmd, cmd, inId, outId, closeId); 
+    }else{
+      foregroundcmd(*cmd, cmd, inId, outId, closeId); 
+    }
+
+    if(fd[1] != -1){
+      close(fd[1]);
+    }
+    if(inId != -1){
+      close(inId);
+    }
+
+    the_cmds = the_cmds->next;
+    inId = fd[0];  
+  }
+
   return 0;
 }
+
 
 /* --- main loop of the simple shell --- */
 int main(int argc, char* argv[]) {

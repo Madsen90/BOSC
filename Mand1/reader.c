@@ -13,5 +13,7 @@ int main(int argc, char const *argv[])
 		printf("%c\n",ch);
 	}
 
-	return (0);
+	printf("asasd");
+
+	return 0;
 }

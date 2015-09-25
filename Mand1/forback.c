@@ -18,16 +18,19 @@
 
 /* start the program specified by filename with the arguments in argv 
    in a new process and wait for termination */
-int foregroundcmd(char *filename, char *argv[], char* in, char* out)
+int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 {
 	pid_t pid = fork();
 
 	if(pid == 0){
-		if(in != NULL){
+		if(in != -1){
 			redirect_stdincmd(in);
 		}
-		if(out != NULL){
+		if(out != -1){
 			redirect_stdoutcmd(out);
+		}	
+		if(closeId != -1){
+			close(closeId);
 		}	
 		if(execvp(filename,argv) == -1){
 			printf("Command not found");
@@ -42,15 +45,18 @@ int foregroundcmd(char *filename, char *argv[], char* in, char* out)
 
 /* start the program specified by filename with the arguments in argv 
    in a new process */
-int backgroundcmd(char *filename, char *argv[], char* in, char* out)
+int backgroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 {
 	pid_t pid = fork();
 	if(pid == 0){
-		if(in != NULL){
+		if(in != -1){
 			redirect_stdincmd(in);
 		}
-		if(out != NULL){
+		if(out != -1){
 			redirect_stdoutcmd(out);
+		}	
+		if(closeId != -1){
+			close(closeId);
 		}	
 		if(execvp(filename,argv) == -1){
 			printf("Command not found");

@@ -74,6 +74,7 @@ void *runner(void *param){
 	
 	int i;
 	for(i = data->lower; i <= data->upper; i++){
+		printf("%d\n", i);
 		data->partialSum += i;
 	}
 

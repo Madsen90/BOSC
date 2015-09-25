@@ -37,7 +37,7 @@ int pipecmd(char *filename1, char *argv1[], char *filename2, char *argv2[])
 			close(fd[0]);			//Lukker for læse enden 
 			close(STDOUT_FILENO); 	//Lukker for STDOUT
 
-			//duplikere skrive enden over i STDOUT
+			//duplikere skriveenden over i STDOUT
 			dup2(fd[1], STDOUT_FILENO);
 
 			//close(fd[1]); tror jeg er unødvendigt
@@ -46,7 +46,7 @@ int pipecmd(char *filename1, char *argv1[], char *filename2, char *argv2[])
 			close(fd[1]);			//Lukker for skrive enden 
 			close(STDIN_FILENO); 	//Lukker for STDOUT
 
-			//duplikere skrive enden over i STDOUT
+			//duplikere læseenden over i STDOUT
 			dup2(fd[0], STDIN_FILENO);
 
 			int returnStatus;    
