@@ -1,8 +1,7 @@
 /* 
    Opgave 2
-
    redirect.c
- */
+*/
 
 #include <unistd.h> //for STDIN_FILENO
 #include <stdio.h>
@@ -38,7 +37,6 @@ int redirect_stdincmd(char *infilename)
    wait for termination */
 int redirect_stdoutcmd(char *outfilename)
 {
-
   /* manipulate the file descriptor of the child process */
   int fid = open(outfilename, O_WRONLY | O_CREAT, 0666);
   

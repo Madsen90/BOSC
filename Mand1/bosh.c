@@ -22,6 +22,7 @@
 /* --- use the /proc filesystem to obtain the hostname --- */
 char *gethostname2(char *hostname)
 {
+  //Skal nok skrives om.
   gethostname(hostname, HOSTNAMEMAX);
   return hostname;
 }
@@ -33,14 +34,28 @@ int executeshellcmd (Shellcmd *shellcmd)
   
   char** cmd = shellcmd->the_cmds->cmd;
   char* in   = shellcmd->rd_stdin;
-  char* out   = shellcmd->rd_stdout;
+  char* out  = shellcmd->rd_stdout;
 
-  if(shellcmd->background == 1){   
-    backgroundcmd(*cmd, cmd, in, out);
-  }else{
-    foregroundcmd(*cmd, cmd, in, out);
+/*
+  int inFid = -1, outFid = -1;
+  if(in != NULL){
+    inFid = open(infilename, O_RDONLY);
+  } 
+
+  if(out != NULL){
+    outFid = open(outfilename, O_RDONLY);
+  } */
+
+
+  while(){
+    if(cmd->next != NULL)    
+
+    if(shellcmd->background == 1){   
+      backgroundcmd(*cmd, cmd, in, out);
+    }else{
+      foregroundcmd(*cmd, cmd, in, out);
+    }
   }
-
   return 0;
 }
 

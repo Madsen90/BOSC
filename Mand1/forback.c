@@ -35,11 +35,6 @@ int foregroundcmd(char *filename, char *argv[], char* in, char* out)
 	}else{
 		int returnStatus;    
     	waitpid(pid, &returnStatus, 0);
-
-    	if(returnStatus == 0){
-    	}
-    	else{
-    	}
 	}
 
 	return 0;

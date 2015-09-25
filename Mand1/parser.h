@@ -8,7 +8,7 @@ typedef struct _shellcmd {
     char *rd_stdin;
     char *rd_stdout;
     char *rd_stderr;
-    int background;
+    int  background;
 } Shellcmd;
 
 extern void init( void );
