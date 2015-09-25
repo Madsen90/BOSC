@@ -1,9 +1,7 @@
 /* 
-
    Opgave 3
-
+   
    pipe.c
-
  */
 
 #include <stdio.h>

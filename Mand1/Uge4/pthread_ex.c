@@ -24,7 +24,6 @@ int main(int argc, char const *argv[])
 		fprintf(stderr, "%d must be >= 0\n", atoi(argv[2]));
 	}
 
-
 	int threads 	= atoi(argv[1]); 
 	int upperLimit  = atoi(argv[2]);
 	int sumSegment  = upperLimit / threads; 
