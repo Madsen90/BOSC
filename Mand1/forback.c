@@ -18,15 +18,15 @@
 
 /* start the program specified by filename with the arguments in argv 
    in a new process and wait for termination */
-int foregroundcmd(char *filename, char *argv[], char* in, char* out)
+int foregroundcmd(char *filename, char *argv[], int in, int out)
 {
 	pid_t pid = fork();
 
 	if(pid == 0){
-		if(in != NULL){
+		if(in != -1){
 			redirect_stdincmd(in);
 		}
-		if(out != NULL){
+		if(out != -1){
 			redirect_stdoutcmd(out);
 		}	
 		if(execvp(filename,argv) == -1){
@@ -47,14 +47,14 @@ int foregroundcmd(char *filename, char *argv[], char* in, char* out)
 
 /* start the program specified by filename with the arguments in argv 
    in a new process */
-int backgroundcmd(char *filename, char *argv[], char* in, char* out)
+int backgroundcmd(char *filename, char *argv[], int in, int out)
 {
 	pid_t pid = fork();
 	if(pid == 0){
-		if(in != NULL){
+		if(in != -1){
 			redirect_stdincmd(in);
 		}
-		if(out != NULL){
+		if(out != -1){
 			redirect_stdoutcmd(out);
 		}	
 		if(execvp(filename,argv) == -1){

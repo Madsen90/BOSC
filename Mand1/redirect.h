@@ -8,6 +8,6 @@
 #ifndef _REDIRECT_H
 #define _REDIRECT_H
 
-int redirect_stdincmd(char *);
-int redirect_stdoutcmd(char *);
+int redirect_stdincmd(int);
+int redirect_stdoutcmd(int);
 #endif

@@ -11,6 +11,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <sys/types.h>
 
 #include "parser.h"
 #include "print.h"
@@ -29,20 +30,75 @@ char *gethostname2(char *hostname)
 /* --- execute a shell command --- */
 int executeshellcmd (Shellcmd *shellcmd)
 {
-  //printshellcmd(shellcmd);
-  
-  char** cmd = shellcmd->the_cmds->cmd;
-  char* in   = shellcmd->rd_stdin;
-  char* out   = shellcmd->rd_stdout;
 
-  if(shellcmd->background == 1){   
-    backgroundcmd(*cmd, cmd, in, out);
-  }else{
-    foregroundcmd(*cmd, cmd, in, out);
+  printf("%s\n", "d");
+  struct _cmd *the_cmds = shellcmd->the_cmds;
+  char* in      = shellcmd->rd_stdin;
+  char* out     = shellcmd->rd_stdout;
+
+  //REVERSING THE GODDAMN LINKEDLIST
+  struct _cmd *next = NULL;
+  struct _cmd *temp;
+  int run = 1;
+
+  while(run){
+
+    if(the_cmds->next == NULL){
+      run = 0;
+    }
+    else{
+
+      temp = the_cmds->next;
+    }
+    
+    the_cmds->next = next;
+    
+    next = the_cmds;
+    if(run){  
+      the_cmds = temp;
+    }
+  }
+
+  shellcmd->the_cmds = the_cmds;
+  //stopped reversing......
+
+  printshellcmd(shellcmd);
+  
+
+  int fd[2];
+
+  if(pipe(fd) < 0){
+    exit(1); //Not able to create pipe
+  }
+
+  int inId, outId;
+  outId = fd[1];
+  inId  = -1;
+
+  while(1==1){
+    char** cmd = the_cmds->cmd;
+//shellcmd->background != 1 ||
+    printf("In: %d, Out: %d\n", inId, outId);
+
+
+    //if(the_cmds->next != NULL){        
+      backgroundcmd(*cmd, cmd, inId, outId);
+    //}else{
+      //foregroundcmd(*cmd, cmd, inId, outId); 
+    //}
+
+    if(the_cmds->next != NULL){
+      the_cmds = the_cmds->next;
+      outId = -1;
+      inId = fd[0];
+    }else{
+      break;
+    }
   }
 
   return 0;
 }
+
 
 /* --- main loop of the simple shell --- */
 int main(int argc, char* argv[]) {
