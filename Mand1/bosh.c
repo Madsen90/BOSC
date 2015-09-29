@@ -9,6 +9,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <signal.h>
 
 #include "parser.h"
 #include "print.h"
@@ -104,6 +105,10 @@ int executeshellcmd (Shellcmd *shellcmd)
   return 0;
 }
 
+void interruptRun(int dummy){
+  printf("%s", "caught ctrl-c");
+}
+
 
 /* --- main loop of the simple shell --- */
 int main(int argc, char* argv[]) {
@@ -113,6 +118,7 @@ int main(int argc, char* argv[]) {
   char hostname[HOSTNAMEMAX] = "Default";
   int terminate = 0;
   Shellcmd shellcmd;
+  signal(SIGINT, interruptRun);
 
   if (gethostname(hostname)) {
 

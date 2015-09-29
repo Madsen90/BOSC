@@ -30,7 +30,7 @@ int redirectAndExec(char *filename, char *argv[], int in, int out, int closeId){
 	
 	if(execvp(filename,argv) == -1){
 		printf("Command not found");
-		return -1;
+		exit(1);
 	}
 	return 0;
 }
