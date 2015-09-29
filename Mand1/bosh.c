@@ -53,8 +53,10 @@ int executeshellcmd (Shellcmd *shellcmd)
       the_cmds = temp;
     }
   }
-  //End of reversing list
+  // End of reversing list
   
+  // Exit command, ctrl c command
+
   int fd[2];
   int inId, outId, closeId;
   outId = -1;
@@ -68,12 +70,14 @@ int executeshellcmd (Shellcmd *shellcmd)
       if(pipe(fd) < 0){
         exit(1); //Not able to create pipe
       }
+
+      closeId = fd[0];
       outId = fd[1];
     }else{
+      closeId = -1;
       outId = -1;
     }
     
-    closeId = fd[0];
 
     if(shellcmd->background){
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
@@ -81,9 +85,8 @@ int executeshellcmd (Shellcmd *shellcmd)
       foregroundcmd(*cmd, cmd, inId, outId, closeId); 
     }
 
-    if(fd[1] != -1){
-      close(fd[1]);
-    }
+    close(fd[1]);
+    
     if(inId != -1){
       close(inId);
     }
