@@ -9,7 +9,6 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <sys/types.h>
 
 #include "parser.h"
 #include "print.h"
@@ -19,11 +18,18 @@
 #define HOSTNAMEMAX 100
 
 /* --- use the /proc filesystem to obtain the hostname --- */
-char *gethostname2(char *hostname)
+char *gethostname(char* hostname)
 {
-  //Skal nok skrives om.
-  gethostname(hostname, HOSTNAMEMAX);
-  return hostname;
+  FILE *versionfile;
+
+  char line[HOSTNAMEMAX];
+  versionfile = fopen("/proc/sys/kernel/hostname","r");
+
+  fgets(line,HOSTNAMEMAX,versionfile);
+  sscanf(line,"%s",hostname); //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+
+  fclose(versionfile);
+  return hostname; //very unnecessary
 }
 
 /* --- execute a shell command --- */
@@ -104,11 +110,11 @@ int main(int argc, char* argv[]) {
 
   /* initialize the shell */
   char *cmdline;
-  char hostname[HOSTNAMEMAX] = "asdads";
+  char hostname[HOSTNAMEMAX] = "Default";
   int terminate = 0;
   Shellcmd shellcmd;
 
-  if (gethostname2(hostname)) {
+  if (gethostname(hostname)) {
 
     /* parse commands until exit or ctrl-c */
     while (!terminate) {
