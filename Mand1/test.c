@@ -56,7 +56,17 @@ int main(int argc, char const *argv[])
 		exit(1); //Not able to create pipe
 	}
 
-	foregroundcmd(*cmd1.cmd, cmd1.cmd, -1, fd[1],  fd[0]);	
+	//int inId, outId;
+	//outId = fd[1];
+	//inId  = -1;
+
+	// int fid = open("hej", O_WRONLY);
+	printf("%s\n", " - - - -");
+	foregroundcmd(*cmd1.cmd, cmd1.cmd, -1, fd[1], fd[0]);	
+	printf("%s\n", " - - - -");
+
+	printf("%s\n", " - - - -");
+	backgroundcmd(*cmd2.cmd, cmd2.cmd, fd[0], -1, fd[1]);
 
 	foregroundcmd(*cmd2.cmd, cmd2.cmd, fd[0], -1, fd[1]);
 

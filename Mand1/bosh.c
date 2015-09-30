@@ -9,7 +9,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <sys/types.h>
+#include <signal.h>
 
 #include "parser.h"
 #include "print.h"
@@ -19,11 +19,18 @@
 #define HOSTNAMEMAX 100
 
 /* --- use the /proc filesystem to obtain the hostname --- */
-char *gethostname2(char *hostname)
+char *gethostname(char* hostname)
 {
-  //Skal nok skrives om.
-  gethostname(hostname, HOSTNAMEMAX);
-  return hostname;
+  FILE *versionfile;
+
+  char line[HOSTNAMEMAX];
+  versionfile = fopen("/proc/sys/kernel/hostname","r");
+
+  fgets(line,HOSTNAMEMAX,versionfile);
+  sscanf(line,"%s",hostname); //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+
+  fclose(versionfile);
+  return hostname; //very unnecessary
 }
 
 /* --- execute a shell command --- */
@@ -53,8 +60,10 @@ int executeshellcmd (Shellcmd *shellcmd)
       the_cmds = temp;
     }
   }
-  //End of reversing list
+  // End of reversing list
   
+  // Exit command, ctrl c command
+
   int fd[2];
   int inId, outId, closeId;
   outId = -1;
@@ -68,12 +77,14 @@ int executeshellcmd (Shellcmd *shellcmd)
       if(pipe(fd) < 0){
         exit(1); //Not able to create pipe
       }
+
+      closeId = fd[0];
       outId = fd[1];
     }else{
+      closeId = -1;
       outId = -1;
     }
     
-    closeId = fd[0];
 
     if(shellcmd->background){
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
@@ -81,9 +92,8 @@ int executeshellcmd (Shellcmd *shellcmd)
       foregroundcmd(*cmd, cmd, inId, outId, closeId); 
     }
 
-    if(fd[1] != -1){
-      close(fd[1]);
-    }
+    close(fd[1]);
+    
     if(inId != -1){
       close(inId);
     }
@@ -95,17 +105,22 @@ int executeshellcmd (Shellcmd *shellcmd)
   return 0;
 }
 
+void interruptRun(int dummy){
+  printf("%s", "caught ctrl-c");
+}
+
 
 /* --- main loop of the simple shell --- */
 int main(int argc, char* argv[]) {
 
   /* initialize the shell */
   char *cmdline;
-  char hostname[HOSTNAMEMAX] = "asdads";
+  char hostname[HOSTNAMEMAX] = "Default";
   int terminate = 0;
   Shellcmd shellcmd;
+  signal(SIGINT, interruptRun);
 
-  if (gethostname2(hostname)) {
+  if (gethostname(hostname)) {
 
     /* parse commands until exit or ctrl-c */
     while (!terminate) {
