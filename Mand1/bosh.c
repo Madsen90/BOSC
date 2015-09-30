@@ -107,6 +107,7 @@ int executeshellcmd (Shellcmd *shellcmd)
 
 void interruptRun(int dummy){
   printf("%s", "caught ctrl-c");
+  printf("%s\n", "if you want to exit the terminal, use Exit command or Ctrl+d");
 }
 
 

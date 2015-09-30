@@ -44,11 +44,7 @@ int redirect_stdoutcmd(int outfileid)
   //dup, duplicates to lowest id, which should be STDIN_FILENO. dup2 seems more secure.
   dup2(outfileid, STDOUT_FILENO);
 
-<<<<<<< HEAD
-//  close(outfileid);
-=======
   close(outfileid);
->>>>>>> d9d59c21d45f96fed5c9bea40b5b012aa1619c6b
 
   return 0;
 }
