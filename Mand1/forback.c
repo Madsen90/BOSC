@@ -23,6 +23,7 @@ int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 	pid_t pid = fork();
 
 	if(pid == 0){
+		printf("%s\n", "Starting child process");
 		if(in != -1){
 			redirect_stdincmd(in);
 		}
@@ -37,11 +38,14 @@ int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 		}
 	}else{
 		int returnStatus;    
+		printf("%s\n", "her");
     	waitpid(pid, &returnStatus, 0);
+		printf("%s\n", "aaa");
 	}
 
 	return 0;
 }
+
 
 /* start the program specified by filename with the arguments in argv 
    in a new process */
