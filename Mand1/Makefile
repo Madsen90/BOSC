@@ -5,7 +5,7 @@ LIBS= -lreadline -ltermcap
 CC = gcc
 
 bosh: ${OBJS}
-	${CC} -o $@ ${OBJS} ${LIBS}
+	${CC} -o bin/bosh ${OBJS} ${LIBS}
 
 clean:
 	rm -rf *.o bosh
