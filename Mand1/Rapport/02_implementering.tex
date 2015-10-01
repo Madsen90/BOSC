@@ -11,7 +11,9 @@ Vi valgte først at afgrænse de mulige exec funktioner til de tre, der underst�
 Funktion en execvpe() blev udelukket, fordi den understøtter ekstra funktionalitet, som vi ikke har brug for i form af muligheden for at specifisere miljøet af filer den eksekverede.
 
 Forskellen på execlp() og execvp() er kun formateringen af argumenterne, og her foretrak vi execvp(), frodi vi har brugt den før.
+
 \subsection{Baggrundskørsel af kommandoer}
+Vi har valgt at implementere to forskellige måder at forke på. En "foregroundcmd" og en "backgroundcmd", begge er at finde i forback.c. Foregroundcmd forker, og får forælderprocessen til at vente på at barneprocessen terminerer, mens backgroundcmd forker og derefter returnerer til forælderprocessen, således at barneprocessen blot kører i baggrunden uden at shellen venter på den.
 
 \subsection{Piping og redirection}
 Redirection og piping er blevet implementeret i samme kode, da det stort set er samme funktionalitet.
