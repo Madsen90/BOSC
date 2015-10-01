@@ -12,6 +12,7 @@ For at udskrive hostnavnet i kommando-prompt'en, har vi åbnet filen "/proc/sys/
 \subsection{Baggrundskørsel af kommandoer}
 
 \subsection{Piping og redirection}
+\includegraphics[width=1.1\textwidth]{pipefig}\par\vspace{1cm}
 Redirection og piping er blevet implementeret i samme kode, da det stort set er samme funktionalitet.
 Der oprettes der en pipe, hver gang en kommando k1 skal sende sit output til k2, oprettes der en pipe hvis skriveende gives som k1's input fil og læse end gives til k2's læseende. Input- og output redirection kan således ses som en halv pipe, som gives til henholdvis den første og sidste kommando der skal eksekveres. Det sker ved at filerne åbnes i hovedprocessen, og deres filedescriptors kan herefter bruges på samme måde som pipe-ender. Løbende lukker hovedprocessen for filer og pipe-ender, som fremover ikke vil skulle bruges af kommandoer.
 
