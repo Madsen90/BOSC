@@ -1,8 +1,4 @@
 \section{Implementering}
-\subsection{Uafhængighed}
-
-
-Vi benytter os ikke af andre shells i vores shell, og anser derfor vores program som værende uafhængigt. 
 
 \subsection{Hostname}
 For at udskrive hostnavnet i kommando-prompt'en, har vi åbnet filen "/proc/sys/kernel/Hostname" med fopen. Derefter læser vi første linje i filen ind i en buffer med fgets, og scanner linjen ind i vores hostname variabel med sscan. Til sidst lukker vi filen med fclose. Der er ikke noget fejlhåndtering på om filen indeholder noget, eller om den overhovedet eksisterer, med den begrundelse at vi initialiserer vores hostname variabel med strengen "DEFAULT", og derefter overskriver denne variabel, hvis altså filen eksisterer og indeholder tekst. Hvis ikke, bliver variablen ikke overskrevet, og shell'en vil altså udksrive "DEFAULT".
@@ -16,13 +12,20 @@ Vi valgte først at afgrænse de mulige exec funktioner til de tre, der underst�
 Funktion en execvpe() blev udelukket, fordi den understøtter ekstra funktionalitet, som vi ikke har brug for i form af muligheden for at specifisere miljøet af filer den eksekverede.
 
 Forskellen på execlp() og execvp() er kun formateringen af argumenterne, og her foretrak vi execvp(), frodi vi har brugt den før.
+
 \subsection{Baggrundskørsel af kommandoer}
+Vi har valgt at implementere to forskellige måder at forke på. En "foregroundcmd" og en "backgroundcmd", begge er at finde i forback.c. Foregroundcmd forker, og får forælderprocessen til at vente på at barneprocessen terminerer, mens backgroundcmd forker og derefter returnerer til forælderprocessen, således at barneprocessen blot kører i baggrunden uden at shellen venter på den.
 
 \subsection{Piping og redirection}
 \label{subsec:pipe_redirect}
-\includegraphics[width=1.1\textwidth]{pipefig}\par\vspace{1cm}
 Redirection og piping er blevet implementeret i samme kode, da det stort set er samme funktionalitet.
 Der oprettes der en pipe, hver gang en kommando k1 skal sende sit output til k2, oprettes der en pipe hvis skriveende gives som k1's input fil og læse end gives til k2's læseende. Input- og output redirection kan således ses som en halv pipe, som gives til henholdvis den første og sidste kommando der skal eksekveres. Det sker ved at filerne åbnes i hovedprocessen, og deres filedescriptors kan herefter bruges på samme måde som pipe-ender. Løbende lukker hovedprocessen for filer og pipe-ender, som fremover ikke vil skulle bruges af kommandoer.
+
+
+\vspace{1cm}
+\includegraphics[scale=0.75, trim= 2cm 0cm 0cm 0cm]{pipefig}
+
+\vspace{1cm}
 
 Vi nåede frem til, at det gav bedst mening at kommandoerne blev udført i den rækkefølge som resultaterne skulle bruges i.
 Med andre ord, hvis kommando k1's output skal pipes til kommando k2's input, så skal kommando k1 udføres før kommando k2.
