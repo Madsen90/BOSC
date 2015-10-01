@@ -16,7 +16,7 @@ For at udskrive hostnavnet i kommando-prompt'en, har vi \åbnet filen "/proc/sys
 \subsection{Piping}
 
 \subsection{Exit kommando}
-
+ 
 \subsection{ctrl+c}
 Vi fanger ctrl+c gennem kommandoen "signal(SIGINT, interruptRun);". Denne fanger ethvert ctrl+c og, i stedet for at interrupte bosh-k\ørselen, kaldes "void interruptRun(int dummy)" metoden. interrruptRun udskriver blot "caught ctrl+c" og forts\ætter herefter k\ørslen af programmet. Grunden til at vi ikke sender interruptet videre ned i evt. k\ørende programmer, er at disse samtidig vil fange det samme ctrl+c input og terminere. Alts\å er der ikke behov at vi aktivt terminerer dem. Det skal dog ogs\å n\ævnes at dette ikke vil terminere evt. baggrundsprocesser, da disse ikke vil fange ctrl+c inputtet, men da vi har modelleret vores shell efter linux's indbyggede terminal, og denne har samme opf\ørsel, s\å antager vi at dette er acceptabelt. 
 
