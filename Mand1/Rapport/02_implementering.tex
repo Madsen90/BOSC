@@ -1,1 +1,12 @@
 \section{Implementering}
+\subsection{Uafh\ængighed}
+
+\subsection{Hostname}
+For at udskrive hostnavnet i kommando-prompt'en, har vi \åbnet filen "/proc/sys/kernel/Hostname" med fopen. Derefter l\æser vi f\ørste linje i filen ind i en buffer med fgets, og scanner linjen ind i vores hostname variabel med sscan. Til sidst lukker vi filen med fclose. Der er ikke noget fejlh\åndtering på om filen indeholder noget, eller om den overhovedet eksisterer, med den begrundelse at vi initialiserer vores hostname variabel med strengen "DEFAULT", og derefter overskriver denne variabel, hvis altså filen eksisterer og indeholder tekst. Hvis ikke, bliver variablen ikke overskrevet, og kommando-prompten vil altså udksrive "DEFAULT".
+
+\subsection{Kommando håndtering}
+
+\subsection{Baggrundskørsel af kommandoer}
+
+\subsection{}
+
