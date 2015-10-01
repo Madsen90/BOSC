@@ -77,9 +77,6 @@ int executeshellcmd (Shellcmd *shellcmd)
   }
 
   // End of reversing list
-  
-  // Exit command, ctrl c command
-  //http://man7.org/linux/man-pages/man7/pipe.7.html
 
   int inId, outId, closeId;
   outId = -1;
@@ -135,6 +132,7 @@ void interruptRun(int dummy){
   printf("%s\n", "if you want to exit the terminal, use Exit command or Ctrl+d");
 }
 
+void* defaultSignalHandler;
 
 /* --- main loop of the simple shell --- */
 int main(int argc, char* argv[]) {
@@ -144,7 +142,8 @@ int main(int argc, char* argv[]) {
   char hostname[HOSTNAMEMAX] = "Default";
   int terminate = 0;
   Shellcmd shellcmd;
-  signal(SIGINT, interruptRun);
+  defaultSignalHandler = signal(SIGINT, interruptRun);
+  
   if (gethostname(hostname)) {
 
     /* parse commands until exit or ctrl-d */
