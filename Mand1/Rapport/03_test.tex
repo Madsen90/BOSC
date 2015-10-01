@@ -1,1 +1,15 @@
 \section{Test}
+Vi har primært testet vores shell ved manuelle kørsler. For at overbevise os selv om at de mere komplicerede functioner virker (i praksis kun piping) har vi h\åndk\ørt dem. Se nedenfor, for tabel over hvilke processer der har hvilke pipes. 
+
+\begin{table}[]
+\centering
+\begin{tabular}{lllll}
+PipeId & Parent Process & Ls & Wc & Wc \\
+1 & Closed & Closed & Open & - \\
+2 & Closed & Open & - & - \\
+3 & Closed & - & Closed & Open \\
+4 & Closed & - & Open & 
+\end{tabular}
+\caption{Den resulterende tabel over hvilke processer der har hvilke pipes efter at have h\åndk\ørt vores shell med "ls | wc | wc" Tegnforklaring: Open: processen har en \åben pipe med dette ID. Closed: Processen har fået en åben pipe med dette ID, men lukket det. -: Processen har aldrig haft en pipe med dette ID}
+\label{test-tabel}
+\end{table}
