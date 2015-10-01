@@ -1,0 +1,22 @@
+\section{Implementering}
+\subsection{Uafh\ængighed}
+
+
+Vi benytter os ikke af andre shells i vores shell, og anser derfor vores program som v\ærende uafh\ængigt. 
+
+\subsection{Hostname}
+For at udskrive hostnavnet i kommando-prompt'en, har vi \åbnet filen "/proc/sys/kernel/Hostname" med fopen. Derefter l\æser vi f\ørste linje i filen ind i en buffer med fgets, og scanner linjen ind i vores hostname variabel med sscan. Til sidst lukker vi filen med fclose. Der er ikke noget fejlh\åndtering p\å om filen indeholder noget, eller om den overhovedet eksisterer, med den begrundelse at vi initialiserer vores hostname variabel med strengen "DEFAULT", og derefter overskriver denne variabel, hvis alts\å filen eksisterer og indeholder tekst. Hvis ikke, bliver variablen ikke overskrevet, og shell'en vil alts\å udksrive "DEFAULT".
+
+\subsection{Kommando h\åndtering}
+
+\subsection{Baggrundsk\ørsel af kommandoer}
+
+\subsection{Redirection}
+
+\subsection{Piping}
+
+\subsection{Exit kommando}
+
+\subsection{ctrl+c}
+Vi fanger ctrl+c gennem kommandoen "signal(SIGINT, interruptRun);". Denne fanger ethvert ctrl+c og, i stedet for at interrupte bosh-k\ørselen, kaldes "void interruptRun(int dummy)" metoden. interrruptRun udskriver blot "caught ctrl+c" og forts\ætter herefter k\ørslen af programmet. Grunden til at vi ikke sender interruptet videre ned i evt. k\ørende programmer, er at disse samtidig vil fange det samme ctrl+c input og terminere. Alts\å er der ikke behov at vi aktivt terminerer dem. Det skal dog ogs\å n\ævnes at dette ikke vil terminere evt. baggrundsprocesser, da disse ikke vil fange ctrl+c inputtet, men da vi har modelleret vores shell efter linux's indbyggede terminal, og denne har samme opf\ørsel, s\å antager vi at dette er acceptabelt. 
+

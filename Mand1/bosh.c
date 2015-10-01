@@ -1,4 +1,4 @@
-/* 
+ /* 
    bosh.c : BOSC shell 
  */
 
@@ -9,6 +9,7 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+<<<<<<< HEAD
 #include <sys/types.h>
 #include <unistd.h> //for STDIN_FILENO
 #include <sys/stat.h>
@@ -19,6 +20,9 @@
 #include <stdlib.h>
 
 
+=======
+#include <signal.h>
+>>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
 
 #include "parser.h"
 #include "print.h"
@@ -28,6 +32,7 @@
 #define HOSTNAMEMAX 100
 
 /* --- use the /proc filesystem to obtain the hostname --- */
+<<<<<<< HEAD
 char *gethostnameFile(void)
 {
   FILE *infile;
@@ -36,6 +41,20 @@ char *gethostnameFile(void)
   fscanf(infile,"%s",c);
   fclose(infile);
   return c;
+=======
+char *gethostname(char* hostname)
+{
+  FILE *versionfile;
+
+  char line[HOSTNAMEMAX];
+  versionfile = fopen("/proc/sys/kernel/hostname","r");
+
+  fgets(line,HOSTNAMEMAX,versionfile);
+  sscanf(line,"%s",hostname); //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+
+  fclose(versionfile);
+  return hostname; //very unnecessary
+>>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
 }
 
 /* --- execute a shell command --- */
@@ -65,7 +84,15 @@ int executeshellcmd (Shellcmd *shellcmd)
       the_cmds = temp;
     }
   }
+<<<<<<< HEAD
   //End of reversing list
+=======
+  // End of reversing list
+  
+  // Exit command, ctrl c command
+
+  int fd[2];
+>>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
   int inId, outId, closeId;
   outId = -1;
   inId  = open(in, O_RDONLY);
@@ -77,6 +104,7 @@ int executeshellcmd (Shellcmd *shellcmd)
       if(pipe(fid) < 0){
         exit(1); //Not able to create pipe
       }
+<<<<<<< HEAD
       outId = fid[1];
     }
     else{
@@ -84,6 +112,16 @@ int executeshellcmd (Shellcmd *shellcmd)
     }
     
     closeId = fid[0];
+=======
+
+      closeId = fd[0];
+      outId = fd[1];
+    }else{
+      closeId = -1;
+      outId = -1;
+    }
+    
+>>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
 
     if(shellcmd->background){
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
@@ -95,9 +133,14 @@ int executeshellcmd (Shellcmd *shellcmd)
       }
     }
 
+<<<<<<< HEAD
     if(fid[1] != -1){
       close(fid[1]);
     }
+=======
+    close(fd[1]);
+    
+>>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
     if(inId != -1){
       close(fid[0]);
     }
@@ -109,17 +152,32 @@ int executeshellcmd (Shellcmd *shellcmd)
   return 0;
 }
 
+void interruptRun(int dummy){
+  printf("%s", "caught ctrl-c");
+  printf("%s\n", "if you want to exit the terminal, use Exit command or Ctrl+d");
+}
+
 
 /* --- main loop of the simple shell --- */
 int main(int argc, char* argv[]) {
 
   /* initialize the shell */
   char *cmdline;
+<<<<<<< HEAD
+=======
+  char hostname[HOSTNAMEMAX] = "Default";
+>>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
   int terminate = 0;
   Shellcmd shellcmd;
+  signal(SIGINT, interruptRun);
 
+<<<<<<< HEAD
   char* hostname = gethostnameFile();
   if (hostname) {
+=======
+  if (gethostname(hostname)) {
+
+>>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
     /* parse commands until exit or ctrl-c */
     while (!terminate) {
 

@@ -30,7 +30,7 @@ typedef struct _shellcmd {
 
 int main(int argc, char const *argv[])
 {
-	//Shellcmd* cmd2;
+
 
 	Cmd cmd1;
 	Cmd cmd2;
@@ -43,18 +43,11 @@ int main(int argc, char const *argv[])
 	cmd1.cmd = s11;
 
 	char* s2 = "wc";
-	char* s23 = "-c";
 	char *s22[] = {
-		s2, s23, NULL
+		s2, NULL
 	};
 	
 	cmd2.cmd = s22;
-
-	/*int fd[2];
-
-	if(pipe(fd) < 0){
-		exit(1); //Not able to create pipe
-	}*/
 
 
 
@@ -68,16 +61,15 @@ int main(int argc, char const *argv[])
 	//outId = fd[1];
 	//inId  = -1;
 
-	int fid = open("hej", O_WRONLY);
+	// int fid = open("hej", O_WRONLY);
 	printf("%s\n", " - - - -");
 	foregroundcmd(*cmd1.cmd, cmd1.cmd, -1, fd[1], fd[0]);	
 	printf("%s\n", " - - - -");
-	
 
 	printf("%s\n", " - - - -");
 	foregroundcmd(*cmd2.cmd, cmd2.cmd, fd[0], -1, fd[1]);
 
-
+	foregroundcmd(*cmd2.cmd, cmd2.cmd, fd[0], -1, fd[1]);
 
 	return 0;
 }
