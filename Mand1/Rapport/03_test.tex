@@ -3,13 +3,15 @@ Vi har primært testet vores shell ved manuelle kørsler. For at overbevise os s
 
 \begin{table}[]
 \centering
-\begin{tabular}{lllll}
-PipeId & Parent Process & Ls & Wc & Wc \\
-1 & Closed & Closed & Open & - \\
-2 & Closed & Open & - & - \\
-3 & Closed & - & Closed & Open \\
-4 & Closed & - & Open & 
+\begin{tabular}{ l | c | c | c | r}
+pipeId & main & ls & wc & wc \\ \hline
+1 & Closed & Closed & Open & - \\ \hline
+2 & Closed & Open & - & - \\ \hline
+3 & Closed & - & Closed & Open\\ \hline
+4 & Closed & - & Open &  -
 \end{tabular}
-\caption{Den resulterende tabel over hvilke processer der har hvilke pipes efter at have håndkørt vores shell med "ls | wc | wc" Tegnforklaring: Open: processen har en åben pipe med dette ID. Closed: Processen har fået en åben pipe med dette ID, men lukket det. -: Processen har aldrig haft en pipe med dette ID}
+\caption{Den resulterende tabel over hvilke processer der har hvilke pipes efter at have håndkørt vores shell med "ls \textbar wc \textbar wc" .
+\newline
+Tegnforklaring: Open: processen har en åben pipe med dette ID. Closed: Processen har fået en åben pipe med dette ID, men lukket det. -: Processen har aldrig haft en pipe med dette ID}
 \label{test-tabel}
 \end{table}
