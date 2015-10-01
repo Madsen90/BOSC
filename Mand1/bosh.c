@@ -47,9 +47,6 @@ int executeshellcmd (Shellcmd *shellcmd)
   char* in      = shellcmd->rd_stdin;
   char* out     = shellcmd->rd_stdout;
 
-
-  printshellcmd(shellcmd);
-
   //Reversing the list for easier execution
   struct _cmd *next = NULL;
   struct _cmd *temp;
@@ -110,7 +107,6 @@ int executeshellcmd (Shellcmd *shellcmd)
     closeId = fid[0];
 
     if(shellcmd->background || the_cmds->next != NULL){
-      printf("%s\n", "Backgorunding");
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
     }
     else{
@@ -146,7 +142,7 @@ int main(int argc, char* argv[]) {
   Shellcmd shellcmd;
   signal(SIGINT, interruptRun);
   
-  gethostname();
+  gethostname(hostname);
   /* parse commands until exit or ctrl-d */
   while (!terminate) {
 
