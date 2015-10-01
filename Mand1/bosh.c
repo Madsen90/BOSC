@@ -26,7 +26,7 @@
 #define HOSTNAMEMAX 100
 
 /* --- use the /proc filesystem to obtain the hostname --- */
-char *gethostname(char* hostname)
+void gethostname(char* hostname)
 {
   FILE *versionfile;
 
@@ -34,10 +34,10 @@ char *gethostname(char* hostname)
   versionfile = fopen("/proc/sys/kernel/hostname","r");
 
   fgets(line,HOSTNAMEMAX,versionfile);
-  sscanf(line,"%s",hostname); //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+  //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+  sscanf(line,"%s",hostname); 
 
   fclose(versionfile);
-  return hostname; //very unnecessary
 }
 
 /* --- execute a shell command --- */
@@ -145,29 +145,28 @@ int main(int argc, char* argv[]) {
   int terminate = 0;
   Shellcmd shellcmd;
   signal(SIGINT, interruptRun);
-  if (gethostname(hostname)) {
+  
+  gethostname();
+  /* parse commands until exit or ctrl-d */
+  while (!terminate) {
 
-    /* parse commands until exit or ctrl-d */
-    while (!terminate) {
-
-      printf("%s", hostname);
-      if (cmdline = readline(":# ")) {
-        if(*cmdline) {
-          add_history(cmdline);
-        
-          if (parsecommand(cmdline, &shellcmd)) {
-            terminate = executeshellcmd(&shellcmd);
-          }
+    printf("%s", hostname);
+    if (cmdline = readline(":# ")) {
+      if(*cmdline) {
+        add_history(cmdline);
+      
+        if (parsecommand(cmdline, &shellcmd)) {
+          terminate = executeshellcmd(&shellcmd);
         }
-
-        free(cmdline);
-      } 
-      else{  
-        terminate = 1;
       }
+
+      free(cmdline);
+    } 
+    else{  
+      terminate = 1;
     }
-    printf("Exiting bosh.\n");
-  }    
+  }
+  printf("Exiting bosh.\n");   
     
   return EXIT_SUCCESS;
 }
