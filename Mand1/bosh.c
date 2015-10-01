@@ -132,7 +132,6 @@ void interruptRun(int dummy){
   printf("%s\n", "if you want to exit the terminal, use Exit command or Ctrl+d");
 }
 
-void* defaultSignalHandler;
 
 /* --- main loop of the simple shell --- */
 int main(int argc, char* argv[]) {
@@ -142,7 +141,7 @@ int main(int argc, char* argv[]) {
   char hostname[HOSTNAMEMAX] = "Default";
   int terminate = 0;
   Shellcmd shellcmd;
-  defaultSignalHandler = signal(SIGINT, interruptRun);
+  signal(SIGINT, interruptRun);
   
   if (gethostname(hostname)) {
 
