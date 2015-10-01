@@ -11,9 +11,14 @@ For at udskrive hostnavnet i kommando-prompt'en, har vi åbnet filen "/proc/sys/
 
 \subsection{Baggrundskørsel af kommandoer}
 
-\subsection{Redirection}
+\subsection{Piping og redirection}
+Redirection og piping er blevet implementeret i samme kode, da det stort set er samme funktionalitet.
+Der oprettes der en pipe, hver gang en kommando k1 skal sende sit output til k2, oprettes der en pipe hvis skriveende gives som k1's input fil og læse end gives til k2's læseende. Input- og output redirection kan således ses som en halv pipe, som gives til henholdvis den første og sidste kommando der skal eksekveres. Det sker ved at filerne åbnes i hovedprocessen, og deres filedescriptors kan herefter bruges på samme måde som pipe-ender. Løbende lukker hovedprocessen for filer og pipe-ender, som fremover ikke vil skulle bruges af kommandoer.
 
-\subsection{Piping}
+
+Vi nåede frem til, at det gav bedst mening at kommandoerne blev udført i den rækkefølge som resultaterne skulle bruges i.
+Med andre ord, hvis kommando k1's output skal pipes til kommando k2's input, så skal kommando k1 udføres før kommando k2.
+Hovedårsagen til dette valg var, at det gjorde det nemt at køre en kommando-række enten som en række forgrundsprocesser eller baggrundsprocesser, da kommandoerne bare kan udføres sekventielt, uden at bekymre sig om der ventes på en forgrundsproces. For at kunne have samtidig kørsel af kommandoer der undervejs generere output der pipes til hinanden, så køres kun den sidste kommando som forgrundsproces. Det har medført, at hvis den sidste kommando terminere før de forudgående baggrundsprocesser, kan et ske at baggrundsprocesser efterlades kørende, hvilket vi er nået frem til er årsagen til må være årsagen til at listen oprindeligt vendte som den gjorde. Disse baggrundsprocesser er dog ikke synlige for brugeren, men det er muligivis stadigvæk problematisk, hvis en af de efterladte baggrundsprocessor fylder en skrive-enden af en pipe kan der opstå et deadlock, men det må også kunne ske, ved eksekvering i den omvendte rækkefølge.
 
 \subsection{Exit kommando}
  
