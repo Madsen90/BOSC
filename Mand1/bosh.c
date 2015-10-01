@@ -47,6 +47,9 @@ int executeshellcmd (Shellcmd *shellcmd)
   char* in      = shellcmd->rd_stdin;
   char* out     = shellcmd->rd_stdout;
 
+
+  printshellcmd(shellcmd);
+
   //Reversing the list for easier execution
   struct _cmd *next = NULL;
   struct _cmd *temp;
@@ -76,10 +79,16 @@ int executeshellcmd (Shellcmd *shellcmd)
   // End of reversing list
   
   // Exit command, ctrl c command
+  //http://man7.org/linux/man-pages/man7/pipe.7.html
 
   int inId, outId, closeId;
   outId = -1;
-  inId  = open(in, O_RDONLY);
+  inId  = -1;
+
+  if(in){
+    inId = open(in, O_RDONLY);
+  }
+
   int fid[2] = {inId, outId};
   while(the_cmds != NULL){
 
@@ -91,22 +100,27 @@ int executeshellcmd (Shellcmd *shellcmd)
       outId = fid[1];
     }
     else{
-      outId = open(out, O_WRONLY | O_CREAT, 0666);
+      if(out){
+        outId = open(out, O_WRONLY | O_CREAT, 0666);
+      }else{
+        outId = -1;
+      }
     }
     
     closeId = fid[0];
 
     if(shellcmd->background || the_cmds->next != NULL){
+      printf("%s\n", "Backgorunding");
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
     }
     else{
-      foregroundcmd(*cmd, cmd, inId, outId, closeId); 
+      foregroundcmd(*cmd, cmd, inId, outId, closeId);  
     }
     if(fid[1] != -1){
       close(fid[1]);
     }
     if(inId != -1){
-      close(fid[0]);
+      close(inId);
     }
 
     the_cmds = the_cmds->next;
