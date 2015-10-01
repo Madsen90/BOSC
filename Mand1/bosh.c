@@ -123,7 +123,12 @@ int executeshellcmd (Shellcmd *shellcmd)
     inId = fid[0];  
   }
 
+  if(outId == -1){
+    close(outId);
+  }
+
   return 0;
+  }
 }
 
 void interruptRun(int dummy){

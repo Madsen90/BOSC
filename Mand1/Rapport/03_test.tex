@@ -4,11 +4,13 @@ Vi har primært testet vores shell ved manuelle kørsler. For at overbevise os s
 \begin{table}[]
 \centering
 \begin{tabular}{ l | c | c | c | r}
-pipeId & main & ls & wc & wc \\ \hline
-1 & Closed & Closed & Open & - \\ \hline
-2 & Closed & Open & - & - \\ \hline
-3 & Closed & - & Closed & Open\\ \hline
-4 & Closed & - & Open &  -
+File & main & ls & wc & wc \\ \hline
+in 	 & Closed & Open 	&  - 		& - \\ \hline
+1 	 & Closed & Closed 	& Open 		& - \\ \hline
+2 	 & Closed & Open 	& - 		& - \\ \hline
+3 	 & Closed & - 		& Closed 	& Open\\ \hline
+4 	 & Closed & - 		& Open 		&  -	\\ \hline
+out  & Closed & - 		& - 		&  Open
 \end{tabular}
 \caption{Den resulterende tabel over hvilke processer der har hvilke pipes efter at have håndkørt vores shell med "ls \textbar wc \textbar wc" .
 \newline
