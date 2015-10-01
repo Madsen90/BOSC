@@ -52,6 +52,11 @@ int executeshellcmd (Shellcmd *shellcmd)
   struct _cmd *temp;
   int run = 1;
 
+  if(strcmp("exit", (const char*) *shellcmd->the_cmds->cmd) == 0)
+  {
+    return 1;
+  }
+
   while(run){
     if(the_cmds->next == NULL){
       run = 0;
@@ -91,14 +96,11 @@ int executeshellcmd (Shellcmd *shellcmd)
     
     closeId = fid[0];
 
-    if(shellcmd->background){
+    if(shellcmd->background || the_cmds->next != NULL){
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
     }
     else{
-      if(foregroundcmd(*cmd, cmd, inId, outId, closeId) == -1) 
-      {
-        exit(0); 
-      }
+      foregroundcmd(*cmd, cmd, inId, outId, closeId); 
     }
     if(fid[1] != -1){
       close(fid[1]);
@@ -144,14 +146,12 @@ int main(int argc, char* argv[]) {
           }
         }
 
-
         free(cmdline);
       } 
       else{  
         terminate = 1;
       }
     }
-    free(hostname);
     printf("Exiting bosh.\n");
   }    
     
