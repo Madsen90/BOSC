@@ -12,6 +12,7 @@
 #include "forback.h"
 #include "parser.h"
 
+
 /*
 typedef struct _cmd {
     char **cmd;
@@ -74,7 +75,7 @@ int main(int argc, char const *argv[])
 	
 
 	printf("%s\n", " - - - -");
-	backgroundcmd(*cmd2.cmd, cmd2.cmd, fd[0], -1, fd[1]);
+	foregroundcmd(*cmd2.cmd, cmd2.cmd, fd[0], -1, fd[1]);
 
 
 

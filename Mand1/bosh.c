@@ -10,6 +10,15 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <sys/types.h>
+#include <unistd.h> //for STDIN_FILENO
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#include <unistd.h>
+#include <sys/wait.h>
+#include <stdlib.h>
+
+
 
 #include "parser.h"
 #include "print.h"
@@ -19,11 +28,14 @@
 #define HOSTNAMEMAX 100
 
 /* --- use the /proc filesystem to obtain the hostname --- */
-char *gethostname2(char *hostname)
+char *gethostnameFile(void)
 {
-  //Skal nok skrives om.
-  gethostname(hostname, HOSTNAMEMAX);
-  return hostname;
+  FILE *infile;
+  char* c = malloc(1000);
+  infile = fopen("/proc/sys/kernel/hostname", "r");
+  fscanf(infile,"%s",c);
+  fclose(infile);
+  return c;
 }
 
 /* --- execute a shell command --- */
@@ -54,42 +66,44 @@ int executeshellcmd (Shellcmd *shellcmd)
     }
   }
   //End of reversing list
-  
-  int fd[2];
   int inId, outId, closeId;
   outId = -1;
-  inId  = -1;
-
+  inId  = open(in, O_RDONLY);
+  int fid[2] = {inId, outId};
   while(the_cmds != NULL){
 
     char** cmd = the_cmds->cmd;
-    
     if(the_cmds->next != NULL){
-      if(pipe(fd) < 0){
+      if(pipe(fid) < 0){
         exit(1); //Not able to create pipe
       }
-      outId = fd[1];
-    }else{
-      outId = -1;
+      outId = fid[1];
+    }
+    else{
+      outId = open(out, O_WRONLY | O_CREAT, 0666);
     }
     
-    closeId = fd[0];
+    closeId = fid[0];
 
     if(shellcmd->background){
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
-    }else{
-      foregroundcmd(*cmd, cmd, inId, outId, closeId); 
+    }
+    else{
+      if(foregroundcmd(*cmd, cmd, inId, outId, closeId) == -1) 
+      {
+        exit(0); 
+      }
     }
 
-    if(fd[1] != -1){
-      close(fd[1]);
+    if(fid[1] != -1){
+      close(fid[1]);
     }
     if(inId != -1){
-      close(inId);
+      close(fid[0]);
     }
 
     the_cmds = the_cmds->next;
-    inId = fd[0];  
+    inId = fid[0];  
   }
 
   return 0;
@@ -101,14 +115,14 @@ int main(int argc, char* argv[]) {
 
   /* initialize the shell */
   char *cmdline;
-  char hostname[HOSTNAMEMAX] = "asdads";
   int terminate = 0;
   Shellcmd shellcmd;
 
-  if (gethostname2(hostname)) {
-
+  char* hostname = gethostnameFile();
+  if (hostname) {
     /* parse commands until exit or ctrl-c */
     while (!terminate) {
+
       printf("%s", hostname);
       if (cmdline = readline(":# ")) {
         if(*cmdline) {
@@ -126,9 +140,9 @@ int main(int argc, char* argv[]) {
         terminate = 1;
       }
     }
+    free(hostname);
     printf("Exiting bosh.\n");
   }    
     
   return EXIT_SUCCESS;
 }
-

@@ -20,6 +20,10 @@
    in a new process and wait for termination */
 int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 {
+	if(strcmp("exit", filename) == 0)
+	{
+		return -1;
+	}
 	pid_t pid = fork();
 
 	if(pid == 0){
@@ -31,7 +35,7 @@ int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 		}	
 		if(closeId != -1){
 			close(closeId);
-		}	
+		}
 		if(execvp(filename,argv) == -1){
 			printf("Command not found");
 		}

@@ -167,11 +167,12 @@ int acmd (char *s, Cmd **cmd)
 
   while (1) {
     n = nexttoken(s, &tok);
+    
     if (n == 0 || isspec(*tok))
       {
-	*cmd = cmd0;
-	*pp++ = NULL;
-	return cnt;
+      	*cmd = cmd0;
+      	*pp++ = NULL;
+      	return cnt;
       }
     else
       {
