@@ -47,22 +47,7 @@ int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 	pid_t pid = fork();
 
 	if(pid == 0){
-<<<<<<< HEAD
-		if(in != -1){
-			redirect_stdincmd(in);
-		}
-		if(out != -1){
-			redirect_stdoutcmd(out);
-		}	
-		if(closeId != -1){
-			close(closeId);
-		}
-		if(execvp(filename,argv) == -1){
-			printf("Command not found");
-		}
-=======
 		redirectAndExec(filename, argv, in, out, closeId);
->>>>>>> a14ce106792895a204a37d8707297a49e0fd47c7
 	}else{
 		int returnStatus;  
     	waitpid(pid, &returnStatus, 0);
