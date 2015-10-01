@@ -4,6 +4,7 @@
 For at udskrive hostnavnet i kommando-prompt'en, har vi åbnet filen "/proc/sys/kernel/Hostname" med fopen. Derefter læser vi første linje i filen ind i en buffer med fgets, og scanner linjen ind i vores hostname variabel med sscan. Til sidst lukker vi filen med fclose. Der er ikke noget fejlhåndtering på om filen indeholder noget, eller om den overhovedet eksisterer, med den begrundelse at vi initialiserer vores hostname variabel med strengen "DEFAULT", og derefter overskriver denne variabel, hvis altså filen eksisterer og indeholder tekst. Hvis ikke, bliver variablen ikke overskrevet, og shell'en vil altså udksrive "DEFAULT".
 
 \subsection{Kommando håndtering}
+Da vi skulle håndtere kommandoer syntes det at nemmere, hvis vi vendte listen af kommandoer om. Mere om dette i afsnit \ref{subsec:pipe_redirect} Piping og redirection
 
 \subsubsection{Valg af exec funktion}
 Vi valgte først at afgrænse de mulige exec funktioner til de tre, der understøttede automatisk opslag efter eksekverbare filer i de filkataloger, der er specifiseret i PATH miljøvariabelen. Disse er execlp(), execvp() og execvpe(). Dette gør det let at køre kommandoer som ls og wc.
@@ -16,6 +17,7 @@ Forskellen på execlp() og execvp() er kun formateringen af argumenterne, og her
 Vi har valgt at implementere to forskellige måder at forke på. En "foregroundcmd" og en "backgroundcmd", begge er at finde i forback.c. Foregroundcmd forker, og får forælderprocessen til at vente på at barneprocessen terminerer, mens backgroundcmd forker og derefter returnerer til forælderprocessen, således at barneprocessen blot kører i baggrunden uden at shellen venter på den.
 
 \subsection{Piping og redirection}
+\label{subsec:pipe_redirect}
 Redirection og piping er blevet implementeret i samme kode, da det stort set er samme funktionalitet.
 Der oprettes der en pipe, hver gang en kommando k1 skal sende sit output til k2, oprettes der en pipe hvis skriveende gives som k1's input fil og læse end gives til k2's læseende. Input- og output redirection kan således ses som en halv pipe, som gives til henholdvis den første og sidste kommando der skal eksekveres. Det sker ved at filerne åbnes i hovedprocessen, og deres filedescriptors kan herefter bruges på samme måde som pipe-ender. Løbende lukker hovedprocessen for filer og pipe-ender, som fremover ikke vil skulle bruges af kommandoer.
 
