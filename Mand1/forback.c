@@ -29,7 +29,7 @@ int redirectAndExec(char *filename, char *argv[], int in, int out, int closeId){
 	}	
 	
 	if(execvp(filename,argv) == -1){
-		printf("Command not found");
+		printf("Command not found\n");
 		exit(1);
 	}
 	return 0;
@@ -43,6 +43,7 @@ int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 	pid_t pid = fork();
 
 	if(pid == 0){
+		redirectAndExec(filename, argv, in, out, closeId);
 	}else{
 		int returnStatus;  
     	waitpid(pid, &returnStatus, 0);
