@@ -26,7 +26,7 @@
 #define HOSTNAMEMAX 100
 
 /* --- use the /proc filesystem to obtain the hostname --- */
-char *gethostname(char* hostname)
+void gethostname(char* hostname)
 {
   FILE *versionfile;
 
@@ -34,10 +34,10 @@ char *gethostname(char* hostname)
   versionfile = fopen("/proc/sys/kernel/hostname","r");
 
   fgets(line,HOSTNAMEMAX,versionfile);
-  sscanf(line,"%s",hostname); //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+  //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+  sscanf(line,"%s",hostname); 
 
   fclose(versionfile);
-  return hostname; //very unnecessary
 }
 
 /* --- execute a shell command --- */
@@ -46,9 +46,6 @@ int executeshellcmd (Shellcmd *shellcmd)
   struct _cmd *the_cmds = shellcmd->the_cmds;
   char* in      = shellcmd->rd_stdin;
   char* out     = shellcmd->rd_stdout;
-
-
-  printshellcmd(shellcmd);
 
   //Reversing the list for easier execution
   struct _cmd *next = NULL;
@@ -107,7 +104,6 @@ int executeshellcmd (Shellcmd *shellcmd)
     closeId = fid[0];
 
     if(shellcmd->background || the_cmds->next != NULL){
-      printf("%s\n", "Backgorunding");
       backgroundcmd(*cmd, cmd, inId, outId, closeId); 
     }
     else{
@@ -124,7 +120,12 @@ int executeshellcmd (Shellcmd *shellcmd)
     inId = fid[0];  
   }
 
+  if(outId == -1){
+    close(outId);
+  }
+
   return 0;
+  }
 }
 
 void interruptRun(int dummy){
@@ -143,29 +144,28 @@ int main(int argc, char* argv[]) {
   Shellcmd shellcmd;
   signal(SIGINT, interruptRun);
   
-  if (gethostname(hostname)) {
 
-    /* parse commands until exit or ctrl-d */
-    while (!terminate) {
+  gethostname(hostname);
+  /* parse commands until exit or ctrl-d */
+  while (!terminate) {
 
-      printf("%s", hostname);
-      if (cmdline = readline(":# ")) {
-        if(*cmdline) {
-          add_history(cmdline);
-        
-          if (parsecommand(cmdline, &shellcmd)) {
-            terminate = executeshellcmd(&shellcmd);
-          }
+    printf("%s", hostname);
+    if (cmdline = readline(":# ")) {
+      if(*cmdline) {
+        add_history(cmdline);
+      
+        if (parsecommand(cmdline, &shellcmd)) {
+          terminate = executeshellcmd(&shellcmd);
         }
-
-        free(cmdline);
-      } 
-      else{  
-        terminate = 1;
       }
+
+      free(cmdline);
+    } 
+    else{  
+      terminate = 1;
     }
-    printf("Exiting bosh.\n");
-  }    
+  }
+  printf("Exiting bosh.\n");   
     
   return EXIT_SUCCESS;
 }
