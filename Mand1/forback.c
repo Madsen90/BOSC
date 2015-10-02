@@ -13,8 +13,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "forback.h"
 #include "redirect.h"
+#include "bosh.h"
 
 /*Helper to avoid dublication*/
 int redirectAndExec(char *filename, char *argv[], int in, int out, int closeId){
@@ -32,7 +32,7 @@ int redirectAndExec(char *filename, char *argv[], int in, int out, int closeId){
 		printf("Command not found\n");
 		exit(1);
 	}
-	return 0;
+	exit(1);
 }
 
 
@@ -56,14 +56,20 @@ int foregroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 	return 0;
 }
 
-
 /* start the program specified by filename with the arguments in argv 
    in a new process */
 int backgroundcmd(char *filename, char *argv[], int in, int out, int closeId)
 {
 	pid_t pid = fork();
-	if(pid == 0){
-		redirectAndExec(filename, argv, in, out, closeId);
+	if(pid == 0){	//Avoiding zombie processes
+		pid_t pid1 = fork();
+		if(pid1 == 0){
+			redirectAndExec(filename, argv, in, out, closeId);
+		}
+		exit(0);
+	}else{
+		int returnStatus;  
+    	waitpid(pid, &returnStatus, 0);
 	}
 
 	return 0;

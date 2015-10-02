@@ -19,11 +19,15 @@ Vi har valgt at implementere to forskellige måder at forke på. En "foregroundc
 \subsection{Piping og redirection}
 \label{subsec:pipe_redirect}
 Redirection og piping er blevet implementeret i samme kode, da det stort set er samme funktionalitet.
-Der oprettes der en pipe, hver gang en kommando k1 skal sende sit output til k2, oprettes der en pipe hvis skriveende gives som k1's input fil og læse end gives til k2's læseende. Input- og output redirection kan således ses som en halv pipe, som gives til henholdvis den første og sidste kommando der skal eksekveres. Det sker ved at filerne åbnes i hovedprocessen, og deres filedescriptors kan herefter bruges på samme måde som pipe-ender. Løbende lukker hovedprocessen for filer og pipe-ender, som fremover ikke vil skulle bruges af kommandoer.
+Der oprettes der en pipe, hver gang en kommando k1 skal sende sit output til k2, oprettes der en pipe hvis skriveende gives som k1's input fil og læse end gives til k2's læseende. Dette kan ses på figur \ref{fig:pipe}. Input- og output redirection kan således ses som en halv pipe, som gives til henholdvis den første og sidste kommando der skal eksekveres. Det sker ved at filerne åbnes i hovedprocessen, og deres filedescriptors kan herefter bruges på samme måde som pipe-ender. Løbende lukker hovedprocessen for filer og pipe-ender, som fremover ikke vil skulle bruges af kommandoer.
 
 
 \vspace{1cm}
-\includegraphics[scale=0.75, trim= 2cm 0cm 0cm 0cm]{pipefig}
+\begin{figure}
+\includegraphics[scale=0.7, trim= 2cm 0cm 0cm 0cm]{pipefig}
+\caption{En simpel figur over hvordan der pipes mellem de forskellige kommandoer og in- og output filerne.}
+\label{fig:pipe}
+\end{figure}
 
 \vspace{1cm}
 

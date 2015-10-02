@@ -74,9 +74,6 @@ int executeshellcmd (Shellcmd *shellcmd)
   }
 
   // End of reversing list
-  
-  // Exit command, ctrl c command
-  //http://man7.org/linux/man-pages/man7/pipe.7.html
 
   int inId, outId, closeId;
   outId = -1;
@@ -147,6 +144,7 @@ int main(int argc, char* argv[]) {
   Shellcmd shellcmd;
   signal(SIGINT, interruptRun);
   
+
   gethostname(hostname);
   /* parse commands until exit or ctrl-d */
   while (!terminate) {

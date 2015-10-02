@@ -12,14 +12,17 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 
+
+void hej(int i){ printf("%s\n","Kill Sig"); }
+
 int main(int argc, char const *argv[])
 {
-	char buf[1];
-
-	while(read(0, buf, sizeof(buf))>0) {
-	   // read() here read from stdin charachter by charchter
-	   //the buf[0] contains the charchter got by read()
-	   printf("%c\n", *buf);
+	int i;
+	signal(SIGINT, hej);
+	for(i = 0; i < 100; i++){
+		printf("%s\n", "Hje");
+		sleep(1);
 	}
+
 	return 0;
 }
