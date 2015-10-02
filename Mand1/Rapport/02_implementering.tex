@@ -1,7 +1,7 @@
 \section{Implementering}
 
 \subsection{Hostname}
-For at udskrive hostnavnet i kommando-prompt'en, har vi åbnet filen "/proc/sys/kernel/Hostname" med fopen. Derefter læser vi første linje i filen ind i en buffer med fgets, og scanner linjen ind i vores hostname variabel med sscan. Til sidst lukker vi filen med fclose. Der er ikke noget fejlhåndtering på om filen indeholder noget, eller om den overhovedet eksisterer, med den begrundelse at vi initialiserer vores hostname variabel med strengen "DEFAULT", og derefter overskriver denne variabel, hvis altså filen eksisterer og indeholder tekst. Hvis ikke, bliver variablen ikke overskrevet, og shell'en vil altså udksrive "DEFAULT".
+For at udskrive hostnavnet i kommando-prompt'en, har vi åbnet filen "/proc/sys/kernel/Hostname" med fopen. Derefter læser vi første linje i filen ind i en buffer med fgets, og scanner linjen ind i vores hostname variabel med sscan. Til sidst lukker vi filen med fclose. Der er ikke nogen fejlhåndtering hvis filen ikke indeholder noget, eller hvis den ikke eksisterer. Begrundelsen for at vi ikke fejlhåndterer her, er at vi initialiserer vores hostname variabel med strengen "DEFAULT" og derefter overskriver denne variabel, hvis altså filen eksisterer og indeholder tekst. Hvis ikke, bliver variablen ikke overskrevet, og shell'en vil altså udksrive "DEFAULT".
 
 \subsection{Kommando håndtering}
 Da vi skulle håndtere kommandoer, syntes det at være nemmere, hvis vi vendte listen af kommandoer om. Mere om dette i afsnit \ref{subsec:pipe_redirect} Piping og redirection

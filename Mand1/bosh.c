@@ -31,7 +31,7 @@ void gethostname(char* hostname)
   FILE *versionfile;
 
   char line[HOSTNAMEMAX];
-  versionfile = fopen("/proc/sys/kernel/hostname","r");
+  versionfile = fopen("/proc/sys/kernel/hostnamen","r");
 
   fgets(line,HOSTNAMEMAX,versionfile);
   //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
@@ -125,7 +125,6 @@ int executeshellcmd (Shellcmd *shellcmd)
   }
 
   return 0;
-  }
 }
 
 void interruptRun(int dummy){

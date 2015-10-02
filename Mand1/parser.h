@@ -1,3 +1,6 @@
+/*
+parser.h
+*/
 typedef struct _cmd {
     char **cmd;
     struct _cmd *next;
