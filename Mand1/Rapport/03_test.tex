@@ -1,18 +1,25 @@
 \section{Test}
-Vi har primært testet vores shell ved manuelle kørsler. For at overbevise os selv om at de mere komplicerede functioner virker (i praksis kun piping) har vi håndkørt dem. Se nedenfor, for tabel over hvilke processer der har hvilke pipes. 
+Vi har primært testet vores shell ved manuelle kørsler af kommandoer. Vi har brugt programmet htop\footnote{http://hisham.hm/htop/}, til at tjekke at børneprocesser lukker ned som forventet. 
+
+For at overbevise os selv at filer ikke blev efterladt åbne ved piping, har vi håndkørt lukningen af dem.
+Her er en tabel, der viser, hvilke processer der har hvilke filer åbne. 
+
 \begin{table}[h]
 \centering
 \begin{tabular}{ l | c | c | c | r}
-File & main & ls & wc & wc \\ \hline
-in 	 & Closed & Open 	&  - 		& - \\ \hline
-1 	 & Closed & Closed 	& Open 		& - \\ \hline
-2 	 & Closed & Open 	& - 		& - \\ \hline
-3 	 & Closed & - 		& Closed 	& Open\\ \hline
-4 	 & Closed & - 		& Open 		&  -	\\ \hline
-out  & Closed & - 		& - 		&  Open
+File descriptors 	& main 		& ls 		& wc 		& wc \\ \hline
+in 	 				& Closed 	& Open 		&  - 		& - \\ \hline
+1 	 				& Closed 	& Closed 	& Open 		& - \\ \hline
+2 	 				& Closed 	& Open 		& - 		& - \\ \hline
+3 	 				& Closed 	& - 		& Closed 	& Open\\ \hline
+4 	 				& Closed 	& - 		& Open 		&  -	\\ \hline
+out  				& Closed 	& - 		& - 		&  Open
 \end{tabular}
-\caption{Den resulterende tabel over hvilke processer der har hvilke pipes efter at have håndkørt vores shell med "ls \textbar wc \textbar wc" .
-\newline
-Tegnforklaring: Open: processen har en åben pipe med dette ID. Closed: Processen har fået en åben pipe med dette ID, men lukket det. -: Processen har aldrig haft en pipe med dette ID}
+\caption{Den resulterende tabel over hvilke processer der har hvilke pipes efter at have håndkørt vores shell med "ls \textbar wc \textbar wc" .}
 \label{test-tabel}
 \end{table}
+
+\flushleft{\textbf{Tegnforklaring:}} \newline
+\textit{Open}: Processen har en åben file descriptor med dette ID. \newline
+\textit{Closed}: Processen har fået en åben file descriptor med dette ID, men lukket det.\newline
+\textit{-}: Processen har aldrig haft en file descriptor med dette ID.
