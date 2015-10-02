@@ -28,16 +28,19 @@
 /* --- use the /proc filesystem to obtain the hostname --- */
 void gethostname(char* hostname)
 {
-  FILE *versionfile;
+  char* filename = "/proc/sys/kernel/hostname";
+  if( access( filename, F_OK ) != -1 ) {
+    FILE *file;
 
-  char line[HOSTNAMEMAX];
-  versionfile = fopen("/proc/sys/kernel/hostnamen","r");
+    char line[HOSTNAMEMAX];
+    file = fopen(filename,"r");
 
-  fgets(line,HOSTNAMEMAX,versionfile);
-  //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
-  sscanf(line,"%s",hostname); 
+    fgets(line,HOSTNAMEMAX,file);
+    //if unable to scan, then hostname is already set, so no if(scan(..)) necessary
+    sscanf(line,"%s",hostname); 
 
-  fclose(versionfile);
+    fclose(file);
+  }
 }
 
 /* --- execute a shell command --- */
@@ -128,8 +131,7 @@ int executeshellcmd (Shellcmd *shellcmd)
 }
 
 void interruptRun(int dummy){
-  printf("%s", "caught ctrl-c");
-  printf("%s\n", "if you want to exit the terminal, use Exit command or Ctrl+d");
+  printf("%s\n", "caught ctrl-c - use exit command or crtl+d to exit");
 }
 
 
