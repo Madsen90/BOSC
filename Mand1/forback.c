@@ -14,7 +14,6 @@
 #include <string.h>
 
 #include "redirect.h"
-#include "bosh.h"
 
 /*Helper to avoid dublication*/
 int redirectAndExec(char *filename, char *argv[], int in, int out, int closeId){
