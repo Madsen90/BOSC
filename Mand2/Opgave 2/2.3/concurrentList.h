@@ -8,6 +8,8 @@
 #ifndef _CONCURRENTLIST_H
 #define _CONCURRENTLIST_H
 
+#include <pthread.h>
+
 /* structures */
 typedef struct node {
   void *elm; /* use void type for generality; we cast the element's type to void type */
@@ -18,6 +20,9 @@ typedef struct concurrentList {
   int len;
   Node *first;
   Node *last;
+  pthread_mutex_t len_mutex;
+  pthread_mutex_t add_mutex;
+  pthread_mutex_t rem_mutex;
 } ConcurrentList;
 
 /* functions */

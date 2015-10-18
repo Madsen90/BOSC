@@ -11,10 +11,6 @@
 #include <pthread.h>
 #include "concurrentList.h"
 
-pthread_mutex_t len_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t add_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t rem_mutex = PTHREAD_MUTEX_INITIALIZER;
-
 
 /* list_new: return a new list structure */
 ConcurrentList *list_new(void)
@@ -28,6 +24,9 @@ ConcurrentList *list_new(void)
   l->first = l->last = (Node *) malloc(sizeof(Node));
   l->first->elm = NULL;
   l->first->next = NULL;
+  pthread_mutex_init(&l->add_mutex, NULL);
+  pthread_mutex_init(&l->rem_mutex, NULL);
+  pthread_mutex_init(&l->len_mutex, NULL);
   return l;
 }
 
@@ -35,31 +34,34 @@ ConcurrentList *list_new(void)
 void list_add(ConcurrentList *l, Node *n)
 {
   //if(l->last != NULL) check is not necessary, as the root element is never removed
-  pthread_mutex_lock(&add_mutex);
+  pthread_mutex_lock(&l->add_mutex);
   l->last->next = n;
   l->last = n;
-  pthread_mutex_unlock(&add_mutex);
-  pthread_mutex_lock(&len_mutex);
+  pthread_mutex_unlock(&l->add_mutex);
+  pthread_mutex_lock(&l->len_mutex);
   l->len++;
-  pthread_mutex_unlock(&len_mutex);
+  pthread_mutex_unlock(&l->len_mutex);
 }
 
 /* list_remove: remove and return the first (non-root) element from list l */
 Node *list_remove(ConcurrentList *l)
 {
   Node *n;
-  pthread_mutex_lock(&len_mutex);
+  pthread_mutex_lock(&l->len_mutex);
   if(l->len > 0){
     l->len--;
-    pthread_mutex_unlock(&len_mutex);
-    pthread_mutex_lock(&rem_mutex);
+    pthread_mutex_unlock(&l->len_mutex);
+    pthread_mutex_lock(&l->rem_mutex);
     n = l->first->next;
-    l->first->next = n->next;
-    pthread_mutex_unlock(&rem_mutex);
+    if(n != NULL){
+      l->first->next = n->next;
+    }
+    pthread_mutex_unlock(&l->rem_mutex);
   }else{
-    pthread_mutex_unlock(&len_mutex);
+    pthread_mutex_unlock(&l->len_mutex);
     n = NULL;
   }
+
 
   return n;
 }

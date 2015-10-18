@@ -124,10 +124,22 @@ l->first->next = n2->next; (4)
 l->last = n1;			   (2)
 
 4)
+l->last->next = n1;		   (1)
+n2 = l->first->next;	   (3)
+l->last = n1;			   (2)
+l->first->next = n2->next; (4)
+
+5)
 n2 = l->first->next;	   (3)
 l->last->next = n1;		   (1)
 l->last = n1;			   (2)
 l->first->next = n2->next; (4)
+
+6)
+n2 = l->first->next;	   (3)
+l->last->next = n1;		   (1)
+l->first->next = n2->next; (4)
+l->last = n1;			   (2)
 
 1) er serielt ekvivalent med at først køre list_add og derefer list_remove
 
@@ -135,7 +147,7 @@ l->first->next = n2->next; (4)
 
 For både 3) og 4) gælder det at der hverken skrives til eller læses fra de samme knudeobjekter, da vi ved at (3) og (4) ikke kan ske hvis listens længde er lig 0 (og således vil l->first->next og l->last ikke pege på samme objekt)
 
-Hvis vi bevæger os ud over vores abstraktion om linjeatomicitet, vil samme argument stadig holde vand, da l->first->next og l->last stadig ikke henviser til de samme objekter, og de to metoder således ikke på nogen måde hverken skriver til, eller læser fra, samme objekter (ud over listens længde og listen selv.)
+Hvis vi bevæger os ud over vores abstraktion om linjeatomicitet, vil samme argument stadig holde vand, da l->first->next og l->last stadig ikke henviser til de samme objekter, og de to metoder således ikke på nogen måde hverken skriver til, eller læser fra, samme objekter (ud over listens længde og listen selv - og i listen selv vil der blive læst fra og skrevet til forskellige variabler.)
 
 
 
@@ -145,4 +157,5 @@ Konklusion: (se "Problemer i samtidig kørsel"... for linjereferencer)
 For list_add gælder det at (1) og (2) tilsammen udgør en kritisk sektion.
 For list_remove gælder det at (3) og (4) tilsammen udgør en kritisk sektion.
 For begge metoder gælder det at alle linjer der tilgår l->len (både hvis der skrives eller læses fra variablen) tilsammen udgør en kristisk sektion.
+Det skal også nævnes at både list_add og list_remove kunne blive ses som en enkelt kritisk sektion, men den noget simplere løsning dette ville resultere i (kun en enkelt mutex-lock), ville fjerne al samtidighed.
 
