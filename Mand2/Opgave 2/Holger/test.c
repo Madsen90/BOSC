@@ -65,6 +65,9 @@ int main(int argc, char const *argv[])
 		printf("Bothtest Succeeded\n");
 	}
 
+	free(l->first);
+	free(l);
+
 	return 0;
 }
 
