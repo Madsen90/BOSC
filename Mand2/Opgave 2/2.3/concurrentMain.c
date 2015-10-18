@@ -8,13 +8,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "list.h"
+#include "concurrentList.h"
 
 // FIFO list;
-List *fifo;
+ConcurrentList *fifo;
 
 int main(int argc, char* argv[])
-{ /*
+{ 
   fifo = list_new();
 
   list_add(fifo, node_new_str("s1"));
@@ -26,11 +26,6 @@ int main(int argc, char* argv[])
   if (n2 == NULL) { printf("Error no elements in list\n"); exit(-1);}
   printf("%s\n%s\n", n1->elm, n2->elm);
 
-  return 0;*/
-  Node *n;
-  fifo = list_new();
-  n = fifo->first->next;
-  fifo->first->next = n->next;
   return 0;
 }
 
