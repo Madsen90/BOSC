@@ -134,7 +134,6 @@ void generate_request(int i, int *request)
   int j, sum = 0;
   while (!sum) {
     for (j = 0;j < n; j++) {
-      printf("%d\n", s->need[i][j]);
       request[j] = s->need[i][j] * ((double)rand())/ (double)RAND_MAX;
       sum += request[j];
     }
