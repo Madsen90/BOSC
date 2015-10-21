@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 	pthread_mutex_init(&mutex, NULL);
 
 	if (argc != 3) {
-		fprintf(stderr, "usage: test.out <integer value>\n");
+		fprintf(stderr, "usage:./testfifo <integer value>:#thread <integer value>:#actions\n");
 		return -1;
 	}
 
