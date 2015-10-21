@@ -32,16 +32,16 @@ int main(int argc, char const *argv[])
 	pthread_mutex_init(&mutex, NULL);
 
 	if (argc != 3) {
-		fprintf(stderr, "usage:./testfifo <integer value>:#thread <integer value>:#actions\n");
+		fprintf(stderr, "usage:./testfifo <integer value>:#threads <integer value>:#actions\n");
 		return -1;
 	}
 
-	if(atoi(argv[1]) < 1){
-		fprintf(stderr, "%d must be >= 1\n", atoi(argv[1]));
+	iif(atoi(argv[1]) < 1){
+		fprintf(stderr, "#threads is %d and must be >= 1\n", atoi(argv[1]));
 		return -1;
 	}
 	if(atoi(argv[2]) < 1){
-		fprintf(stderr, "%d must be >= 1\n", atoi(argv[2]));
+		fprintf(stderr, "#actions is %d and must be >= 1\n", atoi(argv[2]));
 		return -1;
 	}
 
