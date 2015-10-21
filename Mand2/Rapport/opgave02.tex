@@ -80,9 +80,10 @@ Resultat: n1 vil ikke være med i listen
 
 \subsection{Implementation af thread safety på listens funktioner}
 Vi har implementeret en simpel løsning til at gøre listens add- og removefunktion thread safe. Listen har fået en mutex som initialiseres ved listens oprettelse sådan at flere lister ikke deler mutexer, og således kan bruges samtidigt. Både list\_add og list\_remove tager en lås på listens mutex umiddelbart efter funktionen kaldes, og frigiver den først umiddelbart før funktionen returnerer. 
+Det skal også nævnes, at vi har identificeret de linjer som tilføjer og fjerner fra listen som én kritisk sektion, og linjerne som tilgår len-variablen som en anden kritisk sektion. Vi har dog valgt at behandle det som en enkelt kritisk sektion for letheds skyld.
 
 \subsection{Test af thread safety}
-Vi tester ved at oprette en stor mængde tråde (variabelnavn: threads) der hver kører enten add eller remove et stort antal gange (variabelnavn: actions). 
+Vi tester ved at oprette en stor mængde tråde (variabelnavn for antallet af tråde: threads) der hver kører enten add eller remove et stort antal gange (variabelnavn for antal af iterationer: actions). 
 Vi har 3 overordnede tests. 
 Den første kører list\_add på alle tråde, og derefter tjekker at der er ligeså mange knuder i listen som threads gange actions.
 Vores anden test kører list\_remove på alle tråde og tjekker at listen er tom efterfølgende. Det skal nævnes at denne test vil ende i et uendeligt loop, hvis der fjernes for mange knuder.
