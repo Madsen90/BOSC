@@ -121,29 +121,27 @@ int safeState(){
     finish[i] = 0;
   }
 
-  while(1){
-    int umod = 0;
-    for(i = 0; umod < m; i = (i + 1) % m){
-      //Step 2
-      if(!finish[i] && lessOrEqual(s->need[i], work, n))
-      {
-        //step 3
-        for(j = 0; j < n; j++){
-          work[j] += s->allocation[i][j];
-        }
-        finish[i] = 1;
-        umod = 0;
+  int umod = 0;
+  for(i = 0; umod < m; i = (i + 1) % m){
+    //Step 2
+    if(!finish[i] && lessOrEqual(s->need[i], work, n))
+    {
+      //step 3
+      for(j = 0; j < n; j++){
+        work[j] += s->allocation[i][j];
       }
-      umod++;
+      finish[i] = 1;
+      umod = 0;
     }
- 
-    //step 4
-    for(i = 0; i < m; i++)
-      if(!finish[i]){
-        return 0;
-      }
-    return 1;
+    umod++;
   }
+
+  //step 4
+  for(i = 0; i < m; i++)
+    if(!finish[i]){
+      return 0;
+    }
+  return 1;
 }
  
 /* Generate a request vector */
