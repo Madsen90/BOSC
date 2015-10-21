@@ -6,7 +6,7 @@
 #include "sleep.h"
 #include "list.h"
 
-int bufferSize = 10;
+int bufferSize;
 int itemNumber = 0;
 int itemsLeft;
 int itemsTarget;
@@ -23,13 +23,13 @@ void* consumer(void *);
 
 int main(int argc, char const *argv[])
 {
-	if (argc != 4) {
-		fprintf(stderr, "usage: main.out <integer value>\n");
+	if (argc != 5) {
+		fprintf(stderr, "Usage: \n param 1: Number of products \n param 2: Number of producers \n param 3: Number of consumers \n param 4: Buffersize \n");
 		return -1;
 	}
 
 	int arg_i = 1;
-	while(arg_i < 4){
+	while(arg_i < 5){
 		if(atoi(argv[arg_i]) < 1){
 			fprintf(stderr, "%d must be >= 1\n", atoi(argv[1]));
 			return -1;
@@ -38,6 +38,7 @@ int main(int argc, char const *argv[])
 	}
 
 	itemsTarget = atoi(argv[1]);
+	bufferSize = atoi(argv[4]);
 	itemsLeft = itemsTarget;
 	int producers = atoi(argv[2]);
 	int consumers = atoi(argv[3]);
