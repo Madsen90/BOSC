@@ -3,22 +3,31 @@
 Opgave 4 er at implementere Banker's Algorithm på en måde (se Silberschatz, Galvin og Gagne: "Operating system concepts" 9.ed. s.326ff - herefter OSC), så den som minimun opfylder følgende krav:
 \begin{itemize}
 	\item Vektorer og matricer skal initialiseres dynamisk
-	\item Banker's safety algoritme skal bruges til at afgøre om en tilstand er sikker eller ej
+	\item Banker's Safety algoritme skal bruges til at afgøre om en tilstand er sikker eller ej
 	\item Frigivelse af ressourcer skal implementeres
 	\item Begyndelsestilstanden skal være sikker før trådene startes
 	\item Al delt hukommelse skal være thread-safe
 	\item (ikke et eksplicit minimumskrav, men dog et implicit) Banker's Resource-Request algoritme skal bruges til at allokere ressourcer til en process
 \end{itemize}
 
-\textbf{HER SKAL NOK INDSÆTTES FORKLARING AF TERMER!!!!!}
+Før beskrivelsen af implementationen af ovenstående, følger en kort forklaring af vigtig terminologi:
+\begin{description}
+	\item[Staten] er en global variabel som indeholder referencer til Resource- og Available-vektorerne, samt Max-, Allocation- og Need-matricerne. Den repræsenterer en state, i den forstand, at hvis der skal allokeres eller deallokeres ressourcer, så vil State ændres.
+	\item[Resource-vektoren] en en vektor, som kun skrives til ved programstart. Vektoren er n høj, altså så høj som antallet af forskellige ressourcer. Den indeholder, for hver type ressource, antallet af ressourcer som systemet af til rådighed. Altså hvor mange af hver ressource som der max kan allokeres til processerne
+	\item[Available-vektoren] er en vektor, som opdateres ved både ressource allokering og deallokering. Vektoren er n høj. Den indeholder, for hver type ressource, antallet af frie ressourcer i nuværende State.
+	\item[Max-matricen] er en matrice som kun skrives til ved programstart. Den er m x n stor (altså antallet af processer høj, og antallet af forskellige ressourcer bred). Den indeholder, for hver process, antallet af hver ressource, som processen maksimalt har behov for under processens kørslen.
+	\item[Allocation-matricen] er en matrice som skrives til under både ressource allokering og deallokering. Den er m x n stor, og indeholder, hvor mange af hver ressource, der i den nuværende state, er til hver process.
+	\item[Need-matricen] er en matrice som skrives til under både ressource allokering og deallokering. Den er m x n stor, og indeholder, hvor mange af hver ressource hver process endnu mangler at få allokeret, for at processen har opnået det maximale antal anmodede ressourcer. Sagt på den anden måde, så er Need-matrices = Max-matricen - Allocation-matricen.
+	\item[En Request-vektor] er en vektor som der bliver oprettet af en process, når processen anmoder om flere ressourcer. Den er n høj, og indeholder hvor mange af hvor ressource processen anmoder om. Det er et krav at en Request-vektor for process m er mindre eller lig dens Need-vektor (den m'te kolone i Need-matricen).
+\end{description}
 
 I det følgende vil hvert af ovenstående punkters implementation beskrives.
 
 \subsubsection*{Dynamisk allokering af matricer og vektorer}
 Allokering af resource- og available-vektorerne sker umiddelbart efter inputtet af antallet af processer og ressource. Herefter initialliseres matricerne.
 
-\subsubsection*{Implementation af Banker's safety algoritme}
-Banker's safety algoritme er implementeret med udgangspunkt i beskrivelsen i OSC s.327f. Algoritmen består af fire trin, og er implementeret i funktionen safeState(). Herunder beskrives implementationen af hvert trin:
+\subsubsection*{Implementation af Banker's Safety algoritme}
+Banker's Safety algoritme er implementeret med udgangspunkt i beskrivelsen i OSC s.327f. Algoritmen består af fire trin, og er implementeret i funktionen safeState(). Herunder beskrives implementationen af hvert trin:
 \begin{enumerate}
 	\item Der initialiseres to vektorer, Work og Finish, af henholdsvis størrelse n(antal ressourcer) og m(antal processer)\footnote{Noter venligst at her er m og n's betydninger byttet ift. OSC, grundet den udleverede kode}. Work initialiseres som en kopi af vektoreren Available, mens Finish initialiseres som en boolean vektor kun indeholdende \textit{false}.
 	\item Her findes der et en process m, således at Finish[m] == false, og Need[m] er mindre eller lig Work vektoren. I tilfælde af at der ikke kan findes en sådan, gåes der til at trin 4.
@@ -30,15 +39,22 @@ Banker's safety algoritme er implementeret med udgangspunkt i beskrivelsen i OSC
 Frigivelse af en specifik process' (m) ressourcer sker ved at alle de ressourcer processen har anmodet om (en Request-vektor), lægges over i Available-vektoren. Ligeledes fjernes Request-vektoren fra Allocation-matricen på process m's plads. Sagt på en anden måde, så gøres process m's ressourcer igen tilgængelige for andre processer, og registreringen af process m's allokeringer fjernes.
 
 \subsubsection*{Sikring af begyndelsestilstand}
-Begyndelsestilstanden sikres ved at køre Banker's safety algorime (se ovenstående) før processerne bliver kørt.
+Begyndelsestilstanden sikres ved at køre Banker's Safety algorime (se ovenstående) før processerne bliver kørt.
 
-\subsubsection*{Thread-safety for delt hukommelse}
+\subsubsection*{Thread-Safety for delt hukommelse}
 Der er blevet identificeret en række kritiske sektioner i koden. Disse har at gøre med næsten al kode der tilgår State. Disse sektioner er således blevet låst med en mutex. Herunder nævnes de kritiske sektioner:
 \begin{description}
-	\item[resource\_request] Når en process anmoder om 
-	\item[]
-	\item[]
+	\item[resource\_request] Når en process anmoder om ressourcer, skal der skrives til både Available- og Allocation-vektorene og til Need-matricen, og således er låses State under hele kørslen af funktionen
+	\item[resource\_release] Når der skal frigives ressourcer fra en process, skrives der igen til både Available- og Allocation-vektorene og til Need-matricen, og State bliver derfor låst under hele kørslen
 \end{description}
+
+\subsubsection*{Banker's Resource-Request algoritme til allokering af ressourcer til processer}
+Til allokere ressourcer til anmodende processer, er Banker's resource-request algoritme blevet implementeret. Forklaringen her tager udgangspunkt i at en process har anmodet om et antal ressourcer, beskrevet i en Resource-vektor. Implementationen består af de følgende 3 trin:
+\begin{enumerate}
+	\item Først checkes om Request-vektoren overskrider det, fra processen, tidligere angivede max-ressource-forbrug. Hvis den gør dette, så afsluttes anmodningen med en fejl.
+	\item Så tjekkes der om de anmodede ressourcer er tilgængelige på det givne tidspunkt. Hvis ikke, får processen en meddelelse tilbage om at den skal vente lidt (1000 milisekunder) og prøve igen.
+	\item Hvis de relevante ressourcer er tilgængelige, skal der testes om hvorvidt det fører til en usikker state at give processen adgang til ressourcerne. I praksis gøres dette ved at allokere de anmodede ressourcer til processen (som dog ikke får adgang til dem endnu, da den stadig venter svar fra request-funktionen), og derefter køre Banker's Safety algoritme (se ovenfor). Hvis det viser sig at være en usikker tilstand, deallokeres ressourcerne igen, og processen får en meddelelse om at vente lidt (igen 1000 milisekunder) og prøve igen.
+\end{enumerate}
 
 
 
