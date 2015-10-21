@@ -1,1 +1,42 @@
 \section{Opgave 3}
+Opgave 3 går ud på at implementere en løsning til Producer-Consumer problemet. Programmet, sema, som vi har implementeret, tager fire parametre:
+\begin{description}
+\item[Param 1]  \hfill \\ Antallet af produkter, der skal laves.
+\item[Param 2]  \hfill \\ Antallet af producers.
+\item[Param 3]  \hfill \\ Antallet af consumers.
+\item[Param 4]  \hfill \\ Buffer størelsen.
+\end{description}
+
+\subsection{Trådsikkerhed}
+Der bliver initialiseret fire semaforer:
+\begin{description}
+\item[mutex]  \hfill \\ En normal mutex lås, der varierer imellem at være 1 eller 0 alt efter om der er nogen inde i den, specificeret af os, kritiske sektion.
+\item[itemNumberMutex]  \hfill \\ Tillader kun en producer en gangen at tilgå feltet itemNumber, for at finde ud af hvad nummer det "item", som produceren producerer er. Derudover tillader det også kun en consumer af gangen at tilgå feltet itemsLeft, for at checke, om der er flere produkter at konsumere.
+\item[empty]  \hfill \\ Tillader kun producers at producere et "item", hvis bufferen ikke er fuld. Bliver initialiseret til den buffersize, som brugeren har givet.
+\item[full]  \hfill \\ Tillader kun consumers at konsumere et produkt, hvis der er et "item" i bufferen.
+\end{description}
+
+\subsection{Producer}
+I producer metoden incrementeres feltet itemNumber gennem getItemNumber(), og der bliver checket, om der er blevet lavet så mange items, som brugeren har specificeret.
+
+Derefter kommer vi ind i den kritiske sektion, hvor mutex semaphoren bliver låst, og empty semaphoren bliver talt ned, så vi ikke overproduserer og bufferen bliver fuld. Her bliver listen tilgået, og et "item" bliver puttet i den.
+
+Så går vi ud af den kritiske sektion, og mutex semaphoren bliver låst op, og full semaphoren bliver talt op.
+
+\subsection{Consumer}
+I consumer metoden decrementeres feltet itemsLeft gennem decItemsLeft(), og der bliver checket, om der er blevet konsumeret så mange items, som der skal produceres.
+
+Derefter kommer vi ind i den kritiske sektion, hvor mutex semaphoren bliver låst, og full semaphoren bliver talt ned, så vi ikke overkonsumerer (konsumerer imens listen er tom). Så bliver listen tilgået, og et "item" bliver taget ud af listen.
+
+Så går vi ud af den kritiske sektion, og mutex semaphoren bliver låst op, og empty semaphoren bliver talt op.
+
+\subsection{Main}
+I main metoden bliver der lavet det antal tråde lig med antallet af producers, som brugeren har specificeret. De får et id med og producer metoden.
+
+På samme måde bliver der også lavet det antal tråde lig med antallet af consumers, som brugeren har specificeret. De får også et id med og consumer metoden. Grunden til, at producere og consumere bruger samme \textbf{BLABLABLA}.
+
+Derefter køres alle tråde, og resultatet skrives ud i formen:
+\begin{verbatim}
+Producer X produced Item_Y. Items in buffer: Z (out of buffersize),
+\end{verbatim}
+hvor X er producerens id, Y er nummeret på itemet, der er produceret, z er antallet at items i bufferen og buffersize er størrelsen af bufferen, der er sat af brugeren.
