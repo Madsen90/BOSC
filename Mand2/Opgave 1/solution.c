@@ -34,22 +34,22 @@ int main(int argc, char const *argv[])
 	//pthread_attr_t attr[threads]; //set of thread attributes
 
 	
-		int i;
-		for(i = 0; i < threads; i++){
-			threadData[i].lower 	 = i * sumSegment + 1;
-			threadData[i].partialSum = 0;
+	int i;
+	for(i = 0; i < threads; i++){
+		threadData[i].lower 	 = i * sumSegment + 1;
+		threadData[i].partialSum = 0;
+		
+		if(i+1 == threads)
+			threadData[i].upper = upperLimit;
+		else
+			threadData[i].upper = i * sumSegment + sumSegment;
 			
-			if(i+1 == threads)
-				threadData[i].upper = upperLimit;
-			else
-				threadData[i].upper = i * sumSegment + sumSegment;
-				
-			
-			//get the default attributes
-			//pthread_attr_init(&attr[i]);
-			//create the thread
-			pthread_create(&tid[i], NULL, runner, &threadData[i]);
-		}
+		
+		//get the default attributes
+		//pthread_attr_init(&attr[i]);
+		//create the thread
+		pthread_create(&tid[i], NULL, runner, &threadData[i]);
+	}
 	
 
 	printf("---- \n");
