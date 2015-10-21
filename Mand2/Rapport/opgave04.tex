@@ -1,15 +1,45 @@
 \section{Opgave 4}
 \subsection{Banker's Algorithm}
-Opgave 4 er at implementere Banker's Algorithm på en måde (se Silberschatz, Galvin og Gagne: "Operating system concepts" 9.ed. s.326ff), så den som minimun opfylder følgende krav:
+Opgave 4 er at implementere Banker's Algorithm på en måde (se Silberschatz, Galvin og Gagne: "Operating system concepts" 9.ed. s.326ff - herefter OSC), så den som minimun opfylder følgende krav:
 \begin{itemize}
 	\item Vektorer og matricer skal initialiseres dynamisk
 	\item Banker's safety algoritme skal bruges til at afgøre om en tilstand er sikker eller ej
-	\item Frigivelse af resourcer skal implementeres
+	\item Frigivelse af ressourcer skal implementeres
 	\item Begyndelsestilstanden skal være sikker før trådene startes
 	\item Al delt hukommelse skal være thread-safe
+	\item (ikke et eksplicit minimumskrav, men dog et implicit) Banker's Resource-Request algoritme skal bruges til at allokere ressourcer til en process
 \end{itemize}
+
+\textbf{HER SKAL NOK INDSÆTTES FORKLARING AF TERMER!!!!!}
+
 I det følgende vil hvert af ovenstående punkters implementation beskrives.
 
 \subsubsection*{Dynamisk allokering af matricer og vektorer}
+Allokering af resource- og available-vektorerne sker umiddelbart efter inputtet af antallet af processer og ressource. Herefter initialliseres matricerne.
+
+\subsubsection*{Implementation af Banker's safety algoritme}
+Banker's safety algoritme er implementeret med udgangspunkt i beskrivelsen i OSC s.327f. Algoritmen består af fire trin, og er implementeret i funktionen safeState(). Herunder beskrives implementationen af hvert trin:
+\begin{enumerate}
+	\item Der initialiseres to vektorer, Work og Finish, af henholdsvis størrelse n(antal ressourcer) og m(antal processer)\footnote{Noter venligst at her er m og n's betydninger byttet ift. OSC, grundet den udleverede kode}. Work initialiseres som en kopi af vektoreren Available, mens Finish initialiseres som en boolean vektor kun indeholdende \textit{false}.
+	\item Her findes der et en process m, således at Finish[m] == false, og Need[m] er mindre eller lig Work vektoren. I tilfælde af at der ikke kan findes en sådan, gåes der til at trin 4.
+	\item Her bliver Work-vektoren plusset med Allocation[m], således at den afspejler en situation hvor m-processen har frigivet sine ressourcer. Finished[m] bliver sat til true.
+	\item Efter at have kørt ovenstående indtil der ikke kan findes flere processer der opfylder trin 2, tjekkes om alle elementer i Finished er true - hvilket svarer til at alle processor på et tidspunkt har fået allokeret de krævede ressourcer og er termineret. Hvis dette er tilfældet, så er den nuværende state sikker. Hvis det ikke er sandt, kan vi konkludere at den nuværende state er usikker, da der ikke findes en måde for alle processer at få deres krævede ressourcer på.
+\end{enumerate}
+
+\subsubsection*{Frigivelse af ressourcer}
+Frigivelse af en specifik process' (m) ressourcer sker ved at alle de ressourcer processen har anmodet om (en Request-vektor), lægges over i Available-vektoren. Ligeledes fjernes Request-vektoren fra Allocation-matricen på process m's plads. Sagt på en anden måde, så gøres process m's ressourcer igen tilgængelige for andre processer, og registreringen af process m's allokeringer fjernes.
+
+\subsubsection*{Sikring af begyndelsestilstand}
+Begyndelsestilstanden sikres ved at køre Banker's safety algorime (se ovenstående) før processerne bliver kørt.
+
+\subsubsection*{Thread-safety for delt hukommelse}
+Der er blevet identificeret en række kritiske sektioner i koden. Disse har at gøre med næsten al kode der tilgår State. Disse sektioner er således blevet låst med en mutex. Herunder nævnes de kritiske sektioner:
+\begin{description}
+	\item[resource\_request] Når en process anmoder om 
+	\item[]
+	\item[]
+\end{description}
+
+
 
 

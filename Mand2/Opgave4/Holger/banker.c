@@ -120,8 +120,7 @@ int safeState(){
   for(i = 0; i < m; i++){
     finish[i] = 0;
   }
- 
- 
+
   while(1){
     int umod = 0;
     for(i = 0; umod < m; i = (i + 1) % m){
