@@ -1,1 +1,90 @@
 \section{Opgave 2}
+
+\subsection{Færdiggørelse af 1-tråds kædet liste}
+Funktionen list\_add(List *l, Node *n) er implementeret ved at referere til den nye knude fra den bagerste knudes "next" variabel, og derefter indsætte en reference til nye knude i listens last variabel. Til sidst tælles listens længde én op. 
+Det bør tages i mente at hvis samme knude bliver indsat to gange, kunne det sidste danne en cirkelslutning ved at knuden refererede til sig selv i next variablen. Det undgås her ved at indføre et check på om referencen til den nye knude henviser til samme sted i hukommelsen som referencen til den sidste knude i listen.
+
+Funktionen list\_remove(List *l) er implementeret ved at tage rodknudens next knude ud (knude 1), og derefter referere rodknudens next variabel til knude 1's next. Derefter tælles længden én ned. Til sidst checkes om det var sidste knude vi tog ud af listen (eksklusiv rodknuden), ved at tjekke om rodknudens next er NULL. I dette tilfælde tilføjer vi rodknuden til listens last variabel, for at undgå NULL-pointer fejl i add funktion. Vi tjekker om listen er tom (igen eksklusiv rodknuden), før vi forsøger at tage en knude ud af listen.
+
+\subsection{Problemer der kan opstå ved flertrådet brug af den simple liste}
+Note: Vi går i det nedenstående ud fra at hver linje er en atomisk operation. Vi er klar over at dette er enorm abstraktion, og langt fra sandheden, men da det viser sig at stort set hver linje i sig selv skaber samtidighedsfejl, mener vi at et abstraktionsniveau hvor vi tager højde for alle atomiske operationer er både forvirrende, og langt ud over opgavens scope. De eneste operationer vi ikke betragter som atomiske er ++i, --i, i++ og i--.
+Desuden beskrives herunder kun fejl der kan ske ved to samtidige tråde der tilgår listen. Yderligere fejl kunne sandsynligvis findes ved tre eller flere tråde.
+
+\subsubsection*{Problemer fælles for begge funktioner}
+For begge funktioner gælder det er at samtidige kørsler af len++ og/eller len--, kan resultere en forkert længde, i tilfælde af at hver tråd læser len variablen til samme int, og derefer skriver deres ændring sekvensielt.
+
+\subsubsection*{Problemer i list\_add}
+\begin{enumerate}
+\item t1 og t2 kalder list\_add samtidigt - t1 indsætter n1, t2 indsætter n2:
+	\begin{enumerate}
+		\item t1 tager den sidste knude ud
+		\item t2 tager den sidste knude ud
+		\item Begge tråde tjekker at den sidste knude ikke er NULL
+		\item t1 sætter den sidste knude til at pege på n1
+		\item t2 sætter den sidste knude til at pege n2
+		\item t2 sætter den sidste knude at være n2
+		\item t1 sætter den sidste knude at være n1
+	\end{enumerate}
+
+Resultat: Den kædede liste vil have et last-objekt (n1) om ellers ikke er med i listen
+
+\item t1 og t2 kalder list\_add samtidigt - t1 indsætter n1, t2 indsætter n2:
+	\begin{enumerate}
+		\item t1 tager den sidste knude ud
+		\item t2 tager den sidste knude ud
+		\item Begge tråde tjekker at den sidste knude ikke er NULL
+		\item t1 sætter den sidste knude til at pege på n1
+		\item t2 sætter den sidste knude til at pege på n2
+		\item t1 sætter den sidste knude at være n1
+		\item t2 sætter den sidste knude at være n2
+	\end{enumerate}
+Resultat: n1 vil ikke være med i listen
+\end{enumerate}
+
+
+\subsubsection*{Problemer i list\_remove}
+\begin{enumerate}
+\item t1 og t2 kalder list\_remove samtidigt, med en liste med længde >0:
+	\begin{enumerate}
+		\item t1 tager føste knude ud (n)
+		\item t2 tager føste knude ud (n)
+		\item t1 checker at n ikke er NULL successfuldt
+		\item t2 checker at n ikke er NULL successfuldt
+		\item t1 tager længden ud (eksempelvis 4)
+		\item t1 sætter længden ud til det læste minus en (3)
+		\item t2 tager længden ud (3)
+		\item t2 sætter længden ud til det læste plus en (2)
+		\item Begge tråde checker om den næste knude er NULL (i begge tilfælde nej)
+   \end{enumerate}
+	Resultat: Begge tråde vil returnere den samme knude, hvilket ikke er tilladt. Og længden vil være en mindre end ventet.
+\end{enumerate}
+
+\subsubsection*{Problemer i list\_remove}
+\begin{enumerate}
+\item t1 kalder list\_remove samtidigt, t2 kalder list\_add med knuden n1. Listen har længde 1:
+	\begin{enumerate}
+		\item t1 tager den første knude ud (n)
+		\item t2 tager den sidste knude ud (igen n, da der kun er en knude i listen udover rodknuden)
+		\item t1 sætter den første knude til at være n's next (NULL)
+		\item t1 tæller længden én ned (0)
+		\item t1 checker om det første element er NULL (sandt)
+		\item t2 sætter n's next til at pege på n1
+		\item t2 sætter listens last variabel til at pege på n1
+		\item t1 sætter listens last variabel til at pege på rodknuden
+		\item t2 tæller længden en op
+		\item t1 tæller længden en ned
+	\end{enumerate}
+	Resultat: n1 vil slet ikke optræde i listen, og længden vil være en mere end forventet
+\end{enumerate}
+
+
+\subsection{Implementation af thread safety på listens funktioner}
+Vi har implementeret en simpel løsning til at gøre listens add- og removefunktion thread safe. Listen har fået en mutex som initialiseres ved listens oprettelse sådan at flere lister ikke deler mutexer, og således kan bruges samtidigt. Både list\_add og list\_remove tager en lås på listens mutex umiddelbart efter funktionen kaldes, og frigiver den først umiddelbart før funktionen returnerer. 
+
+\subsection{Test af thread safety}
+Vi tester ved at oprette en stor mængde tråde (variabelnavn: threads) der hver kører enten add eller remove et stort antal gange (variabelnavn: actions). 
+Vi har 3 overordnede tests. 
+Den første kører list\_add på alle tråde, og derefter tjekker at der er ligeså mange knuder i listen som threads gange actions.
+Vores anden test kører list\_remove på alle tråde og tjekker at listen er tom efterfølgende. Det skal nævnes at denne test vil ende i et uendeligt loop, hvis der fjernes for mange knuder.
+Den sidste test kører halvdelen af trådende med list\_add og den anden halvdel med list\_remove, og tjekker derefter at listen er tom. 
+

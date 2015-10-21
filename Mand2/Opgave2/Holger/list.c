@@ -28,15 +28,15 @@ List *list_new(void)
 }
 
 /* list_add: add node n to list l as the last element */
-//Might make the end element to a circle by adding the same element twice
 void list_add(List *l, Node *n)
 {
   pthread_mutex_lock(&l->mutex);
-
   Node* it = l->last;
-  it->next = n;
-  l->last = n;
-  l->len++;
+  if(it != n){ //In order to avoid making the end element into a circle by adding the same element twice
+    it->next = n;
+    l->last = n;
+    l->len++;
+  }
   pthread_mutex_unlock(&l->mutex);
 }
 
@@ -49,7 +49,7 @@ Node *list_remove(List *l)
   if(n != NULL){
     l->first->next = n->next;
     l->len--;
-    if(l->first-> next == NULL)
+    if(l->first->next == NULL)
       l->last = l->first;
   }
 

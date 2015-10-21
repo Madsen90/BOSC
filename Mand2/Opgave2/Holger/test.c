@@ -10,15 +10,21 @@ typedef struct td_ThreadData {
 	List* l;
 } ThreadData;
 
+//Evaluation funtion for actually counting the numbers of elements
 int listCount(List *list);
 
+//Methods for manipulating the list
 void * listAdder(void* param);
 void * listRemover(void* param);
 void * listBoth(void* param);
 
-int listTest(int thread, int actions, List* list, int expected, void* (*f)(void*));
-//void *producer(void *param); //threads call this function
-// void *consumer(void *param); //threads call this function
+//listThread calls threadStarter with the given function f
+//and evaluates if the list is in the expected state after executing
+int listTest(int threads, int actions, List* list, int expected, void* (*f)(void*));
+
+//Thread starter starts threads and gives them list and actions as paramteres
+//*f is a function-pointer to the function to be executed
+void threadStarter(int threads, int actions, List* list, void* (*f)(void*)){
 
 
 int main(int argc, char const *argv[])
@@ -64,9 +70,6 @@ int main(int argc, char const *argv[])
 	}else{
 		printf("Bothtest Succeeded\n");
 	}
-
-	free(l->first);
-	free(l);
 
 	return 0;
 }
@@ -128,7 +131,7 @@ void* listRemover(void *param){
 			i--;
 			continue;
 		}
-		
+
 		free(n);
 	}
 }
@@ -156,8 +159,6 @@ void* listBoth(void *param){
 	}
 }
 
-
-
 int listTest(int threads, int actions, List *list, int expected, void* (*f)(void*)){
 	threadStarter(threads, actions, list, f);
 
@@ -175,4 +176,3 @@ int listTest(int threads, int actions, List *list, int expected, void* (*f)(void
 	
 	return 1;
 }
-
