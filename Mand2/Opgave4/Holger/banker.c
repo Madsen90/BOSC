@@ -94,12 +94,12 @@ int safeState(){
   for(i = 0; i < n; i++){
     work[i] = s->available[i];
   }
-
+  
   for(i = 0; i < m; i++){
     finish[i] = 0;
   }
 
-
+  
   while(1){
     for(i = 0; i < m; i++){
       //Step 2

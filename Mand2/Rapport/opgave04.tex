@@ -1,15 +1,31 @@
 \section{Opgave 4}
 \subsection{Banker's Algorithm}
-Opgave 4 er at implementere Banker's Algorithm på en måde (se Silberschatz, Galvin og Gagne: "Operating system concepts" 9.ed. s.326ff), så den som minimun opfylder følgende krav:
+Opgave 4 er at implementere Banker's Algorithm på en måde (se Silberschatz, Galvin og Gagne: "Operating system concepts" 9.ed. s.326ff - herefter OSC), så den som minimun opfylder følgende krav:
 \begin{itemize}
 	\item Vektorer og matricer skal initialiseres dynamisk
 	\item Banker's safety algoritme skal bruges til at afgøre om en tilstand er sikker eller ej
-	\item Frigivelse af resourcer skal implementeres
+	\item Frigivelse af ressourcer skal implementeres
 	\item Begyndelsestilstanden skal være sikker før trådene startes
 	\item Al delt hukommelse skal være thread-safe
 \end{itemize}
 I det følgende vil hvert af ovenstående punkters implementation beskrives.
 
 \subsubsection*{Dynamisk allokering af matricer og vektorer}
+Allokering af resource- og available-vektorerne sker umiddelbart efter inputtet af antallet af processer og ressource. Herefter initialliseres matricerne.
+
+\subsubsection*{Implementation af Banker's safety algoritme}
+Banker's safety algoritme er implementeret med udgangspunkt i beskrivelsen i OSC s.327f. Algoritmen består af fire trin, og er implementeret i funktionen safeState(). Herunder beskrives implementationen af hvert trin:
+\begin{itemize}
+	\item Der initialiseres to vektorer, Work og Finish, af henholdsvis størrelse n(antal ressourcer) og m(antal processer)\footnote{Noter venligst at her er m og n's betydninger byttet ift. OSC, grundet den udleverede kode}. Work initialiseres som en kopi af vektoreren Available, mens Finish initialiseres som en boolean vektor kun indeholdende \textit{false}
+	\item Her findes der et en process m, således at Finish[m] == false, og Need[m]  Work
+	\item
+	\item
+\end{itemize}
+
+\subsubsection*{Frigivelse af ressourcer}
+\subsubsection*{Sikring af begyndelsestilstand}
+\subsubsection*{Thread-safety for delt hukommelse}
+
+
 
 
