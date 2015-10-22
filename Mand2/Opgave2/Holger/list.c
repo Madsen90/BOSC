@@ -32,7 +32,8 @@ void list_add(List *l, Node *n)
 {
   pthread_mutex_lock(&l->mutex);
   Node* it = l->last;
-  if(it != n){ //In order to avoid making the end element into a circle by adding the same element twice
+  //In order to avoid making the end element into a circle by adding the same element twice
+  if(it != n){ 
     it->next = n;
     l->last = n;
     l->len++;

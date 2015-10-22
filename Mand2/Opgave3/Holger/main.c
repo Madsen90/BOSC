@@ -24,7 +24,8 @@ void* consumer(void *);
 int main(int argc, char const *argv[])
 {
 	if (argc != 5) {
-		fprintf(stderr, "Usage: \n param 1: Number of products \n param 2: Number of producers \n param 3: Number of consumers \n param 4: Buffersize \n");
+		fprintf(stderr, "Usage: \n param 1: Number of products \n param 2: 
+			Number of producers \n param 3: Number of consumers \n param 4: Buffersize \n");
 		return -1;
 	}
 
@@ -127,7 +128,8 @@ void* producer(void * param){
 		sem_post(&mutex);
 		sem_post(&full);
 
-		printf("Producer %d produced %s. Items in buffer %d (out of %d).\n", id, buf, numberOfItems, bufferSize);
+		printf("Producer %d produced %s. Items in buffer %d (out of %d).\n", 
+				id, buf, numberOfItems, bufferSize);
 		Sleep(1000);
 	}
 }
@@ -147,7 +149,8 @@ void* consumer(void* param){
 		sem_post(&mutex);
 		sem_post(&empty);
 
-		printf("Consumer %d consumed %s. Items in buffer %d (out of %d).\n", id, n->elm, numberOfItems, bufferSize);
+		printf("Consumer %d consumed %s. Items in buffer %d (out of %d).\n", 
+				id, n->elm, numberOfItems, bufferSize);
 		Sleep(2000);
 	}
 }
