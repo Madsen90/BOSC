@@ -10,6 +10,8 @@ Opgave 4 er at implementere Banker's Algorithm på en måde (se Silberschatz, Ga
 	\item (ikke et eksplicit minimumskrav, men dog et implicit) Banker's Resource-Request algoritme skal bruges til at allokere ressourcer til en process
 \end{itemize}
 
+Vi har ændret den udleveredes kode måde generere random værdier, ved at ligge en halv oveni og i nogle tilfælde runde ned. Det lod til at v;re meget usandsynligt at få værdien 1, hvis der skulle findes enten værdien 0 eller 1.
+
 Før beskrivelsen af implementationen af ovenstående, følger en kort forklaring af vigtig terminologi:
 \begin{description}
 	\item[Staten] er en global variabel som indeholder referencer til Resource- og Available-vektorerne, samt Max-, Allocation- og Need-matricerne. Den repræsenterer en state, i den forstand, at hvis der skal allokeres eller deallokeres ressourcer, så vil State ændres.

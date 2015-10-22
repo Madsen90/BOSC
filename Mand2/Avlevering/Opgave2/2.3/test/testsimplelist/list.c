@@ -18,7 +18,6 @@ List *list_new(void)
 
   l = (List *) malloc(sizeof(List));
   l->len = 0;
-  pthread_mutex_init(&l->mutex, NULL);
 
   /* insert root element which should never be removed */
   l->first = l->last = (Node *) malloc(sizeof(Node));
@@ -30,32 +29,25 @@ List *list_new(void)
 /* list_add: add node n to list l as the last element */
 void list_add(List *l, Node *n)
 {
-  pthread_mutex_lock(&l->mutex);
-  Node* it = l->last;
-  //In order to avoid making the end element into a circle by adding the same element twice
-  if(it != n){ 
-    it->next = n;
-    l->last = n;
-    l->len++;
-  }
-  pthread_mutex_unlock(&l->mutex);
+  //if(l->last != NULL) check is not necessary, as the root element is never removed
+  
+  l->last->next = n;
+  l->last = n;
+  l->len++;
 }
 
 /* list_remove: remove and return the first (non-root) element from list l */
 Node *list_remove(List *l)
 {
-  pthread_mutex_lock(&l->mutex);
-  Node *n = l->first->next;
-  
-  if(n != NULL){
-    l->first->next = n->next;
+  Node *n;
+  if(l->len > 0){
     l->len--;
-    if(l->first->next == NULL)
-      l->last = l->first;
+    n = l->first->next;
+    l->first->next = n->next;
+  }else{
+    n = NULL;
   }
 
-  pthread_mutex_unlock(&l->mutex);
-  
   return n;
 }
 
