@@ -1,0 +1,161 @@
+Note: Vi går i det nedenstående ud fra at hver linje er en atomisk operation. Vi er klar over at dette er enorm abstraktion, og langt fra sandheden, men da det viser sig at stort set hver linje i sig selv skaber samtidighedsfejl, mener vi at et abstraktionsniveau hvor vi tager højde for alle atomiske operationer er både forvirrende, og langt ud over opgavens scope. De eneste operationer vi ikke betragter som atomiske er ++i, --i, i++ og i--.
+
+
+
+
+
+
+Problemmer i list_add:
+
+1) t1 og t2 kalder list_add samtidigt - t1 indsætter n1, t2 indsætter n2:
+
+	1. t1 sætter den sidste knude til at pege på n1
+	2. t2 sætter den sidste knude til at pege n2
+	3. t2 sætter den sidste knude at være n2
+	4. t1 sætter den sidste knude at være n1
+
+resultat: Den kædede liste vil have et last-objekt (n1) om ellers ikke er med i listen
+
+2) t1 og t2 kalder list_add samtidigt - t1 indsætter n1, t2 indsætter n2:
+
+	1. t1 sætter den sidste knude til at pege på n1
+	2. t2 sætter den sidste knude til at pege på n2
+	3. t1 sætter den sidste knude at være n1
+	4. t2 sætter den sidste knude at være n2
+
+resultat: n1 vil ikke være med i listen
+
+3) t1 og t2 kalder list_add samtidigt:
+
+	1. t1 og t2 kører sekvensielt indtil de prøver at tælle længden på listen op
+	2. t1 tager længden af listen ud (f.eks. 4)
+	3. t2 tager længden af listen ud (f.eks. 4)
+	4. t1 skriver den incrementerede længde til længde-variablen (5)
+	5. t2 skriver den incrementerede længde til længde-variablen (5)
+
+resultat: længde-variablen vil være en mindre end ventet
+
+
+
+
+
+
+
+Problemmer i list_remove:
+
+4) t1 og t2 kalder list_remove samtidigt, med en liste med længde 1:
+
+	1. t1 checker at længden > 0
+	2. t2 checker at længden > 0
+	3. t1 tæller længden en ned (0)
+	4. t1 tager den første knude (herefter n) ud (nb. dette er ikke rodknuden)
+	5. t1 sætter listens første knude til at være n's næste knude (NULL)
+	6. t2 tæller længden en ned (-1)
+	7. t2 tager den første knude (herefter n2) ud (NULL)
+	8. t2 forsøger at sættelistens første knude til at være n2's næste knude, men da n2 er NULL, vil programmet crashe
+
+resultat: programmet crasher (segmentation fault), og listens længde vil være -1.
+
+5)t1 og t2 kalder list_remove samtidigt, med en liste med længde >0:
+
+	1. t1 checker længden at længden > 0
+	2. t2 checker længden at længden > 0
+	3. t1 tager længden ud (eksempelvis 4)
+	4. t2 tager længden ud (4)
+	5. t1 sætter længden ud til det læste minus en (3)
+	6. t2 sætter længden ud til det læste plus en (3)
+	7. t1 tager den første knude (herefter n) ud
+	8. t1 sætter listens første knude til at være n's næste knude
+	9. t2 tager den første knude (herefter n2) ud
+   10. t2 sætter listens første knude til at være n2's næste knude
+
+resultat: Listens længde vil være en mere end forventet.
+
+6)t1 og t2 kalder list_remove samtidigt, med en liste med længde >0:
+
+	1. t1 checker at længden > 0
+	2. t2 checker at længden > 0
+	3. t1 tæller længden en ned
+	4. t2 tæller længden en ned 
+	5. t1 tager den første knude (herefter n) ud
+	6. t2 tager den første knude (ligeledes n) ud
+	7. t1 sætter listens første knude til at være n's næste knude
+	8. t2 sætter listens første knude til at være n's næste knude
+
+resultat: der er kun blevet fjernet en knude, begge kald af list_remove vil have en henvisning til samme knude, og længden er eventuelt en mindre end forventet. (kun eventuelt da skridt 3 og 4 kan ske samtidigt, således at længden reelt kun bliver talt en ned, og ikke to - se ovenstående 5) for eksempel)
+
+
+
+
+
+
+
+Problemer i samtidig kørsel af list_add og list_remove
+
+Da vi antager at alle linjer, undtaget i++ og i--, er atomiske, vil der ikke kunne ske nogen andre samtidighedsfejl end forkerte skrivelser til listens længde (se 3) og 5) ). At der ikke kan ske andre samtidighedsfejl skyldes rækkefølgen af operationerne. Betragt de følgende 4 linjers kode:
+
+1. l->last->next = n1;
+2. l->last = n1;
+
+
+3. n2 = l->first->next;
+4. l->first->next = n2->next;
+
+Enhver permutation af de ovenstående 4 linjer vil ikke kunne skabe nogen fejl, når vi antager at 2 ikke kan køres før 1, og at 4 ikke kan køres før 3, samt at 3 og 4 ikke kan ske hvis listens længde er 0.
+
+ Herunder følger de 4 mulige permutationer:
+
+1)
+l->last->next = n1;		   (1)
+l->last = n1;			   (2)
+n2 = l->first->next;	   (3)
+l->first->next = n2->next; (4)
+
+2)
+n2 = l->first->next;	   (3)
+l->first->next = n2->next; (4)
+l->last->next = n1;		   (1)
+l->last = n1;			   (2)
+
+3)
+l->last->next = n1;		   (1)
+n2 = l->first->next;	   (3)
+l->first->next = n2->next; (4)
+l->last = n1;			   (2)
+
+4)
+l->last->next = n1;		   (1)
+n2 = l->first->next;	   (3)
+l->last = n1;			   (2)
+l->first->next = n2->next; (4)
+
+5)
+n2 = l->first->next;	   (3)
+l->last->next = n1;		   (1)
+l->last = n1;			   (2)
+l->first->next = n2->next; (4)
+
+6)
+n2 = l->first->next;	   (3)
+l->last->next = n1;		   (1)
+l->first->next = n2->next; (4)
+l->last = n1;			   (2)
+
+1) er serielt ekvivalent med at først køre list_add og derefer list_remove
+
+2) er serielt ekvivalent med at først køre list_remove og derefer list_add
+
+For både 3) og 4) gælder det at der hverken skrives til eller læses fra de samme knudeobjekter, da vi ved at (3) og (4) ikke kan ske hvis listens længde er lig 0 (og således vil l->first->next og l->last ikke pege på samme objekt)
+
+Hvis vi bevæger os ud over vores abstraktion om linjeatomicitet, vil samme argument stadig holde vand, da l->first->next og l->last stadig ikke henviser til de samme objekter, og de to metoder således ikke på nogen måde hverken skriver til, eller læser fra, samme objekter (ud over listens længde og listen selv - og i listen selv vil der blive læst fra og skrevet til forskellige variabler.)
+
+
+
+
+
+Konklusion: (se "Problemer i samtidig kørsel"... for linjereferencer)
+For list_add gælder det at (1) og (2) tilsammen udgør en kritisk sektion.
+For list_remove gælder det at (3) og (4) tilsammen udgør en kritisk sektion.
+For begge metoder gælder det at alle linjer der tilgår l->len (både hvis der skrives eller læses fra variablen) tilsammen udgør en kristisk sektion.
+Det skal også nævnes at både list_add og list_remove kunne blive ses som en enkelt kritisk sektion, men den noget simplere løsning dette ville resultere i (kun en enkelt mutex-lock), ville fjerne al samtidighed.
+
