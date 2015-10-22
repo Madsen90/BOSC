@@ -63,14 +63,14 @@ int main(int argc, char const *argv[])
 	//så får alle producers samme id, selvom jeg ikke forstår hvorfor	
 	int i = 0;
 	while(i < producers){
-		int id = i; 
-		pthread_create(&tid[i], NULL, producer, (void *) &id);
+		int id = i;
+		pthread_create(&tid[i], NULL, producer, (void *) (long) id);
 		i++;
 	}
 
 	while(i < total){
 		int id = i - producers;
-   		pthread_create(&tid[i], NULL, consumer, (void *) &id);
+   		pthread_create(&tid[i], NULL, consumer, (void *) (long) id);
 		i++;
 	}
 
@@ -105,7 +105,7 @@ int decItemsLeft(){
 }
 
 void* producer(void * param){
-	int id = * (int*) param;
+	int id = (int) (long) param;
 	char item_str[] = "Item_";
 
 	int itemId, numberOfItems;
@@ -133,7 +133,7 @@ void* producer(void * param){
 }
 
 void* consumer(void* param){
-	int id = * (int*) param;
+	int id = (int) (long) param;
 	int itemId, numberOfItems;
 	Node* n;
 
@@ -147,7 +147,7 @@ void* consumer(void* param){
 		sem_post(&mutex);
 		sem_post(&empty);
 
-		printf("Consumer %d consumed %s. Items in buffer %d (out of %d).\n", id, n->elm, numberOfItems, bufferSize);
+		printf("Consumer %d consumed %s. Items in buffer %d (out of %d).\n", id, (char *)n->elm, numberOfItems, bufferSize);
 		Sleep(2000);
 	}
 }
