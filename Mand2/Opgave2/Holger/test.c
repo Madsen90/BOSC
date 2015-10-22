@@ -24,7 +24,7 @@ int listTest(int threads, int actions, List* list, int expected, void* (*f)(void
 
 //Thread starter starts threads and gives them list and actions as paramteres
 //*f is a function-pointer to the function to be executed
-void threadStarter(int threads, int actions, List* list, void* (*f)(void*)){
+void threadStarter(int threads, int actions, List* list, void* (*f)(void*));
 
 
 int main(int argc, char const *argv[])
@@ -32,15 +32,17 @@ int main(int argc, char const *argv[])
 	pthread_mutex_init(&mutex, NULL);
 
 	if (argc != 3) {
-		fprintf(stderr, "usage: test.out <integer value>\n");
+		fprintf(stderr, "usage:./testfifo <integer value>:#threads <integer value>:#actions\n");
 		return -1;
 	}
 
-	if(atoi(argv[1]) < 1){
-		fprintf(stderr, "%d must be >= 1\n", atoi(argv[1]));
+	iif(atoi(argv[1]) < 1){
+		fprintf(stderr, "#threads is %d and must be >= 1\n", atoi(argv[1]));
+		return -1;
 	}
 	if(atoi(argv[2]) < 1){
-		fprintf(stderr, "%d must be >= 1\n", atoi(argv[1]));
+		fprintf(stderr, "#actions is %d and must be >= 1\n", atoi(argv[2]));
+		return -1;
 	}
 
 	int threads = atoi(argv[1]);
@@ -91,7 +93,6 @@ void threadStarter(int threads, int actions, List* list, void* (*f)(void*)){
 	ThreadData threadDatas[threads];
 
 	while(++i < threads){
-		printf("%s\n", "Starting test thread.");
 		ThreadData td = threadDatas[i];
 		td.l = list;
 		td.i = actions;
