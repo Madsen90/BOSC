@@ -1,16 +1,12 @@
 \section{Opgave 2}
 
 \subsection{Færdiggørelse af 1-tråds kædet liste}
-Funktionen list\_add(List *l, Node *n) er implementeret ved at referere til den nye knude fra den bagerste knudes "next" variabel, og derefter indsætte en reference til nye knude i listens last variabel. Til sidst tælles listens længde én op. 
-Det bør tages i mente at hvis samme knude bliver indsat to gange, kunne det sidste danne en cirkelslutning ved at knuden refererede til sig selv i next variablen. Det undgås her ved at indføre et check på om referencen til den nye knude henviser til samme sted i hukommelsen som referencen til den sidste knude i listen.
+Funktionen list\_add(List *l, Node *n) er implementeret ved at referere til den nye knude fra den bagerste knudes "next" variabel, og derefter indsætte en reference til nye knude i listens last variabel. Herefter inkrementeres listens længde. 
+Hvis samme knude bliver indsat to gange, vil det danne en cirkelslutning, da knudens next variabel vil referere til en anden knude i listen.
 
-Funktionen list\_remove(List *l) er implementeret ved at tage rodknudens next knude ud (knude 1), og derefter referere rodknudens next variabel til knude 1's next. Derefter tælles længden én ned. Til sidst checkes om det var sidste knude vi tog ud af listen (eksklusiv rodknuden), ved at tjekke om rodknudens next er NULL. I dette tilfælde tilføjer vi rodknuden til listens last variabel, for at undgå NULL-pointer fejl i add funktion. Vi tjekker om listen er tom (igen eksklusiv rodknuden), før vi forsøger at tage en knude ud af listen.
+Funktionen list\_remove(List *l) er implementeret ved at tage rodknudens next knude ud (knude 1), og derefter referere rodknudens next variabel til knude 1's next. Derefter tælles længden én ned. Til sidst checkes om det var sidste knude vi tog ud af listen, ved at tjekke om rodknudens next er NULL. I dette tilfælde tilføjer vi rodknuden til listens last variabel, for at undgå NULL-pointer fejl i add funktion. Vi tjekker om listen er tom, før vi forsøger at tage en knude ud af listen.
 
-\subsection{Problemer der kan opstå ved flertrådet brug af den simple liste}
-Note: Vi går i det nedenstående ud fra at hver linje er en atomisk operation. Vi er klar over at dette er enorm abstraktion, og langt fra sandheden, men da det viser sig at stort set hver linje i sig selv skaber samtidighedsfejl, mener vi at et abstraktionsniveau hvor vi tager højde for alle atomiske operationer er både forvirrende, og langt ud over opgavens scope. De eneste operationer vi ikke betragter som atomiske er ++i, --i, i++ og i--.
-Desuden beskrives herunder kun fejl der kan ske ved to samtidige tråde der tilgår listen. Yderligere fejl kunne sandsynligvis findes ved tre eller flere tråde.
-
-\subsubsection*{Problemer fælles for begge funktioner}
+\subsection{Problemer der kan opstå ved flertrådet brug listen}
 For begge funktioner gælder det er at samtidige kørsler af len++ og/eller len--, kan resultere en forkert længde, i tilfælde af at hver tråd læser len variablen til samme int, og derefer skriver deres ændring sekvensielt.
 
 \subsubsection*{Problemer i list\_add}
@@ -59,7 +55,7 @@ Resultat: n1 vil ikke være med i listen
 	Resultat: Begge tråde vil returnere den samme knude, hvilket ikke er tilladt. Og længden vil være en mindre end ventet.
 \end{enumerate}
 
-\subsubsection*{Problemer i list\_remove}
+\subsubsection*{Problemer i list\_remove sammen med list\_add}
 \begin{enumerate}
 \item t1 kalder list\_remove samtidigt, t2 kalder list\_add med knuden n1. Listen har længde 1:
 	\begin{enumerate}
@@ -79,8 +75,8 @@ Resultat: n1 vil ikke være med i listen
 
 
 \subsection{Implementation af thread safety på listens funktioner}
-Vi har implementeret en simpel løsning til at gøre listens add- og removefunktion thread safe. Listen har fået en mutex som initialiseres ved listens oprettelse sådan at flere lister ikke deler mutexer, og således kan bruges samtidigt. Både list\_add og list\_remove tager en lås på listens mutex umiddelbart efter funktionen kaldes, og frigiver den først umiddelbart før funktionen returnerer. 
-Det skal også nævnes, at vi har identificeret de linjer som tilføjer og fjerner fra listen som én kritisk sektion, og linjerne som tilgår len-variablen som en anden kritisk sektion. Vi har dog valgt at behandle det som en enkelt kritisk sektion for letheds skyld.
+Vi har implementeret en simpel løsning til at gøre listens add- og removefunktion thread safe. Listen har fået en mutex som initialiseres ved listens oprettelse sådan at flere lister ikke deler den samme mutex, og således kan bruges samtidigt. Både list\_add og list\_remove tager en lås på listens mutex umiddelbart efter funktionen kaldes, og frigiver den først umiddelbart før funktionen returnerer.
+Det skal også nævnes, at vi har identificeret de linjer som tilføjer og fjerner fra listen som én kritisk sektion, og linjerne som tilgår len-variablen som en anden kritisk sektion. Vi har dog valgt at behandle det som en enkelt kritisk sektion for letheds skyld, der er delte holdninger i gruppen om hvorvidt det også er hurtigere.
 
 \subsection{Test af thread safety}
 Vi tester ved at oprette en stor mængde tråde (variabelnavn for antallet af tråde: threads) der hver kører enten add eller remove et stort antal gange (variabelnavn for antal af iterationer: actions). 

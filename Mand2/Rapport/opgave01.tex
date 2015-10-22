@@ -18,12 +18,12 @@ så det eneste vi skal gøre er at:
 \subsection{Divide and conquer}
 For at gøre beregningerne opdelbare, så den kan klares med flere tråde, har vi først lavet en struct kaldt ThreadData. Den indeholder tre felter
 \begin{description}
-\item[lower] \hfill \\ Hvor tråden skal starte med at summere
-\item[upper] \hfill \\ Hvor tråden skal stoppe med at summere
+\item[lower] \hfill \\ Værdien en tråd skal summere fra
+\item[upper] \hfill \\ Værdien en tråd skal summere til
 \item[partialSum] \hfill \\ Summen af kvadratrødderne fra \textbf{lower} til \textbf{upper}. 
 \end{description}
 
-Derefter beregnes sumSegment, der er N divideret med antallet af tråde. Så laves det antal tråde, der er blevet specificeret og samme antal ThreadData structs, hvor deres \textbf{lower} bliver sat til sumSegment gange det nummer, som tråden er plus et. Derefter bliver deres \textbf{upper} sat til sumSegment gange det nummer, som tråden er, plus sumSegment. Det gør, at alle tråde får en lige stor andel af beregningerne, når \begin{verbatim}pthread_create()\end{verbatim} bliver kaldt med en ThreadData som parameter. 
+Derefter beregnes tallet sumSegment, der er N divideret med antallet af tråde. Så laves det antal tråde, der er blevet specificeret og samme antal ThreadData structs, hvor deres \textbf{lower} bliver sat til sumSegment gange det nummer, som tråden er plus et. Derefter bliver deres \textbf{upper} sat til sumSegment gange det nummer, som tråden er, plus sumSegment. Det gør, at alle tråde får en lige stor andel af beregningerne, når \begin{verbatim}pthread_create()\end{verbatim} bliver kaldt med en ThreadData som parameter. 
 
 \subsection{Fra i til $\sqrt{i}$}
 Inde i runner() metoden kører et forloop, der sætter partialSum for den tilhørende ThreadData til summen af alle kvadratrødder i intervallet \textbf{lower} til \textbf{upper}. Tilbage i main metoden summere alle ThreadData's partialSum, og resultatet printes ud.

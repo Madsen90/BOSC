@@ -42,18 +42,19 @@ Frigivelse af en specifik process' (m) ressourcer sker ved at alle de ressourcer
 Begyndelsestilstanden sikres ved at køre Banker's Safety algorime (se ovenstående) før processerne bliver kørt.
 
 \subsubsection*{Thread-Safety for delt hukommelse}
-Der er blevet identificeret en række kritiske sektioner i koden. Disse har at gøre med næsten al kode der tilgår State. Disse sektioner er således blevet låst med en mutex. Herunder nævnes de kritiske sektioner:
+Der er blevet identificeret en række kritiske sektioner i koden. Disse har at gøre med næsten al kode der tilgår State. Programmet bruger kun én State, som i en låst tilstand midlertidigt kan være usikker. Disse sektioner er således blevet låst med en mutex. Herunder nævnes de kritiske sektioner:
 \begin{description}
-	\item[resource\_request] Når en process anmoder om ressourcer, skal der skrives til både Available- og Allocation-vektorene og til Need-matricen, og således er låses State under hele kørslen af funktionen
+	\item[resource\_request] Når en process anmoder om ressourcer, skal der skrives til både Available- og Allocation-vektorene og til Need-matricen, og således låses State under hele kørslen af funktionen.
+
 	\item[resource\_release] Når der skal frigives ressourcer fra en process, skrives der igen til både Available- og Allocation-vektorene og til Need-matricen, og State bliver derfor låst under hele kørslen
 \end{description}
 
 \subsubsection*{Banker's Resource-Request algoritme til allokering af ressourcer til processer}
-Til allokere ressourcer til anmodende processer, er Banker's resource-request algoritme blevet implementeret. Forklaringen her tager udgangspunkt i at en process har anmodet om et antal ressourcer, beskrevet i en Resource-vektor. Implementationen består af de følgende 3 trin:
+Banker's resource-request algoritme er blevet implementeret til holde styr på om processer må få tildelt ressourcer. Forklaringen her tager udgangspunkt i at en process har anmodet om et antal ressourcer, beskrevet i en Resource-vektor. Implementationen består af de følgende 3 trin:
 \begin{enumerate}
 	\item Først checkes om Request-vektoren overskrider det, fra processen, tidligere angivede max-ressource-forbrug. Hvis den gør dette, så afsluttes anmodningen med en fejl.
-	\item Så tjekkes der om de anmodede ressourcer er tilgængelige på det givne tidspunkt. Hvis ikke, får processen en meddelelse tilbage om at den skal vente lidt (1000 milisekunder) og prøve igen.
-	\item Hvis de relevante ressourcer er tilgængelige, skal der testes om hvorvidt det fører til en usikker state at give processen adgang til ressourcerne. I praksis gøres dette ved at allokere de anmodede ressourcer til processen (som dog ikke får adgang til dem endnu, da den stadig venter svar fra request-funktionen), og derefter køre Banker's Safety algoritme (se ovenfor). Hvis det viser sig at være en usikker tilstand, deallokeres ressourcerne igen, og processen får en meddelelse om at vente lidt (igen 1000 milisekunder) og prøve igen.
+	\item Så tjekkes der om de anmodede ressourcer er tilgængelige på det givne tidspunkt. Hvis ikke afvises anmodningen.
+	\item Hvis de relevante ressourcer er tilgængelige, skal der testes om hvorvidt det fører til en usikker state at give processen adgang til ressourcerne. I praksis gøres dette ved at allokere de anmodede ressourcer til processen (som dog ikke får adgang til dem endnu), og derefter køre Banker's Safety algoritme. Hvis det viser sig at være en usikker tilstand, deallokeres ressourcerne igen og anmodningen afvises. 
 \end{enumerate}
 
 
