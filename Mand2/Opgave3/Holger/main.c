@@ -60,7 +60,7 @@ int main(int argc, char const *argv[])
 	pthread_t tid[total];
 
 	//Memory allokering fordi at hvis der bare bruges id = i
-	//så får alle producers samme id, selvom jeg ikke forstår hvorfor	
+	//saa faar alle producers samme id, selvom jeg ikke forstaar hvorfor	
 	int i = 0;
 	while(i < producers){
 		int id = i; 
@@ -120,9 +120,9 @@ void* producer(void * param){
 		sem_wait(&empty);
 		sem_wait(&mutex);
 		list_add(l, n);
-		//Denne linje gør mutex semaforen nødvendig.
-		//Kunne undlades ved at lade liste returnere len på add og remove
-		//da list kan håndtere samtidig adgang
+		//Denne linje goer mutex semaforen noedvendig.
+		//Kunne undlades ved at lade liste returnere len paa add og remove
+		//da list kan haandtere samtidig adgang
 		numberOfItems = l->len;
 		sem_post(&mutex);
 		sem_post(&full);
