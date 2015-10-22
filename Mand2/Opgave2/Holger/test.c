@@ -138,8 +138,8 @@ void* listRemover(void *param){
 }
 
 
-//Lidt noget rod, resultatet af at prøve at generalisere test med funktionspointere
-//Hvis man var rigtig ambitøs, så forsøgte man at stoppe trådene på random tidspunkter
+//Lidt noget rod, resultatet af at proeve at generalisere test med funktionspointere
+//Hvis man var rigtig ambitoes, saa forsoegte man at stoppe traadene paa random tidspunkter
 //For at tjekke at data'en var konsistent.
 int i = 0;
 int mutexI(){

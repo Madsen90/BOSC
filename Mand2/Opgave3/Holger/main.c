@@ -60,17 +60,17 @@ int main(int argc, char const *argv[])
 	pthread_t tid[total];
 
 	//Memory allokering fordi at hvis der bare bruges id = i
-	//så får alle producers samme id, selvom jeg ikke forstår hvorfor	
+	//saa faar alle producers samme id, selvom jeg ikke forstaar hvorfor	
 	int i = 0;
 	while(i < producers){
-		int id = i;
-		pthread_create(&tid[i], NULL, producer, (void *) (long) id);
+		int id = i; 
+		pthread_create(&tid[i], NULL, producer, (void *) &id);
 		i++;
 	}
 
 	while(i < total){
 		int id = i - producers;
-   		pthread_create(&tid[i], NULL, consumer, (void *) (long) id);
+   		pthread_create(&tid[i], NULL, consumer, (void *) &id);
 		i++;
 	}
 
@@ -105,7 +105,7 @@ int decItemsLeft(){
 }
 
 void* producer(void * param){
-	int id = (int) (long) param;
+	int id = * (int*) param;
 	char item_str[] = "Item_";
 
 	int itemId, numberOfItems;
@@ -120,9 +120,9 @@ void* producer(void * param){
 		sem_wait(&empty);
 		sem_wait(&mutex);
 		list_add(l, n);
-		//Denne linje gør mutex semaforen nødvendig.
-		//Kunne undlades ved at lade liste returnere len på add og remove
-		//da list kan håndtere samtidig adgang
+		//Denne linje goer mutex semaforen noedvendig.
+		//Kunne undlades ved at lade liste returnere len paa add og remove
+		//da list kan haandtere samtidig adgang
 		numberOfItems = l->len;
 		sem_post(&mutex);
 		sem_post(&full);
@@ -133,7 +133,7 @@ void* producer(void * param){
 }
 
 void* consumer(void* param){
-	int id = (int) (long) param;
+	int id = * (int*) param;
 	int itemId, numberOfItems;
 	Node* n;
 
@@ -147,7 +147,7 @@ void* consumer(void* param){
 		sem_post(&mutex);
 		sem_post(&empty);
 
-		printf("Consumer %d consumed %s. Items in buffer %d (out of %d).\n", id, (char *)n->elm, numberOfItems, bufferSize);
+		printf("Consumer %d consumed %s. Items in buffer %d (out of %d).\n", id, n->elm, numberOfItems, bufferSize);
 		Sleep(2000);
 	}
 }
