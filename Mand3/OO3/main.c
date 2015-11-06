@@ -6,19 +6,20 @@ The header files page_table.h and disk.h explain
 how to use the page table and disk interfaces.
 */
 
-#include "page_table.h"
-#include "disk.h"
-#include "program.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 
+#include "page_table.h"
+#include "disk.h"
+#include "program.h"
+
 void page_fault_handler( struct page_table *pt, int page )
 {
-	printf("page fault on page #%d\n",page);
-	exit(1);
+	page_table_set_entry(pt, page, page, PROT_READ | PROT_WRITE );
+	
+	
 }
 
 int main( int argc, char *argv[] )
@@ -33,6 +34,7 @@ int main( int argc, char *argv[] )
 	const char *program = argv[4];
 
 	struct disk *disk = disk_open("myvirtualdisk",npages);
+
 	if(!disk) {
 		fprintf(stderr,"couldn't create virtual disk: %s\n",strerror(errno));
 		return 1;
@@ -40,6 +42,7 @@ int main( int argc, char *argv[] )
 
 
 	struct page_table *pt = page_table_create( npages, nframes, page_fault_handler );
+	
 	if(!pt) {
 		fprintf(stderr,"couldn't create page table: %s\n",strerror(errno));
 		return 1;

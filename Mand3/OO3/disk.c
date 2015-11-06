@@ -27,10 +27,14 @@ struct disk * disk_open( const char *diskname, int nblocks )
 	struct disk *d;
 
 	d = malloc(sizeof(*d));
-	if(!d) return 0;
+	
+	if(!d) {
+		return 0;
+	}
+	
+	d->fd = open(diskname, O_CREAT|O_RDWR, 0777);
 
-	d->fd = open(diskname,O_CREAT|O_RDWR,0777);
-	if(d->fd<0) {
+	if(d->fd < 0) {
 		free(d);
 		return 0;
 	}
@@ -49,13 +53,13 @@ struct disk * disk_open( const char *diskname, int nblocks )
 
 void disk_write( struct disk *d, int block, const char *data )
 {
-	if(block<0 || block>=d->nblocks) {
+	if(block < 0 || block >= d->nblocks) {
 		fprintf(stderr,"disk_write: invalid block #%d\n",block);
 		abort();
 	}
 
-	int actual = pwrite(d->fd,data,d->block_size,block*d->block_size);
-	if(actual!=d->block_size) {
+	int actual = pwrite(d->fd, data, d->block_size, block * d->block_size);
+	if(actual != d->block_size) {
 		fprintf(stderr,"disk_write: failed to write block #%d: %s\n",block,strerror(errno));
 		abort();
 	}
@@ -68,8 +72,8 @@ void disk_read( struct disk *d, int block, char *data )
 		abort();
 	}
 
-	int actual = pread(d->fd,data,d->block_size,block*d->block_size);
-	if(actual!=d->block_size) {
+	int actual = pread(d->fd, data, d->block_size, block * d->block_size);
+	if(actual != d->block_size) {
 		fprintf(stderr,"disk_read: failed to read block #%d: %s\n",block,strerror(errno));
 		abort();
 	}
