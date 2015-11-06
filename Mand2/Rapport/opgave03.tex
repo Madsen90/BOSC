@@ -1,19 +1,19 @@
 \section{Opgave 3}
 Opgave 3 går ud på at implementere en løsning til Producer-Consumer problemet. Programmet, sema, som vi har implementeret, tager fire parametre:
 \begin{description}
-\item[Param 1]  \hfill \\ Antallet af produkter, der skal laves.
-\item[Param 2]  \hfill \\ Antallet af producers.
-\item[Param 3]  \hfill \\ Antallet af consumers.
-\item[Param 4]  \hfill \\ Buffer størelsen.
+\item[Param 1] er antallet af produkter, der skal laves.
+\item[Param 2] er antallet af producers.
+\item[Param 3] er antallet af consumers.
+\item[Param 4] er buffer størelsen.
 \end{description}
 
 \subsection{Trådsikkerhed}
 Der bliver initialiseret fire semaforer:
 \begin{description}
-\item[mutex]  \hfill \\ En normal mutex lås, der varierer imellem at være 1 eller 0 alt efter om der er nogen inde i den, specificeret af os, kritiske sektion.
-\item[itemNumberMutex]  \hfill \\ Tillader kun en producer en gangen at tilgå feltet itemNumber, for at finde ud af hvad nummer det "item", som produceren producerer er. Derudover tillader det også kun en consumer af gangen at tilgå feltet itemsLeft, for at checke, om der er flere produkter at konsumere.
-\item[empty]  \hfill \\ Tillader kun producers at producere et "item", hvis bufferen ikke er fuld. Bliver initialiseret til den buffersize, som brugeren har givet.
-\item[full]  \hfill \\ Tillader kun consumers at konsumere et produkt, hvis der er et "item" i bufferen.
+\item[mutex]  er en normal mutex lås, der varierer imellem at være 1 eller 0 alt efter om der er nogen inde i den, specificeret af os, kritiske sektion.
+\item[itemNumberMutex] tillader kun en producer en gangen at tilgå feltet itemNumber, for at finde ud af hvad nummer det "item", som produceren producerer er. Derudover tillader det også kun en consumer af gangen at tilgå feltet itemsLeft, for at checke, om der er flere produkter at konsumere.
+\item[empty] tillader kun producers at producere et "item", hvis bufferen ikke er fuld. Bliver initialiseret til den buffersize, som brugeren har givet. Tælles ned hver gang et "item" produceres, og op når et "item" konsumeres.
+\item[full] tillader kun consumers at konsumere et produkt, hvis der er et "item" i bufferen. Tælles ned hver gang et item bliver konsumeret, og op når et "item" produceres.
 \end{description}
 
 \subsection{Producer}
@@ -33,7 +33,7 @@ Så går vi ud af den kritiske sektion, og mutex semaphoren bliver låst op, og 
 \subsection{Main}
 I main metoden bliver der lavet det antal tråde lig med antallet af producers, som brugeren har specificeret. De får et id med og producer metoden.
 
-På samme måde bliver der også lavet det antal tråde lig med antallet af consumers, som brugeren har specificeret. De får også et id med og consumer metoden. Grunden til, at producere og consumere bruger samme \textbf{BLABLABLA}.
+På samme måde bliver der også lavet det antal tråde lig med antallet af consumers, som brugeren har specificeret. De får også et id med og consumer metoden. Vi initialisere tråd id'erne en gang med tallet af producers og consumers sammenlagt, så vi kan nøjes med at kalde pthread\_join en gang med alle tråd id'erne, efter at de er blevet lavet.
 
 Derefter køres alle tråde, og resultatet skrives ud i formen:
 \begin{verbatim}

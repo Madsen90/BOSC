@@ -9,53 +9,64 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
-#include "list.h"
+#include "concurrentList.h"
+
 
 /* list_new: return a new list structure */
-List *list_new(void)
+ConcurrentList *list_new(void)
 {
-  List *l;
+  ConcurrentList *l;
 
-  l = (List *) malloc(sizeof(List));
+  l = (ConcurrentList *) malloc(sizeof(ConcurrentList));
   l->len = 0;
-  pthread_mutex_init(&l->mutex, NULL);
 
   /* insert root element which should never be removed */
   l->first = l->last = (Node *) malloc(sizeof(Node));
   l->first->elm = NULL;
   l->first->next = NULL;
+  pthread_mutex_init(&l->add_mutex, NULL);
+  pthread_mutex_init(&l->rem_mutex, NULL);
+  pthread_mutex_init(&l->len_mutex, NULL);
   return l;
 }
 
 /* list_add: add node n to list l as the last element */
-void list_add(List *l, Node *n)
+void list_add(ConcurrentList *l, Node *n)
 {
-  pthread_mutex_lock(&l->mutex);
-  Node* it = l->last;
-  //In order to avoid making the end element into a circle by adding the same element twice
-  if(it != n){ 
-    it->next = n;
-    l->last = n;
-    l->len++;
-  }
-  pthread_mutex_unlock(&l->mutex);
+  //if(l->last != NULL) check is not necessary, as the root element is never removed
+  pthread_mutex_lock(&l->add_mutex);
+  l->last->next = n;
+  l->last = n;
+  pthread_mutex_unlock(&l->add_mutex);
+  
+  pthread_mutex_lock(&l->len_mutex);
+  l->len++;
+  pthread_mutex_unlock(&l->len_mutex);
 }
 
 /* list_remove: remove and return the first (non-root) element from list l */
-Node *list_remove(List *l)
+Node *list_remove(ConcurrentList *l)
 {
-  pthread_mutex_lock(&l->mutex);
-  Node *n = l->first->next;
+  Node *n;
   
-  if(n != NULL){
-    l->first->next = n->next;
+  pthread_mutex_lock(&l->len_mutex);
+  if(l->len > 0){
     l->len--;
-    if(l->first->next == NULL)
-      l->last = l->first;
+    pthread_mutex_unlock(&l->len_mutex);
+    pthread_mutex_lock(&l->rem_mutex);
+    printf("%s%d\n", "test - ref to rem mutex is: ", &l->rem_mutex);
+    n = l->first->next;
+    if(n != NULL){ //should never happen
+      l->first->next = n->next;
+    }
+
+    pthread_mutex_unlock(&l->rem_mutex);
+  
+  }else{
+    pthread_mutex_unlock(&l->len_mutex);
+    n = NULL;
   }
 
-  pthread_mutex_unlock(&l->mutex);
-  
   return n;
 }
 

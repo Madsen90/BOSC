@@ -3,7 +3,7 @@ Opgave et går ud på at lave et program, der begregner summen af kvadratrødder
 \begin{center}
 $\displaystyle\sum_{i=0}^{N} \sqrt{i}$
 \end{center}
-Derudover skal vi gøre brug af flere tråde, så X antal tråde hver står for en X'ende del af beregningerne. Vi har allerede fået udlevert kode, der kan beregne:
+Derudover skal vi gøre brug af flere tråde, så X antal tråde hver står for en X'ende del af beregningerne. Vi har allerede fået udleveret kode, der kan beregne:
 
 \begin{center}
 $\displaystyle\sum_{i=0}^{N} i$,
@@ -12,24 +12,24 @@ så det eneste vi skal gøre er at:
 
 \begin{itemize}
 \item Dele beregningerne op, så hver tråd får en X'ende del af beregningerne at udføre.
-\item Modificere selve beregningen af summen, så det er $\sqrt{i}$ og ikke i, der bliver beregnet
+\item Modificere selve beregningen af summen, så det er $\sqrt{i}$ og ikke i, der bliver beregnet.
 \end{itemize}
 
 \subsection{Divide and conquer}
-For at gøre beregningerne opdelbare, så den kan klares med flere tråde, har vi først lavet en struct kaldt ThreadData. Den indeholder tre felter
+For at gøre beregningerne opdelelige, så flere tråde kan arbejde sammen om dem, har vi først lavet en struct kaldt ThreadData. Den indeholder tre felter:
 \begin{description}
-\item[lower] \hfill \\ Værdien en tråd skal summere fra
-\item[upper] \hfill \\ Værdien en tråd skal summere til
-\item[partialSum] \hfill \\ Summen af kvadratrødderne fra \textbf{lower} til \textbf{upper}. 
+\item[lower] er værdien, en tråd skal summere fra.
+\item[upper] er værdien, en tråd skal summere til.
+\item[partialSum] er summen af kvadratrødderne fra \textbf{lower} til \textbf{upper}. 
 \end{description}
 
-Derefter beregnes tallet sumSegment, der er N divideret med antallet af tråde. Så laves det antal tråde, der er blevet specificeret og samme antal ThreadData structs, hvor deres \textbf{lower} bliver sat til sumSegment gange det nummer, som tråden er plus et. Derefter bliver deres \textbf{upper} sat til sumSegment gange det nummer, som tråden er, plus sumSegment. Det gør, at alle tråde får en lige stor andel af beregningerne, når \begin{verbatim}pthread_create()\end{verbatim} bliver kaldt med en ThreadData som parameter. 
+I starten beregnes tallet sumSegment, der er N divideret med antallet af tråde. Så laves det antal tråde, der er blevet specificeret og samme antal ThreadData structs, hvor deres \textbf{lower} bliver sat til sumSegment gange det nummer, som tråden er plus et. Derefter bliver deres \textbf{upper} sat til sumSegment gange det nummer, som tråden er, plus sumSegment. Det gør, at alle tråde får en lige stor andel af beregningerne, når \begin{verbatim}pthread_create()\end{verbatim} bliver kaldt med en ThreadData som parameter. 
 
 \subsection{Fra i til $\sqrt{i}$}
-Inde i runner() metoden kører et forloop, der sætter partialSum for den tilhørende ThreadData til summen af alle kvadratrødder i intervallet \textbf{lower} til \textbf{upper}. Tilbage i main metoden summere alle ThreadData's partialSum, og resultatet printes ud.
+Inde i runner() kører et forloop, der sætter partialSum for den tilhørende ThreadData til summen af alle kvadratrødder i intervallet \textbf{lower} til \textbf{upper}. Tilbage i main metoden summere alle ThreadData's partialSum, og resultatet printes ud.
 
 \subsection{Resultater}
-Programmet solution blev kørt med N som 1.000.000.000. Tabellen herunder viser hvor lang tid beregningen tog med forskellige antal tråde.
+Programmet solution blev kørt med N som 1.000.000.000. Tabellen herunder viser hvor lang tid beregningerne tog med forskellige antal tråde.
 
 \begin{center}
   \begin{tabular}{ | l | c | r | }
