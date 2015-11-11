@@ -5,23 +5,31 @@ You may add or rearrange any code or data as you need.
 The header files page_table.h and disk.h explain
 how to use the page table and disk interfaces.
 */
-
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-
+   
 #include "page_table.h"
 #include "disk.h"
 #include "program.h"
 
+int pppp = 0;
+
 void page_fault_handler( struct page_table *pt, int page )
 {
-	page_table_set_entry(pt, page, page, PROT_READ | PROT_WRITE );
-	
-	
-}
+//	int curFrame, bits;
 
+//	printf("curFrame: %d \n", curFrame);
+
+	page_table_set_entry(pt, page, pppp, PROT_READ | PROT_WRITE );
+
+//	printf("curFrame: %d \n", curFrame);
+
+	printf("SEG ERROR, page: %d\n", page);
+}
+ 
 int main( int argc, char *argv[] )
 {
 	if(argc!=5) {
@@ -46,10 +54,9 @@ int main( int argc, char *argv[] )
 	if(!pt) {
 		fprintf(stderr,"couldn't create page table: %s\n",strerror(errno));
 		return 1;
-	}
-
-	char *virtmem = page_table_get_virtmem(pt);
-
+	} 
+ 	
+ 	char *virtmem = page_table_get_virtmem(pt);
 	char *physmem = page_table_get_physmem(pt);
 
 	if(!strcmp(program,"sort")) {
@@ -61,9 +68,19 @@ int main( int argc, char *argv[] )
 	} else if(!strcmp(program,"focus")) {
 		focus_program(virtmem,npages*PAGE_SIZE);
 
-	} else {
-		fprintf(stderr,"unknown program: %s\n",argv[3]);
+	}else {
+		test_program(virtmem,npages*PAGE_SIZE);
+//		fprintf(stderr,"unknown program: %s\n",argv[3]);
+	}
 
+	int i, j;
+	printf("Virt mem %d:\n", PAGE_SIZE);
+	for(i = 0; i < npages; i++){
+		printf("Page %d: ", i);
+		for(j = 0; j * 2048 < PAGE_SIZE; j++){
+			printf("%d ", virtmem[i * PAGE_SIZE + j * 2048]);
+		}
+		printf("\n");
 	}
 
 	page_table_delete(pt);

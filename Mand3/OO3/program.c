@@ -3,6 +3,8 @@ Do not modify this file.
 Make all of your changes to main.c instead.
 */
 
+#define VARSIZE 2048
+
 #include "program.h"
 
 #include <stdio.h>
@@ -87,4 +89,27 @@ void scan_program( char *cdata, int length )
 	}
 
 	printf("scan result is %d\n",total);
+}
+
+void test_program( char *cdata, int length )
+{
+	unsigned i, j;
+	unsigned char *data = cdata;
+	unsigned total = 0;
+
+	for(i=0; i * VARSIZE<length; i++) {
+		//printf("%d\n", i);
+		data[i * VARSIZE] = i;
+	}
+	printf("IGEN! \n");
+	// for(i=0; i * VARSIZE<length; i++) {
+	// 	//printf("%d\n", i);
+	// 	data[i * VARSIZE] = i;
+	// }
+	// for(i = (length / VARSIZE); i * VARSIZE > 0; i--) {
+	// 	//printf("%d\n", i);
+	// 	printf("%d\n", i);
+	// 	data[i * VARSIZE] = i;
+	// }
+	printf("Test done\n");
 }

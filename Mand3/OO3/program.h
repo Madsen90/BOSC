@@ -9,5 +9,6 @@ Make all of your changes to main.c instead.
 void scan_program( char *data, int length );
 void sort_program( char *data, int length );
 void focus_program( char *data, int length );
+void test_program( char *data, int length );
 
 #endif

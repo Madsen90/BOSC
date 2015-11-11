@@ -3,7 +3,7 @@
 Do not modify this file.
 Make all of your changes to main.c instead.
 */
-
+    
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/mman.h>
@@ -12,7 +12,7 @@ Make all of your changes to main.c instead.
 #include <fcntl.h>
 #include <stdlib.h>
 #include <ucontext.h>
-
+  
 #include "page_table.h"
 
 struct page_table {
@@ -25,7 +25,7 @@ struct page_table {
 	int *page_bits;
 	page_fault_handler_t handler;
 };
-
+  
 struct page_table *the_page_table = 0;
 
 static void internal_fault_handler( int signum, siginfo_t *info, void *context )
@@ -42,7 +42,7 @@ static void internal_fault_handler( int signum, siginfo_t *info, void *context )
 	if(pt) {
 		int page = (addr-pt->virtmem) / PAGE_SIZE;
 
-		if(page>=0 && page<pt->npages) {
+		if(page >= 0 && page < pt->npages) {
 			pt->handler(pt,page);
 			return;
 		}
@@ -54,6 +54,7 @@ static void internal_fault_handler( int signum, siginfo_t *info, void *context )
 
 struct page_table * page_table_create( int npages, int nframes, page_fault_handler_t handler )
 {
+	printf("Creating table with PAGE_SIZE: %d\n",PAGE_SIZE );
 	int i;
 	struct sigaction sa;
 	struct page_table *pt;
@@ -66,17 +67,17 @@ struct page_table * page_table_create( int npages, int nframes, page_fault_handl
 
 	sprintf(filename,"/tmp/pmem.%d.%d",getpid(),getuid());
 
-	pt->fd = open(filename,O_CREAT|O_TRUNC|O_RDWR,0777);
+	pt->fd = open(filename, O_CREAT|O_TRUNC|O_RDWR, 0777);
 	if(!pt->fd) return 0;
 
 	ftruncate(pt->fd,PAGE_SIZE*npages);
 
 	unlink(filename);
 
-	pt->physmem = mmap(0,nframes*PAGE_SIZE,PROT_READ|PROT_WRITE,MAP_SHARED,pt->fd,0);
+	pt->physmem = mmap(0, nframes*PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, pt->fd, 0);
 	pt->nframes = nframes;
 
-	pt->virtmem = mmap(0,npages*PAGE_SIZE,PROT_NONE,MAP_SHARED|MAP_NORESERVE,pt->fd,0);
+	pt->virtmem = mmap(0, npages*PAGE_SIZE, PROT_NONE, MAP_SHARED|MAP_NORESERVE, pt->fd, 0);
 	pt->npages = npages;
 
 	pt->page_bits = malloc(sizeof(int)*npages);
@@ -94,11 +95,11 @@ struct page_table * page_table_create( int npages, int nframes, page_fault_handl
 
 	return pt;
 }
-
+ 
 void page_table_delete( struct page_table *pt )
 {
-	munmap(pt->virtmem,pt->npages*PAGE_SIZE);
-	munmap(pt->physmem,pt->nframes*PAGE_SIZE);
+	munmap(pt->virtmem,pt->npages * PAGE_SIZE);
+	munmap(pt->physmem,pt->nframes * PAGE_SIZE);
 	free(pt->page_bits);
 	free(pt->page_mapping);
 	close(pt->fd);
@@ -116,12 +117,12 @@ void page_table_set_entry( struct page_table *pt, int page, int frame, int bits 
 		fprintf(stderr,"page_table_set_entry: illegal frame #%d\n",frame);
 		abort();
 	}
-
+ 
 	pt->page_mapping[page] = frame;
 	pt->page_bits[page] = bits;
 
-	remap_file_pages(pt->virtmem+page*PAGE_SIZE,PAGE_SIZE,0,frame,0);
-	mprotect(pt->virtmem+page*PAGE_SIZE,PAGE_SIZE,bits);
+	remap_file_pages(pt->virtmem + page * PAGE_SIZE, PAGE_SIZE, 0, frame,0);
+	mprotect(pt->virtmem + page * PAGE_SIZE, PAGE_SIZE, bits);
 }
 
 void page_table_get_entry( struct page_table *pt, int page, int *frame, int *bits )
