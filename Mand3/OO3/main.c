@@ -14,9 +14,12 @@ how to use the page table and disk interfaces.
 #include "page_table.h"
 #include "disk.h"
 #include "program.h"
+#include "frameSelecter.h"
 
 struct disk *disk;
 char *physmem;
+
+void (*frameSelecter)(struct page_table*, int*, int*, int*);
 
 // struct page_table {
 // 	int fd;
@@ -42,7 +45,7 @@ void print_mapping(struct page_table *pt){
 	}
 }
 
-int findFreeFrame(struct page_table *pt){
+int findFreeFrame(struct page_table *pt, int* retFrame){
 	int npages, nframes;
 	npages = page_table_get_npages(pt);
 	nframes = page_table_get_nframes(pt);
@@ -64,67 +67,52 @@ int findFreeFrame(struct page_table *pt){
 
 	for(f = 0; f < nframes; f++){
 		if(frames[f] == 0){
-			return f;
+			*retFrame = f;
+			return 1;
 		}
 	}
-	return -1;
-}
-
-int pageMappedTo(struct page_table *pt, int freeFrame){
-	int npages, p, frame, bits;
-	npages = page_table_get_npages(pt);
-
-	for(p = 0; p < npages; p++){
-		page_table_get_entry(pt, p, &frame, &bits);	
-
-		if(frame == freeFrame){
-			return p;
-		}
-	}
-	abort();
+	return 0;
 }
 
 void page_fault_handler( struct page_table *pt, int page )
 {
+	int bits, frame;
+	page_table_get_entry(pt, page, &frame, &bits );
 
-	// page_table_set_entry(pt, page, page, PROT_READ | PROT_WRITE );
+	//Check if this is a "write-request"
+	if(bits & PROT_READ == PROT_READ){
+		page_table_set_entry(pt, page, frame, PROT_READ | PROT_WRITE );
+		return;
+	}
+
 	// return;
-
 	int npages, nframes;
 	npages = page_table_get_npages(pt);
 	nframes = page_table_get_nframes(pt);
 	
 	// 1. Find a frame
 	// 	a. If there is a free frame
-	int freeFrame = findFreeFrame(pt);
+	int freeFrame;
 
 	// 	b. If there is no free frame 
 	// 		b1. Use a page-replacement algorithm to select a victim frame
-	if(freeFrame == -1){
-		freeFrame = 1; //Algortimer
+	if(!findFreeFrame(pt, &freeFrame)){
+		int oldPage, bits;
+		frameSelecter(pt, &freeFrame, &oldPage, &bits);
 
-	//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
-		int mappedPage = pageMappedTo(pt, freeFrame);
-
-		char * data = page_table_get_physmem( pt );
-		
-		disk_write(disk, mappedPage, &physmem[freeFrame * PAGE_SIZE]);
-		page_table_set_entry(pt, mappedPage, 0, 0);
+		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
+		if(bits & PROT_WRITE == PROT_WRITE){
+			char * data = page_table_get_physmem( pt );
+			disk_write(disk, oldPage, &physmem[freeFrame * PAGE_SIZE]);
+			page_table_set_entry(pt, oldPage, 0, 0);
+		}
 	}
 	
-	
-
-
-
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
 	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
-	page_table_set_entry(pt, page, freeFrame, PROT_READ | PROT_WRITE );
-
+	page_table_set_entry(pt, page, freeFrame, PROT_READ);
 
 	// 3. Continue the user process
-
-
-
 	printf("SEG ERROR, page: %d\n", page);
 }
  
@@ -138,6 +126,8 @@ int main( int argc, char *argv[] )
 	int npages = atoi(argv[1]);
 	int nframes = atoi(argv[2]);
 	const char *program = argv[4];
+
+	frameSelecter = getFifo();
 
 	disk = disk_open("myvirtualdisk",npages);
 
