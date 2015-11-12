@@ -98,9 +98,9 @@ void test_program( char *cdata, int length )
 	unsigned total = 0;
 
 	for(i=0; i * VARSIZE<length; i++) {
-		//printf("%d\n", i);
 		data[i * VARSIZE] = i;
 	}
+
 	printf("IGEN! \n");
 	// for(i=0; i * VARSIZE<length; i++) {
 	// 	//printf("%d\n", i);

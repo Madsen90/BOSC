@@ -15,17 +15,115 @@ how to use the page table and disk interfaces.
 #include "disk.h"
 #include "program.h"
 
-int pppp = 0;
+struct disk *disk;
+char *physmem;
+
+// struct page_table {
+// 	int fd;
+// 	char *virtmem;
+// 	int npages;
+// 	char *physmem;
+// 	int nframes;
+// 	int *page_mapping;
+// 	int *page_bits;
+// 	page_fault_handler_t handler;
+// };
+
+void print_mapping(struct page_table *pt){
+	int npages = page_table_get_npages(pt);
+	
+	// 1. Find a free frame
+	// 	a. If there is a free frame
+	int p, frame, bits;
+	for(p = 0; p < npages; p++){
+		page_table_get_entry(pt, p, &frame, &bits);	
+
+		printf("%d - %d\n", p, frame);
+	}
+}
+
+int findFreeFrame(struct page_table *pt){
+	int npages, nframes;
+	npages = page_table_get_npages(pt);
+	nframes = page_table_get_nframes(pt);
+
+	int frames[nframes];
+	int p, f, frame, bits;
+
+	for(f = 0; f < nframes; f++){
+		frames[f] = 0;
+	}
+
+	for(p = 0; p < npages; p++){
+		page_table_get_entry(pt, p, &frame, &bits);	
+
+		if(bits > 0){
+			frames[frame] = 1;
+		}
+	}
+
+	for(f = 0; f < nframes; f++){
+		if(frames[f] == 0){
+			return f;
+		}
+	}
+	return -1;
+}
+
+int pageMappedTo(struct page_table *pt, int freeFrame){
+	int npages, p, frame, bits;
+	npages = page_table_get_npages(pt);
+
+	for(p = 0; p < npages; p++){
+		page_table_get_entry(pt, p, &frame, &bits);	
+
+		if(frame == freeFrame){
+			return p;
+		}
+	}
+	abort();
+}
 
 void page_fault_handler( struct page_table *pt, int page )
 {
-//	int curFrame, bits;
 
-//	printf("curFrame: %d \n", curFrame);
+	// page_table_set_entry(pt, page, page, PROT_READ | PROT_WRITE );
+	// return;
 
-	page_table_set_entry(pt, page, pppp, PROT_READ | PROT_WRITE );
+	int npages, nframes;
+	npages = page_table_get_npages(pt);
+	nframes = page_table_get_nframes(pt);
+	
+	// 1. Find a frame
+	// 	a. If there is a free frame
+	int freeFrame = findFreeFrame(pt);
 
-//	printf("curFrame: %d \n", curFrame);
+	// 	b. If there is no free frame 
+	// 		b1. Use a page-replacement algorithm to select a victim frame
+	if(freeFrame == -1){
+		freeFrame = 1; //Algortimer
+
+	//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
+		int mappedPage = pageMappedTo(pt, freeFrame);
+
+		char * data = page_table_get_physmem( pt );
+		
+		disk_write(disk, mappedPage, &physmem[freeFrame * PAGE_SIZE]);
+		page_table_set_entry(pt, mappedPage, 0, 0);
+	}
+	
+	
+
+
+
+	// 2. Read the desired page into the selected frame; change the page and frame tables.
+	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
+	page_table_set_entry(pt, page, freeFrame, PROT_READ | PROT_WRITE );
+
+
+	// 3. Continue the user process
+
+
 
 	printf("SEG ERROR, page: %d\n", page);
 }
@@ -41,13 +139,12 @@ int main( int argc, char *argv[] )
 	int nframes = atoi(argv[2]);
 	const char *program = argv[4];
 
-	struct disk *disk = disk_open("myvirtualdisk",npages);
+	disk = disk_open("myvirtualdisk",npages);
 
 	if(!disk) {
 		fprintf(stderr,"couldn't create virtual disk: %s\n",strerror(errno));
 		return 1;
 	}
-
 
 	struct page_table *pt = page_table_create( npages, nframes, page_fault_handler );
 	
@@ -57,7 +154,7 @@ int main( int argc, char *argv[] )
 	} 
  	
  	char *virtmem = page_table_get_virtmem(pt);
-	char *physmem = page_table_get_physmem(pt);
+	physmem = page_table_get_physmem(pt);
 
 	if(!strcmp(program,"sort")) {
 		sort_program(virtmem,npages*PAGE_SIZE);
@@ -73,15 +170,15 @@ int main( int argc, char *argv[] )
 //		fprintf(stderr,"unknown program: %s\n",argv[3]);
 	}
 
-	int i, j;
-	printf("Virt mem %d:\n", PAGE_SIZE);
-	for(i = 0; i < npages; i++){
-		printf("Page %d: ", i);
-		for(j = 0; j * 2048 < PAGE_SIZE; j++){
-			printf("%d ", virtmem[i * PAGE_SIZE + j * 2048]);
-		}
-		printf("\n");
-	}
+	// int i, j;
+	// printf("Virt mem %d:\n", PAGE_SIZE);
+	// for(i = 0; i < npages; i++){
+	// 	printf("Page %d: ", i);
+	// 	for(j = 0; j * 2048 < PAGE_SIZE; j++){
+	// 		printf("%d ", virtmem[i * PAGE_SIZE + j * 2048]);
+	// 	}
+	// 	printf("\n");
+	// }
 
 	page_table_delete(pt);
 	disk_close(disk);
