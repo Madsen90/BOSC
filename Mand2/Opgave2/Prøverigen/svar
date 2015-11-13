@@ -1,0 +1,7 @@
+Der kan opstå 4 forskellige problemer:
+
+1: For det første kan alle samtidige eksekveringer medføre at listen længde-variable ender med at have forkerte værdi.
+2: Ved flere samtidige tilføjelser, kan det ske at knude ikke ender med at blive sat på listen.
+   Hvis to tråde samtidigt finder det samme sidste element, vil begge forsøge at få endeknuden til at pege på den knude der tilføjes, hvilket vil medføre at en af tråden vil få overskrevet den værdi den lige har sat.
+3: Ved samtidige fjernelser kan der ske det tilsvarende, at to tråde samtidig finder den samme knude som endeknude. Hvilket vil medføre at den samme knude blev fjernet to gange, hvilket ikke er muligt ved sekventiel udførsel. Derudover vil man ende med den forkerte længde værdi.
+4: En tilføjelse og fjernelse sker samtidig på en liste af længden et, kan det ske at det netop tilføjede element bliver sat på et elemtn, der netop bliver fjernet. Med vores kode, kan man konstruere en sammenfletning som medføre at root-knudens next værdi ikke bliver sat til det netop tilføjede element, men til NULL.
