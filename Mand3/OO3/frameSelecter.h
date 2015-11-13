@@ -1,8 +1,8 @@
-#ifndef FRAMESELECTER_H
-#define FRAMESELECTER_H
+
+#ifndef FRAME_SELECTER_H
+#define FRAME_SELECTER_H
 
 #include "page_table.h"
-
 
 // struct page_table {
 // 	int fd;
@@ -18,8 +18,14 @@ typedef struct FIFOdata{
 	int nextPage;
 }fifdata;
 
-(void* f(struct page_table*, int*, int*, int*, void*)) getFifo();
-(void* f(struct page_table*, int*, int*, int*, void*)) getRand();
-(void* f(struct page_table*, int*, int*, int*, void*)) getCustom();
+
+struct LRUData *LRUData{
+	int *page_history;
+	int *page_bits;
+};
+
+void (*getFifo())(struct page_table*, int*, int*, int*, void*);
+void (*getRand())(struct page_table*, int*, int*, int*, void*);
+void (*getCustom())(struct page_table*, int*, int*, int*, void*);
 
 #endif

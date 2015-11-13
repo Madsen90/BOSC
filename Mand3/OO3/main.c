@@ -17,11 +17,13 @@ how to use the page table and disk interfaces.
 #include "frameSelecter.h"
 
 struct disk *disk;
+struct LRUData *LRUData;
 char *physmem;
 
 int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0;
 
 void* fsData;
+
 void (*frameSelecter)(struct page_table*, int*, int*, int*, void*);
 
 
@@ -69,9 +71,16 @@ int findFreeFrame(struct page_table *pt, int* retFrame){
 
 void page_fault_handler( struct page_table *pt, int page )
 {
+
 	pageReq++;
 	int bits, frame;
 	page_table_get_entry(pt, page, &frame, &bits );
+
+	//Checking if this request is caused by a LRU
+	// if(bits == 0 && LRUData->bits > 0){
+	// 	page_table_set_entry(pt, page, frame, LRUData->bits);
+	// 	return;
+	// }
 
 	//Check if this is a "write-request"
 	if(bits & PROT_READ == PROT_READ){
@@ -144,6 +153,12 @@ int main( int argc, char *argv[] )
 		printf("Algorithms to choose from are rand|fifo|custom\n");
 		return 1;
 	}
+	
+	// if(!LRUData = malloc(sizeof (struct LRUData))){
+	// 	printf("LRUData couldn't be allocated\n");
+	// 	return 1;
+	// }
+	
 
 	disk = disk_open("myvirtualdisk",npages);
 
