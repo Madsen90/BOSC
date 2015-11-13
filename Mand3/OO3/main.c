@@ -21,22 +21,12 @@ char *physmem;
 
 void (*frameSelecter)(struct page_table*, int*, int*, int*);
 
-// struct page_table {
-// 	int fd;
-// 	char *virtmem;
-// 	int npages;
-// 	char *physmem;
-// 	int nframes;
-// 	int *page_mapping;
-// 	int *page_bits;
-// 	page_fault_handler_t handler;
-// };
 
 void print_mapping(struct page_table *pt){
 	int npages = page_table_get_npages(pt);
 	
 	// 1. Find a free frame
-	// 	a. If there is a free frame
+	// a. If there is a free frame
 	int p, frame, bits;
 	for(p = 0; p < npages; p++){
 		page_table_get_entry(pt, p, &frame, &bits);	
@@ -102,7 +92,6 @@ void page_fault_handler( struct page_table *pt, int page )
 
 		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
 		if(bits & PROT_WRITE == PROT_WRITE){
-			char * data = page_table_get_physmem( pt );
 			disk_write(disk, oldPage, &physmem[freeFrame * PAGE_SIZE]);
 			page_table_set_entry(pt, oldPage, 0, 0);
 		}

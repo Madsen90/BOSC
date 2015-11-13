@@ -3,6 +3,8 @@
 
 #include "page_table.h"
 
-extern void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* bits);
+(void *(f)(struct page_table*, int*, int*, int* )) getFifo();
+(void *(f)(struct page_table*, int*, int*, int* )) getRand();
+(void *(f)(struct page_table*, int*, int*, int* )) getCustom();
 
 #endif
