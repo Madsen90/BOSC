@@ -3,8 +3,20 @@
 
 #include "page_table.h"
 
-(void *(f)(struct page_table*, int*, int*, int* )) getFifo();
-(void *(f)(struct page_table*, int*, int*, int* )) getRand();
-(void *(f)(struct page_table*, int*, int*, int* )) getCustom();
+
+// struct page_table {
+// 	int fd;
+// 	char *virtmem;
+// 	int npages;
+// 	char *physmem;
+// 	int nframes;
+// 	int *page_mapping;
+// 	int *page_bits;
+// 	page_fault_handler_t handler;
+// };
+
+(void *(f)(struct page_table*, int*, int*, int*, void*)) getFifo();
+(void *(f)(struct page_table*, int*, int*, int*, void*)) getRand();
+(void *(f)(struct page_table*, int*, int*, int*, void*)) getCustom();
 
 #endif

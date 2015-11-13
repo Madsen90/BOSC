@@ -19,7 +19,10 @@ how to use the page table and disk interfaces.
 struct disk *disk;
 char *physmem;
 
-void (*frameSelecter)(struct page_table*, int*, int*, int*);
+int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0;
+
+void* fsData;
+void (*frameSelecter)(struct page_table*, int*, int*, int*, void*);
 
 
 void print_mapping(struct page_table *pt){
@@ -36,7 +39,7 @@ void print_mapping(struct page_table *pt){
 }
 
 int findFreeFrame(struct page_table *pt, int* retFrame){
-	int npages, nframes;
+	int npages, nframes; 
 	npages = page_table_get_npages(pt);
 	nframes = page_table_get_nframes(pt);
 
@@ -66,12 +69,14 @@ int findFreeFrame(struct page_table *pt, int* retFrame){
 
 void page_fault_handler( struct page_table *pt, int page )
 {
+	pageReq++;
 	int bits, frame;
 	page_table_get_entry(pt, page, &frame, &bits );
 
 	//Check if this is a "write-request"
 	if(bits & PROT_READ == PROT_READ){
 		page_table_set_entry(pt, page, frame, PROT_READ | PROT_WRITE );
+		writeReq++;
 		return;
 	}
 
@@ -88,18 +93,20 @@ void page_fault_handler( struct page_table *pt, int page )
 	// 		b1. Use a page-replacement algorithm to select a victim frame
 	if(!findFreeFrame(pt, &freeFrame)){
 		int oldPage, bits;
-		frameSelecter(pt, &freeFrame, &oldPage, &bits);
+		frameSelecter(pt, &freeFrame, &oldPage, &bits, fsData);
 
 		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
 		if(bits & PROT_WRITE == PROT_WRITE){
 			disk_write(disk, oldPage, &physmem[freeFrame * PAGE_SIZE]);
 			page_table_set_entry(pt, oldPage, 0, 0);
+			diskWrites++;
 		}
 	}
 	
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
 	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
 	page_table_set_entry(pt, page, freeFrame, PROT_READ);
+    diskReads++;
 
 	// 3. Continue the user process
 	printf("SEG ERROR, page: %d\n", page);
@@ -149,15 +156,10 @@ int main( int argc, char *argv[] )
 //		fprintf(stderr,"unknown program: %s\n",argv[3]);
 	}
 
-	// int i, j;
-	// printf("Virt mem %d:\n", PAGE_SIZE);
-	// for(i = 0; i < npages; i++){
-	// 	printf("Page %d: ", i);
-	// 	for(j = 0; j * 2048 < PAGE_SIZE; j++){
-	// 		printf("%d ", virtmem[i * PAGE_SIZE + j * 2048]);
-	// 	}
-	// 	printf("\n");
-	// }
+	printf("PageRequests: %d\n", pageReq);
+	printf("writeReq: %d\n", writeReq);
+	printf("diskWrites: %d\n", diskWrites);
+	printf("diskReads: %d\n", diskReads);
 
 	page_table_delete(pt);
 	disk_close(disk);
