@@ -1,3 +1,5 @@
+#include "frameSelecter.h"
+
 int g = 0;
 
 void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
@@ -5,7 +7,7 @@ void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 	npages = page_table_get_npages(pt);
 	nframes = page_table_get_nframes(pt);
 	
-	*freeFrame = g;
+	*freeFrame = 1; //g;
 	
 	g = (g+1) % nframes;
 	
@@ -61,14 +63,14 @@ void frameSelectCust(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 	abort();
 }
 
-getFifo(){
+void (*getFifo()) (struct page_table*, int*, int*, int*, void*){
 	return &frameSelectFifo;
 }
 
-getRand(){
+void (*getRand()) (struct page_table*, int*, int*, int*, void*){
 	return &frameSelectRand;
 }
 
-getCustom(){
+void (*getCustom()) (struct page_table*, int*, int*, int*, void*){
 	return &frameSelectCust;
 }
