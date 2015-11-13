@@ -5,7 +5,7 @@ virtmem: main.o page_table.o disk.o program.o frameSelecter.o
 main.o: main.c
 	gcc -w -Wall -g -c main.c -o main.o
 
-frameSelecter.o: frameSelecter.c
+frameSelecter.o: frameSelecter.c frameSelecter.h
 	gcc -w -Wall -g -c frameSelecter.c -o frameSelecter.o
 
 disk.o: disk.c

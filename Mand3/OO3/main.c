@@ -24,8 +24,6 @@ int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0;
 
 void* fsData;
 
-
-
 void (*frameSelecter)(struct page_table*, int*, int*, int*, void*);
 
 
@@ -79,10 +77,10 @@ void page_fault_handler( struct page_table *pt, int page )
 	page_table_get_entry(pt, page, &frame, &bits );
 
 	//Checking if this request is caused by a LRU
-	// if(bits == 0 && LRUData->bits > 0){
-	// 	page_table_set_entry(pt, page, frame, LRUData->bits);
-	// 	return;
-	// }
+	if(bits == 0 && LRUData->page_bits > 0){
+		page_table_set_entry(pt, page, frame, LRUData->page_bits);
+		return;
+	}
 
 	//Check if this is a "write-request"
 	if(bits & PROT_READ == PROT_READ){
@@ -137,7 +135,7 @@ int main( int argc, char *argv[] )
 	const char *program = argv[4];
 	if (!strcmp(algorithm,"custom")){
 		printf("%s\n", "Custom algorithm:");
-		frameSelecter = getRand();
+		frameSelecter = getCustom();
 	}
 	else if (!strcmp(algorithm,"fifo")){
 		printf("%s\n", "Fifo algorithm:");
@@ -152,11 +150,13 @@ int main( int argc, char *argv[] )
 		printf("Algorithms to choose from are rand|fifo|custom\n");
 		return 1;
 	}
-	
-	// if(!LRUData = malloc(sizeof (struct LRUData))){
-	// 	printf("LRUData couldn't be allocated\n");
-	// 	return 1;
-	// }
+
+	if(   !(LRUData = malloc(sizeof (struct LRUData)))
+       || !(LRUData->page_history = malloc(sizeof (int) * npages))
+       || !(LRUData->page_bits = malloc(sizeof (int) * npages))){
+		printf("LRUData couldn't be allocated\n");
+		return 1;
+	}
 	
 
 	disk = disk_open("myvirtualdisk",npages);

@@ -3,7 +3,7 @@
 
 #include "page_table.h"
 
-struct LRUData *LRUData{
+struct LRUData{
 	int *page_history;
 	int *page_bits;
 };
