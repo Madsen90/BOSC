@@ -1,6 +1,6 @@
 void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
 	int npages, p, frame;
-
+	printf("asdas das  asd 222 d\n");
 	*freeFrame = 1;
 	npages = page_table_get_npages(pt);
 
