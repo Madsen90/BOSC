@@ -114,9 +114,26 @@ int main( int argc, char *argv[] )
 
 	int npages = atoi(argv[1]);
 	int nframes = atoi(argv[2]);
-	const char *program = argv[4];
+	const char *algorithm = argv[3];
 
-	frameSelecter = getFifo();
+	const char *program = argv[4];
+	if (!strcmp(algorithm,"custom")){
+		printf("%s\n", "Custom algorithm:");
+		frameSelecter = getRand();
+	}
+	else if (!strcmp(algorithm,"fifo")){
+		printf("%s\n", "Fifo algorithm:");
+		frameSelecter = getFifo();
+	}
+	else if (!strcmp(algorithm,"rand"))
+	{
+		printf("%s\n", "Random algorithm:");
+		frameSelecter = getRand();
+	}
+	else{
+		printf("Algorithms to choose from are rand|fifo|custom\n");
+		return 1;
+	}
 
 	disk = disk_open("myvirtualdisk",npages);
 
