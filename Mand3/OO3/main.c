@@ -140,10 +140,10 @@ int main( int argc, char *argv[] )
 	}
 	else if (!strcmp(algorithm,"fifo")){
 		printf("%s\n", "Fifo algorithm:");
-		fifdata* d = malloc(sizeof(fifdata));
-		d->nextPage = 0;
-		fsData = (void*)d;
-
+		// fifdata* d = malloc(sizeof(fifdata));
+		// d->nextPage = 0;
+		// fsData = (void*)d;
+		frameSelecter = getFifo();
 	}
 	else if (!strcmp(algorithm,"rand"))
 	{
