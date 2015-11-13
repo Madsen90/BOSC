@@ -22,8 +22,8 @@ char *physmem;
 void (*frameSelecter)(struct page_table*, int*, int*, int*);
 
 typedef struct FIFOdata{
-	int* 
-}
+	int* queue;
+}fifdata;
 
 
 void print_mapping(struct page_table *pt){
@@ -128,6 +128,9 @@ int main( int argc, char *argv[] )
 	else if (!strcmp(algorithm,"fifo")){
 		printf("%s\n", "Fifo algorithm:");
 		frameSelecter = getFifo();
+		fifdata d;
+		d->queue[npages];
+
 	}
 	else if (!strcmp(algorithm,"rand"))
 	{
