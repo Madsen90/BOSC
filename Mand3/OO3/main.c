@@ -24,10 +24,6 @@ int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0;
 void* fsData;
 void (*frameSelecter)(struct page_table*, int*, int*, int*, void*);
 
-typedef struct FIFOdata{
-	int* queue;
-}fifdata;
-
 
 void print_mapping(struct page_table *pt){
 	int npages = page_table_get_npages(pt);
@@ -134,9 +130,9 @@ int main( int argc, char *argv[] )
 	}
 	else if (!strcmp(algorithm,"fifo")){
 		printf("%s\n", "Fifo algorithm:");
-		frameSelecter = getFifo();
-		fifdata d;
-		d->queue[npages];
+		fifdata* d = malloc(sizeof(fifdata));
+		d->nextPage = 0;
+		fsData = (void*)d;
 
 	}
 	else if (!strcmp(algorithm,"rand"))
