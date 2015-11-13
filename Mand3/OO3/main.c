@@ -77,10 +77,10 @@ void page_fault_handler( struct page_table *pt, int page )
 	page_table_get_entry(pt, page, &frame, &bits );
 
 	//Checking if this request is caused by a LRU
-	if(bits == 0 && LRUData->page_bits > 0){
-		page_table_set_entry(pt, page, frame, LRUData->page_bits);
-		return;
-	}
+	// if(bits == 0 && LRUData->page_bits > 0){
+	// 	page_table_set_entry(pt, page, frame, LRUData->page_bits);
+	// 	return;
+	// }
 
 	//Check if this is a "write-request"
 	if(bits & PROT_READ == PROT_READ){
@@ -104,12 +104,13 @@ void page_fault_handler( struct page_table *pt, int page )
 		int oldPage, bits;
 		frameSelecter(pt, &freeFrame, &oldPage, &bits, fsData);
 
+		printf("Frame: %d\n", freeFrame);
 		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
 		if(bits & PROT_WRITE == PROT_WRITE){
 			disk_write(disk, oldPage, &physmem[freeFrame * PAGE_SIZE]);
-			page_table_set_entry(pt, oldPage, 0, 0);
 			diskWrites++;
 		}
+		page_table_set_entry(pt, oldPage, 0, 0);
 	}
 	
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
