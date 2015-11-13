@@ -1,4 +1,4 @@
-void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* bits){
+void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
 	int npages, p, frame;
 
 	*freeFrame = 1;
@@ -18,7 +18,7 @@ void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 }
 
 
-void frameSelectRand(struct page_table *pt, int* freeFrame, int* oldPage, int* bits){
+void frameSelectRand(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
 	int npages, p, frame;
 
 	*freeFrame = 1;
@@ -37,7 +37,7 @@ void frameSelectRand(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 	abort();
 }
 
-void frameSelectCust(struct page_table *pt, int* freeFrame, int* oldPage, int* bits){
+void frameSelectCust(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
 	int npages, p, frame;
 
 	*freeFrame = 1;
