@@ -1,0 +1,163 @@
+Number of processes: Number of resources: Resource vector: 
+Enter max matrix: 
+Enter allocation matrix: 
+
+Need matrix:
+R1 R2 R3 
+2  2  2  
+1  0  2  
+1  0  3  
+4  2  0  
+Allocation matrix:
+R1 R2 R3 
+1  0  0  
+5  1  1  
+2  1  1  
+0  0  2  
+Availability vector:
+R1 R2 R3 
+1  1  2  
+Starting: 0
+Starting: 1
+Starting: 2
+Starting: 3
+PROC 0
+PROC 1
+PROC 2
+PROC 3
+Proc: 2, Need: 1, Request; 1
+Proc: 2, Need: 0, Request; 0
+Proc: 2, Need: 3, Request; 1
+0
+Available: 1, 1, 2, 
+Need: 2, 2, 2, 1, 0, 2, 1, 0, 3, 4, 2, 0,  
+Waiting
+Proc: 1, Need: 1, Request; 0
+Proc: 1, Need: 0, Request; 0
+Proc: 1, Need: 2, Request; 1
+1
+Available: 1, 1, 1, 
+Need: 2, 2, 2, 1, 0, 1, 1, 0, 3, 4, 2, 0,  
+Proc: 1, Allocated: 5, Release; 5
+Proc: 1, Allocated: 1, Release; 0
+Proc: 1, Allocated: 2, Release; 1
+Process 1: Releasing resources.
+Available: 6, 1, 2, 
+Need: 2, 2, 2, 6, 0, 2, 1, 0, 3, 4, 2, 0,  
+Proc: 3, Need: 4, Request; 3
+Proc: 3, Need: 2, Request; 1
+Proc: 3, Need: 0, Request; 0
+0
+Available: 6, 1, 2, 
+Need: 2, 2, 2, 6, 0, 2, 1, 0, 3, 4, 2, 0,  
+Waiting
+Proc: 0, Need: 2, Request; 2
+Proc: 0, Need: 2, Request; 1
+Proc: 0, Need: 2, Request; 1
+0
+Available: 6, 1, 2, 
+Need: 2, 2, 2, 6, 0, 2, 1, 0, 3, 4, 2, 0,  
+Waiting
+0
+Available: 6, 1, 2, 
+Need: 2, 2, 2, 6, 0, 2, 1, 0, 3, 4, 2, 0,  
+Waiting
+0
+Available: 6, 1, 2, 
+Need: 2, 2, 2, 6, 0, 2, 1, 0, 3, 4, 2, 0,  
+Waiting
+Proc: 1, Need: 6, Request; 3
+Proc: 1, Need: 0, Request; 0
+Proc: 1, Need: 2, Request; 1
+1
+Available: 3, 1, 1, 
+Need: 2, 2, 2, 3, 0, 1, 1, 0, 3, 4, 2, 0,  
+Proc: 1, Allocated: 3, Release; 2
+Proc: 1, Allocated: 1, Release; 1
+Proc: 1, Allocated: 2, Release; 1
+Process 1: Releasing resources.
+Available: 5, 2, 2, 
+Need: 2, 2, 2, 5, 1, 2, 1, 0, 3, 4, 2, 0,  
+1
+Available: 2, 1, 2, 
+Need: 2, 2, 2, 5, 1, 2, 1, 0, 3, 1, 1, 0,  
+Proc: 3, Allocated: 3, Release; 3
+Proc: 3, Allocated: 1, Release; 1
+Proc: 3, Allocated: 2, Release; 2
+Process 3: Releasing resources.
+Available: 5, 2, 4, 
+Need: 2, 2, 2, 5, 1, 2, 1, 0, 3, 4, 2, 2,  
+1
+Available: 4, 2, 3, 
+Need: 2, 2, 2, 5, 1, 2, 0, 0, 2, 4, 2, 2,  
+Proc: 2, Allocated: 3, Release; 1
+Proc: 2, Allocated: 1, Release; 0
+Proc: 2, Allocated: 2, Release; 1
+Process 2: Releasing resources.
+Available: 5, 2, 4, 
+Need: 2, 2, 2, 5, 1, 2, 1, 0, 3, 4, 2, 2,  
+1
+Available: 3, 1, 3, 
+Need: 0, 1, 1, 5, 1, 2, 1, 0, 3, 4, 2, 2,  
+Proc: 0, Allocated: 3, Release; 2
+Proc: 0, Allocated: 1, Release; 0
+Proc: 0, Allocated: 1, Release; 1
+Process 0: Releasing resources.
+Available: 5, 1, 4, 
+Need: 2, 1, 2, 5, 1, 2, 1, 0, 3, 4, 2, 2,  
+Proc: 1, Need: 5, Request; 5
+Proc: 1, Need: 1, Request; 0
+Proc: 1, Need: 2, Request; 2
+1
+Available: 0, 1, 2, 
+Need: 2, 1, 2, 0, 1, 0, 1, 0, 3, 4, 2, 2,  
+Proc: 1, Allocated: 6, Release; 5
+Proc: 1, Allocated: 0, Release; 0
+Proc: 1, Allocated: 3, Release; 2
+Process 1: Releasing resources.
+Available: 5, 1, 4, 
+Need: 2, 1, 2, 5, 1, 2, 1, 0, 3, 4, 2, 2,  
+Proc: 3, Need: 4, Request; 2
+Proc: 3, Need: 2, Request; 1
+Proc: 3, Need: 2, Request; 1
+1
+Available: 3, 0, 3, 
+Need: 2, 1, 2, 5, 1, 2, 1, 0, 3, 2, 1, 1,  
+Proc: 3, Allocated: 2, Release; 2
+Proc: 3, Allocated: 1, Release; 0
+Proc: 3, Allocated: 1, Release; 1
+Process 3: Releasing resources.
+Available: 5, 0, 4, 
+Need: 2, 1, 2, 5, 1, 2, 1, 0, 3, 4, 1, 2,  
+Proc: 2, Need: 1, Request; 0
+Proc: 2, Need: 0, Request; 0
+Proc: 2, Need: 3, Request; 1
+1
+Available: 5, 0, 3, 
+Need: 2, 1, 2, 5, 1, 2, 1, 0, 2, 4, 1, 2,  
+Proc: 2, Allocated: 2, Release; 1
+Proc: 2, Allocated: 1, Release; 1
+Proc: 2, Allocated: 2, Release; 2
+Process 2: Releasing resources.
+Available: 6, 1, 5, 
+Need: 2, 1, 2, 5, 1, 2, 2, 1, 4, 4, 1, 2,  
+Proc: 0, Need: 2, Request; 1
+Proc: 0, Need: 1, Request; 1
+Proc: 0, Need: 2, Request; 2
+1
+Available: 5, 0, 3, 
+Need: 1, 0, 0, 5, 1, 2, 2, 1, 4, 4, 1, 2,  
+Proc: 0, Allocated: 2, Release; 2
+Proc: 0, Allocated: 2, Release; 1
+Proc: 0, Allocated: 2, Release; 2
+Process 0: Releasing resources.
+Available: 7, 1, 5, 
+Need: 3, 1, 2, 5, 1, 2, 2, 1, 4, 4, 1, 2,  
+Proc: 1, Need: 5, Request; 5
+Proc: 1, Need: 1, Request; 1
+Proc: 1, Need: 2, Request; 2
+1
+Available: 2, 0, 3, 
+Need: 3, 1, 2, 0, 0, 0, 2, 1, 4, 4, 1, 2,  
+Proc: 1, Allocated: 6, Release; 4
+P
