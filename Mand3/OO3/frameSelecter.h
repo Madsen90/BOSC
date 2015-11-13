@@ -1,7 +1,6 @@
 
 #ifndef FRAME_SELECTER_H
 #define FRAME_SELECTER_H
-
 #include "page_table.h"
 
 // struct page_table {
@@ -19,7 +18,7 @@ typedef struct FIFOdata{
 }fifdata;
 
 
-struct LRUData *LRUData{
+struct LRUData{
 	int *page_history;
 	int *page_bits;
 };
