@@ -21,6 +21,10 @@ char *physmem;
 
 void (*frameSelecter)(struct page_table*, int*, int*, int*);
 
+typedef struct FIFOdata{
+	int* 
+}
+
 
 void print_mapping(struct page_table *pt){
 	int npages = page_table_get_npages(pt);
