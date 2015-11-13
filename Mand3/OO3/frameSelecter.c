@@ -7,7 +7,7 @@ void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 	npages = page_table_get_npages(pt);
 	nframes = page_table_get_nframes(pt);
 	
-	*freeFrame = 1; //g;
+	*freeFrame = g;
 	
 	g = (g+1) % nframes;
 	

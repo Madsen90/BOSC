@@ -106,7 +106,7 @@ void page_fault_handler( struct page_table *pt, int page )
 
 		printf("Frame: %d\n", freeFrame);
 		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
-		if(bits & PROT_WRITE == PROT_WRITE){
+		if((bits & PROT_WRITE) == PROT_WRITE){
 			disk_write(disk, oldPage, &physmem[freeFrame * PAGE_SIZE]);
 			diskWrites++;
 		}
