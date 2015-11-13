@@ -63,6 +63,17 @@ void frameSelectCust(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 	abort();
 }
 
+<<<<<<< HEAD
+void* getFifo(){
+	return &frameSelectFifo;
+}
+
+void* getRand(){
+	return &frameSelectRand;
+}
+
+void* getCustom(){
+=======
 void (*getFifo()) (struct page_table*, int*, int*, int*, void*){
 	return &frameSelectFifo;
 }
@@ -72,5 +83,6 @@ void (*getRand()) (struct page_table*, int*, int*, int*, void*){
 }
 
 void (*getCustom()) (struct page_table*, int*, int*, int*, void*){
+>>>>>>> dbff67bb7222af082fc449f837f6d3ccf0b8c504
 	return &frameSelectCust;
 }
