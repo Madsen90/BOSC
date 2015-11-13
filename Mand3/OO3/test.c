@@ -1,6 +1,6 @@
+#include <stdio.h>
 #include "minunit.h"
-
-
+#include <stdlib.h>
 int tests_run = 0;
 
 static char * test_FIFO() {
@@ -9,7 +9,7 @@ static char * test_FIFO() {
 
 static char * all_tests() {
 	mu_run_test(test_FIFO);
-	mu_run_test(test_custom);
+	//mu_run_test(test_custom);
 	return 0;
 }
 
