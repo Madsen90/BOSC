@@ -15,8 +15,9 @@ void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 	for(p = 0; p < npages; p++){
 		page_table_get_entry(pt, p, &frame, bits);	
 
-		if(frame == *freeFrame){
+		if(frame == *freeFrame && (*bits) > 0){
 			*oldPage = p;
+			printf("Oldpage: %d - %d\n", *oldPage, frame);
 			return;
 		}
 	}

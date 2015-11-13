@@ -100,16 +100,15 @@ void test_program( char *cdata, int length )
 	for(i=0; i * VARSIZE<length; i++) {
 		data[i * VARSIZE] = i;
 	}
+	for(i=0; i * VARSIZE<length; i++) {
+		data[i * VARSIZE] = i;
+	}
+	for(i=0; i * VARSIZE<length; i++) {
+		data[i * VARSIZE] = i;
+	}
+	for(i=0; i * VARSIZE<length; i++) {
+		data[i * VARSIZE] = i;
+	}
 
-	printf("IGEN! \n");
-	// for(i=0; i * VARSIZE<length; i++) {
-	// 	//printf("%d\n", i);
-	// 	data[i * VARSIZE] = i;
-	// }
-	// for(i = (length / VARSIZE); i * VARSIZE > 0; i--) {
-	// 	//printf("%d\n", i);
-	// 	printf("%d\n", i);
-	// 	data[i * VARSIZE] = i;
-	// }
 	printf("Test done\n");
 }

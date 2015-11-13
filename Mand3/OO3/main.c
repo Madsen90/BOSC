@@ -36,7 +36,7 @@ void print_mapping(struct page_table *pt){
 	for(p = 0; p < npages; p++){
 		page_table_get_entry(pt, p, &frame, &bits);	
 
-		printf("%d - %d\n", p, frame);
+		printf("%d - %d - %d\n", p, frame, bits);
 	}
 }
 
@@ -75,7 +75,6 @@ void page_fault_handler( struct page_table *pt, int page )
 	pageReq++;
 	int bits, frame;
 	page_table_get_entry(pt, page, &frame, &bits );
-
 	//Checking if this request is caused by a LRU
 	// if(bits == 0 && LRUData->page_bits > 0){
 	// 	page_table_set_entry(pt, page, frame, LRUData->page_bits);
@@ -83,12 +82,13 @@ void page_fault_handler( struct page_table *pt, int page )
 	// }
 
 	//Check if this is a "write-request"
-	if(bits & PROT_READ == PROT_READ){
+	if((bits & PROT_READ) == PROT_READ){
 		page_table_set_entry(pt, page, frame, PROT_READ | PROT_WRITE );
 		writeReq++;
 		return;
 	}
-
+	print_mapping(pt);
+	
 	// return;
 	int npages, nframes;
 	npages = page_table_get_npages(pt);
