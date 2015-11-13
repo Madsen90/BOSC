@@ -3,9 +3,15 @@
 
 int tests_run = 0;
 
-static char * test_add() {}
+static char * test_FIFO() {
+	//mu_assert("error, len != 100", l->len == 100);
+}
 
-static char * all_tests() {}
+static char * all_tests() {
+	mu_run_test(test_FIFO);
+	mu_run_test(test_custom);
+	return 0;
+}
 
 int main(int argc, char **argv) {
 	char *result = all_tests();
