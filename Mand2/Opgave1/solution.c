@@ -31,8 +31,6 @@ int main(int argc, char const *argv[])
 
 	ThreadData threadData[threads]; 
 	pthread_t tid[threads]; //Thread identifier
-	//pthread_attr_t attr[threads]; //set of thread attributes
-
 	
 	int i;
 	for(i = 0; i < threads; i++){
@@ -43,22 +41,18 @@ int main(int argc, char const *argv[])
 			threadData[i].upper = upperLimit;
 		else
 			threadData[i].upper = i * sumSegment + sumSegment;
-			
-		
+					
 		//get the default attributes
 		//pthread_attr_init(&attr[i]);
 		//create the thread
 		pthread_create(&tid[i], NULL, runner, &threadData[i]);
 	}
-	
-
-	printf("---- \n");
-	
-		i = 0;
-		for(i = 0; i < threads; i++){
-			pthread_join(tid[i], NULL);
-			sum += threadData[i].partialSum;
-		}
+		
+	i = 0;
+	for(i = 0; i < threads; i++){
+		pthread_join(tid[i], NULL);
+		sum += threadData[i].partialSum;
+	}
 
 	printf("sum = %G\n", sum);
 

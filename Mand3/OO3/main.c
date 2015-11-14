@@ -10,25 +10,32 @@ how to use the page table and disk interfaces.
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-   
+#include <sys/time.h>
+    
 #include "page_table.h"
 #include "disk.h"
 #include "program.h"
 #include "frameSelecter.h"
 
+struct frame_table{
+	int *map;
+};
+
+struct frame_table *ft;
 struct disk *disk;
 struct LRUData *LRUData;
 char *physmem;
 
-int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0;
+int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0, LRUFaults = 0;
 
 void* fsData;
 
-void (*frameSelecter)(struct page_table*, int*, int*, int*, void*);
+void (*frameSelecter)(struct page_table*, int*,  void*);
 
 
 void print_mapping(struct page_table *pt){
 	int npages = page_table_get_npages(pt);
+	int nframes = page_table_get_nframes(pt);
 	
 	// 1. Find a free frame
 	// a. If there is a free frame
@@ -36,33 +43,22 @@ void print_mapping(struct page_table *pt){
 	for(p = 0; p < npages; p++){
 		page_table_get_entry(pt, p, &frame, &bits);	
 
-		printf("%d - %d - %d\n", p, frame, bits);
+		printf("%d - %d - %d - %d\n", p, frame, bits, LRUData->page_bits[p]);
+	}
+	printf("Frame: \n" );
+
+	for(p = 0; p < nframes; p++){
+		printf("%d\n", ft->map[p]);	
 	}
 }
 
 int findFreeFrame(struct page_table *pt, int* retFrame){
-	int npages, nframes; 
-	npages = page_table_get_npages(pt);
-	nframes = page_table_get_nframes(pt);
-
-	int frames[nframes];
-	int p, f, frame, bits;
+	int f, nframes = page_table_get_nframes(pt);
 
 	for(f = 0; f < nframes; f++){
-		frames[f] = 0;
-	}
-
-	for(p = 0; p < npages; p++){
-		page_table_get_entry(pt, p, &frame, &bits);	
-
-		if(bits > 0){
-			frames[frame] = 1;
-		}
-	}
-
-	for(f = 0; f < nframes; f++){
-		if(frames[f] == 0){
+		if(ft->map[f] == -1){
 			*retFrame = f;
+			printf("Selecting free\n");
 			return 1;
 		}
 	}
@@ -70,16 +66,18 @@ int findFreeFrame(struct page_table *pt, int* retFrame){
 }
 
 void page_fault_handler( struct page_table *pt, int page )
-{
-
+{	
+	printf("REQ: %d\n", page);
 	pageReq++;
 	int bits, frame;
 	page_table_get_entry(pt, page, &frame, &bits );
 	//Checking if this request is caused by a LRU
-	// if(bits == 0 && LRUData->page_bits > 0){
-	// 	page_table_set_entry(pt, page, frame, LRUData->page_bits);
-	// 	return;
-	// }
+	if(bits == 0 && LRUData->page_bits[page] > 0){
+		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
+		LRUData->page_bits[page] = 0;
+		LRUFaults++;
+		return;
+	}
 
 	//Check if this is a "write-request"
 	if((bits & PROT_READ) == PROT_READ){
@@ -87,7 +85,6 @@ void page_fault_handler( struct page_table *pt, int page )
 		writeReq++;
 		return;
 	}
-	print_mapping(pt);
 	
 	// return;
 	int npages, nframes;
@@ -101,25 +98,33 @@ void page_fault_handler( struct page_table *pt, int page )
 	// 	b. If there is no free frame 
 	// 		b1. Use a page-replacement algorithm to select a victim frame
 	if(!findFreeFrame(pt, &freeFrame)){
-		int oldPage, bits;
-		frameSelecter(pt, &freeFrame, &oldPage, &bits, fsData);
-
-		printf("Frame: %d\n", freeFrame);
+		frameSelecter(pt, &freeFrame, fsData);
+		
+		int tpFrame, bits, oldPage = ft->map[freeFrame];
+		printf("Freemframe: %d \n", freeFrame);
+		page_table_get_entry(pt, oldPage, &tpFrame, &bits);
+	
 		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
-		if((bits & PROT_WRITE) == PROT_WRITE){
+		if((bits & PROT_WRITE) == PROT_WRITE || 
+			(LRUData->page_bits[oldPage] & PROT_WRITE) == PROT_WRITE ){
+			printf("write\n");
 			disk_write(disk, oldPage, &physmem[freeFrame * PAGE_SIZE]);
 			diskWrites++;
 		}
 		page_table_set_entry(pt, oldPage, 0, 0);
+		LRUData->page_bits[oldPage] = 0;
 	}
-	
+
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
+	ft->map[freeFrame] = page;
+	
 	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
 	page_table_set_entry(pt, page, freeFrame, PROT_READ);
     diskReads++;
 
 	// 3. Continue the user process
-	printf("SEG ERROR, page: %d\n", page);
+	print_mapping(pt);
+	printf("\n");
 }
  
 int main( int argc, char *argv[] )
@@ -132,11 +137,32 @@ int main( int argc, char *argv[] )
 	int npages = atoi(argv[1]);
 	int nframes = atoi(argv[2]);
 	const char *algorithm = argv[3];
-
 	const char *program = argv[4];
+
+	//Initialising LRUData
+	if(   !(LRUData = malloc(sizeof (struct LRUData)))
+       || !(LRUData->page_history = malloc(sizeof (int) * npages))
+       || !(LRUData->page_bits = malloc(sizeof (int) * npages))){
+		printf("LRUData couldn't be allocated\n");
+		return 1;
+	}
+	LRUData->timestamp = clock();
+	
+	//Initialising Frame table
+	if(   !(ft = malloc(sizeof (struct frame_table)))
+       || !(ft->map = malloc(sizeof (int) * nframes))){
+		printf("Frame table couldn't be allocated\n");
+		return 1;
+	}
+	int f;
+	for(f = 0; f < nframes; f++){
+		ft->map[f] = -1;
+	}
+
 	if (!strcmp(algorithm,"custom")){
 		printf("%s\n", "Custom algorithm:");
 		frameSelecter = getCustom();
+		fsData = LRUData; 
 	}
 	else if (!strcmp(algorithm,"fifo")){
 		printf("%s\n", "Fifo algorithm:");
@@ -155,13 +181,6 @@ int main( int argc, char *argv[] )
 		return 1;
 	}
 
-	if(   !(LRUData = malloc(sizeof (struct LRUData)))
-       || !(LRUData->page_history = malloc(sizeof (int) * npages))
-       || !(LRUData->page_bits = malloc(sizeof (int) * npages))){
-		printf("LRUData couldn't be allocated\n");
-		return 1;
-	}
-	
 
 	disk = disk_open("myvirtualdisk",npages);
 
@@ -198,6 +217,10 @@ int main( int argc, char *argv[] )
 	printf("writeReq: %d\n", writeReq);
 	printf("diskWrites: %d\n", diskWrites);
 	printf("diskReads: %d\n", diskReads);
+	printf("LRUFaults: %d\n", LRUFaults);
+
+	//FREE FRAME TABLE AND LRUDATA
+
 
 	page_table_delete(pt);
 	disk_close(disk);

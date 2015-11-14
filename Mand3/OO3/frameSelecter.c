@@ -1,10 +1,11 @@
 #include "frameSelecter.h"
 
+#define LRUTIME 200
+
 int g = 0;
 
-void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
-	printf("asdasd\n" );
-	int npages, nframes, p, frame;
+void frameSelectFifo(struct page_table *pt, int* freeFrame, void* data){
+	/*int npages, nframes, p, frame;
 	npages = page_table_get_npages(pt);
 	nframes = page_table_get_nframes(pt);
 	
@@ -23,56 +24,63 @@ void frameSelectFifo(struct page_table *pt, int* freeFrame, int* oldPage, int* b
 	}
 
 	printf("Should not be possible, didn't find page\n");
-	abort();
+	abort();*/
 }
 
 
-void frameSelectRand(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
-	int npages, p, frame;
+void frameSelectRand(struct page_table *pt, int* freeFrame, void* data){
+	// int npages, p, frame;
 
-	*freeFrame = 1;
+	// *freeFrame = 1;
+	// npages = page_table_get_npages(pt);
+
+	// for(p = 0; p < npages; p++){
+	// 	page_table_get_entry(pt, p, &frame, bits);	
+
+	// 	if(frame == *freeFrame){
+	// 		*oldPage = p;
+	// 		return;
+	// 	}
+	// }
+
+	// printf("Should not be possible, didn't find page\n");
+	// abort();
+}
+
+void frameSelectCust(struct page_table *pt, int* freeFrame, void* data){
+	struct LRUData* LRUData = data;
+	int npages, nframes, p, frame, bits;
+	nframes = page_table_get_nframes(pt);
+	
+	*freeFrame = g;
+	
+	g = (g+1) % nframes;
+
 	npages = page_table_get_npages(pt);
 
-	for(p = 0; p < npages; p++){
-		page_table_get_entry(pt, p, &frame, bits);	
+	double c = clock();
 
-		if(frame == *freeFrame){
-			*oldPage = p;
-			return;
+	if(c - LRUData->timestamp > LRUTIME){
+		LRUData->timestamp = c;
+		printf("CLEAR \n");
+		for(p = 0; p < npages; p++){
+			LRUData->page_history[p] = LRUData->page_history[p]>>1; 
+			page_table_get_entry(pt, p, &frame, &bits);
+			bits = (LRUData->page_bits[p] > bits) ? LRUData->page_bits[p] : bits;
+			LRUData->page_bits[p] = bits; 
+			page_table_set_entry(pt, p, frame, 0);
 		}
 	}
-
-	printf("Should not be possible, didn't find page\n");
-	abort();
 }
 
-void frameSelectCust(struct page_table *pt, int* freeFrame, int* oldPage, int* bits, void* data){
-	int npages, p, frame;
-
-	*freeFrame = 1;
-	npages = page_table_get_npages(pt);
-
-	for(p = 0; p < npages; p++){
-		page_table_get_entry(pt, p, &frame, bits);	
-
-		if(frame == *freeFrame){
-			*oldPage = p;
-			return;
-		}
-	}
-
-	printf("Should not be possible, didn't find page\n");
-	abort();
-}
-
-void (*getFifo()) (struct page_table*, int*, int*, int*, void*){
+void (*getFifo()) (struct page_table*, int*, void*){
 	return &frameSelectFifo;
 }
 
-void (*getRand()) (struct page_table*, int*, int*, int*, void*){
+void (*getRand()) (struct page_table*, int*, void*){
 	return &frameSelectRand;
 }
 
-void (*getCustom()) (struct page_table*, int*, int*, int*, void*){
+void (*getCustom()) (struct page_table*, int*, void*){
 	return &frameSelectCust;
 }

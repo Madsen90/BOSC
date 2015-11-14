@@ -11,11 +11,13 @@ typedef struct FIFOdata{
 struct LRUData{
 	int *page_history;
 	int *page_bits;
+	int *page_frame;
+	double timestamp;
 };
 
-void (*getFifo()) (struct page_table*, int*, int*, int*, void*);
-void (*getRand()) (struct page_table*, int*, int*, int*, void*);
-void (*getCustom()) (struct page_table*, int*, int*, int*, void*);
+void (*getFifo()) 	(struct page_table*, int*, void*);
+void (*getRand()) 	(struct page_table*, int*, void*);
+void (*getCustom()) (struct page_table*, int*, void*);
 
 
 #endif
