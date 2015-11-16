@@ -2,18 +2,13 @@
 
 #define LRUTIME 100
 
-int g = 0;
+void frameSelectFifo(struct page_table *pt, int* freeFrame, void* data){
+	struct FIFOData* fifdat = data;
+	int nframes = page_table_get_nframes(pt);
+	*freeFrame = fifdat->nextFrame;
+	fifdat->nextFrame = (*freeFrame + 1) % nframes;
 
-void frameSelectFifo(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
-	int npages, nframes, p, frame;
-	nframes = page_table_get_nframes(pt);
-	
-	*freeFrame = g;
-	
-	g = (g+1) % nframes;
-	
 }
-
 
 void frameSelectRand(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
 	// int npages, p, frame;

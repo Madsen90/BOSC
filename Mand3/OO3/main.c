@@ -38,6 +38,7 @@ void print_mapping(struct page_table *pt){
 	// 1. Find a free frame
 	// a. If there is a free frame
 	int p, frame, bits;
+	printf("P - F - B - Pb\n");
 	for(p = 0; p < npages; p++){
 		page_table_get_entry(pt, p, &frame, &bits);	
 
@@ -100,7 +101,7 @@ void page_fault_handler( struct page_table *pt, int page )
 	if(!findFreeFrame(pt, &freeFrame)){
 		frameSelecter(pt, ft, &freeFrame, fsData);
 		
-		int tpFrame, bits, oldPage = ft->map[freeFrame];
+		int tpFrame, bits, oldPage;// = ft->map[freeFrame];
 //		printf("Freemframe: %d \n", freeFrame);
 		page_table_get_entry(pt, oldPage, &tpFrame, &bits);
 	
@@ -116,7 +117,8 @@ void page_fault_handler( struct page_table *pt, int page )
 	}
 
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
-	ft->map[freeFrame] = page;
+	
+	//ft->map[freeFrame] = page;
 	
 	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
 	page_table_set_entry(pt, page, freeFrame, PROT_READ);
@@ -165,10 +167,11 @@ int main( int argc, char *argv[] )
 		fsData = LRUData; 
 	}
 	else if (!strcmp(algorithm,"fifo")){
+		struct FIFOData* fifdat = malloc(sizeof(struct FIFOData));
+
+		fifdat->nextFrame = 0;
+		fsData = (void*)fifdat;
 		printf("%s\n", "Fifo algorithm:");
-		// fifdata* d = malloc(sizeof(fifdata));
-		// d->nextPage = 0;
-		// fsData = (void*)d;
 		frameSelecter = getFifo();
 	}
 	else if (!strcmp(algorithm,"rand"))
