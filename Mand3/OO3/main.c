@@ -17,9 +17,7 @@ how to use the page table and disk interfaces.
 #include "program.h"
 #include "frameSelecter.h"
 
-struct frame_table{
-	int *map;
-};
+
 
 struct frame_table *ft;
 struct disk *disk;
@@ -30,7 +28,7 @@ int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0, LRUFaults = 0;
 
 void* fsData;
 
-void (*frameSelecter)(struct page_table*, int*,  void*);
+void (*frameSelecter)(struct page_table*, struct frame_table*, int*,  void*);
 
 
 void print_mapping(struct page_table *pt){
@@ -59,7 +57,6 @@ int findFreeFrame(struct page_table *pt, int* retFrame){
 	for(f = 0; f < nframes; f++){
 		if(ft->map[f] == -1){
 			*retFrame = f;
-			printf("Selecting free\n");
 			return 1;
 		}
 	}
@@ -68,10 +65,11 @@ int findFreeFrame(struct page_table *pt, int* retFrame){
 
 void page_fault_handler( struct page_table *pt, int page )
 {	
-	printf("REQ: %d\n", page);
+//	printf("REQ: %d\n", page);
 	pageReq++;
-	int bits, frame;
+	int bits, frame, history;
 	page_table_get_entry(pt, page, &frame, &bits );
+	
 	//Checking if this request is caused by a LRU
 	if(bits == 0 && LRUData->page_bits[page] > 0){
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
@@ -79,6 +77,8 @@ void page_fault_handler( struct page_table *pt, int page )
 		LRUFaults++;
 		return;
 	}
+
+	LRUData->page_history[page] = LRUData->page_history[page] |= 1 << 32;
 
 	//Check if this is a "write-request"
 	if((bits & PROT_READ) == PROT_READ){
@@ -99,16 +99,16 @@ void page_fault_handler( struct page_table *pt, int page )
 	// 	b. If there is no free frame 
 	// 		b1. Use a page-replacement algorithm to select a victim frame
 	if(!findFreeFrame(pt, &freeFrame)){
-		frameSelecter(pt, &freeFrame, fsData);
+		frameSelecter(pt, ft, &freeFrame, fsData);
 		
 		int tpFrame, bits, oldPage = ft->map[freeFrame];
-		printf("Freemframe: %d \n", freeFrame);
+//		printf("Freemframe: %d \n", freeFrame);
 		page_table_get_entry(pt, oldPage, &tpFrame, &bits);
 	
 		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
 		if((bits & PROT_WRITE) == PROT_WRITE || 
 			(LRUData->page_bits[oldPage] & PROT_WRITE) == PROT_WRITE ){
-			printf("write\n");
+			//printf("write\n");
 			disk_write(disk, oldPage, &physmem[freeFrame * PAGE_SIZE]);
 			diskWrites++;
 		}
@@ -124,8 +124,8 @@ void page_fault_handler( struct page_table *pt, int page )
     diskReads++;
 
 	// 3. Continue the user process
-	print_mapping(pt);
-	printf("\n");
+	// print_mapping(pt);
+	// printf("\n");
 }
  
 int main( int argc, char *argv[] )

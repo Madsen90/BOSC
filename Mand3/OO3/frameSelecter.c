@@ -1,6 +1,6 @@
 #include "frameSelecter.h"
 
-#define LRUTIME 200
+#define LRUTIME 100
 
 int g = 0;
 
@@ -9,10 +9,10 @@ void frameSelectFifo(struct page_table *pt, int* freeFrame, void* data){
 	*freeFrame = g;
 	
 	g = (g+1) % nframes;
+
 }
 
-
-void frameSelectRand(struct page_table *pt, int* freeFrame, void* data){
+void frameSelectRand(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
 	// int npages, p, frame;
 
 	// *freeFrame = 1;
@@ -31,22 +31,27 @@ void frameSelectRand(struct page_table *pt, int* freeFrame, void* data){
 	// abort();
 }
 
-void frameSelectCust(struct page_table *pt, int* freeFrame, void* data){
+void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
 	struct LRUData* LRUData = data;
-	int npages, nframes, p, frame, bits;
+	int npages, nframes, p,f, frame, bits;
 	nframes = page_table_get_nframes(pt);
-	
-	*freeFrame = g;
-	
-	g = (g+1) % nframes;
-
 	npages = page_table_get_npages(pt);
 
+	
+	unsigned int min = 0xffffffff;
+	for(f = 0; f < nframes; f++){
+		int page = ft->map[f];
+		unsigned int hist = LRUData->page_history[page];
+		if(hist < min){
+			*freeFrame = f;
+			min = hist;
+		}
+
+	}
 	double c = clock();
 
 	if(c - LRUData->timestamp > LRUTIME){
 		LRUData->timestamp = c;
-		printf("CLEAR \n");
 		for(p = 0; p < npages; p++){
 			LRUData->page_history[p] = LRUData->page_history[p]>>1; 
 			page_table_get_entry(pt, p, &frame, &bits);
@@ -57,14 +62,14 @@ void frameSelectCust(struct page_table *pt, int* freeFrame, void* data){
 	}
 }
 
-void (*getFifo()) (struct page_table*, int*, void*){
+void (*getFifo()) (struct page_table*, struct frame_table*, int*, void*){
 	return &frameSelectFifo;
 }
 
-void (*getRand()) (struct page_table*, int*, void*){
+void (*getRand()) (struct page_table*, struct frame_table*, int*, void*){
 	return &frameSelectRand;
 }
 
-void (*getCustom()) (struct page_table*, int*, void*){
+void (*getCustom()) (struct page_table*, struct frame_table*, int*, void*){
 	return &frameSelectCust;
 }
