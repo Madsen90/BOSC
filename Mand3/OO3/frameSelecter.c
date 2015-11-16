@@ -2,13 +2,11 @@
 
 #define LRUTIME 100
 
-int g = 0;
-
 void frameSelectFifo(struct page_table *pt, int* freeFrame, void* data){
+	struct FIFOData* fifdat = data;
 	int nframes = page_table_get_nframes(pt);
-	*freeFrame = g;
-	
-	g = (g+1) % nframes;
+	*freeFrame = fifdat->nextFrame;
+	fifdat->nextFrame = (*freeFrame + 1) % nframes;
 
 }
 
