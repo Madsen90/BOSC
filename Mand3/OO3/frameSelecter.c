@@ -35,7 +35,7 @@ void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFra
 	nframes = page_table_get_nframes(pt);
 	npages = page_table_get_npages(pt);
 
-	
+	//Find den page der har den laveste history, af pages der er mappet til frames.  
 	unsigned int min = 0xffffffff;
 	for(f = 0; f < nframes; f++){
 		int page = ft->map[f];
@@ -46,8 +46,10 @@ void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFra
 		}
 
 	}
-	double c = clock();
 
+	//Skal ikke ligge her, men sætter alle skriveretigheder til 0 og bitshifter alt page_history
+	//Burde nok ikke kun kunne blive triggered af en efterspørgsel på en ny side
+	double c = clock();
 	if(c - LRUData->timestamp > LRUTIME){
 		LRUData->timestamp = c;
 		for(p = 0; p < npages; p++){
