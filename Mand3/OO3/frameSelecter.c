@@ -5,26 +5,10 @@
 int g = 0;
 
 void frameSelectFifo(struct page_table *pt, int* freeFrame, void* data){
-	/*int npages, nframes, p, frame;
-	npages = page_table_get_npages(pt);
-	nframes = page_table_get_nframes(pt);
-	
+	int nframes = page_table_get_nframes(pt);
 	*freeFrame = g;
 	
 	g = (g+1) % nframes;
-	
-	for(p = 0; p < npages; p++){
-		page_table_get_entry(pt, p, &frame, bits);	
-
-		if(frame == *freeFrame && (*bits) > 0){
-			*oldPage = p;
-			printf("Oldpage: %d - %d\n", *oldPage, frame);
-			return;
-		}
-	}
-
-	printf("Should not be possible, didn't find page\n");
-	abort();*/
 }
 
 

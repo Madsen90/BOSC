@@ -40,6 +40,7 @@ void print_mapping(struct page_table *pt){
 	// 1. Find a free frame
 	// a. If there is a free frame
 	int p, frame, bits;
+	printf("P - F - B - Pb\n");
 	for(p = 0; p < npages; p++){
 		page_table_get_entry(pt, p, &frame, &bits);	
 
@@ -166,9 +167,6 @@ int main( int argc, char *argv[] )
 	}
 	else if (!strcmp(algorithm,"fifo")){
 		printf("%s\n", "Fifo algorithm:");
-		// fifdata* d = malloc(sizeof(fifdata));
-		// d->nextPage = 0;
-		// fsData = (void*)d;
 		frameSelecter = getFifo();
 	}
 	else if (!strcmp(algorithm,"rand"))

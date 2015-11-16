@@ -3,11 +3,6 @@
 #define FRAME_SELECTER_H
 #include "page_table.h"
 
-typedef struct FIFOdata{
-	int nextPage;
-} fifdata;
-
-
 struct LRUData{
 	int *page_history;
 	int *page_bits;
