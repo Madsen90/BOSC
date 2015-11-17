@@ -65,10 +65,15 @@ int findFreeFrame(struct page_table *pt, int* retFrame){
 
 void page_fault_handler( struct page_table *pt, int page )
 {	
-//	printf("REQ: %d\n", page);
-	pageReq++;
+
+	pageReq++; //Statistik
+
 	int bits, frame, history;
 	page_table_get_entry(pt, page, &frame, &bits );
+
+	//Markere at denne page er blevet efterspurgt i denne periode
+	LRUData->page_history[page] = LRUData->page_history[page] |= 1 << 31;
+
 	
 	//Checking if this request is caused by a LRU
 	if(bits == 0 && LRUData->page_bits[page] > 0){
@@ -77,8 +82,6 @@ void page_fault_handler( struct page_table *pt, int page )
 		LRUFaults++;
 		return;
 	}
-
-	LRUData->page_history[page] = LRUData->page_history[page] |= 1 << 32;
 
 	//Check if this is a "write-request"
 	if((bits & PROT_READ) == PROT_READ){
@@ -101,7 +104,7 @@ void page_fault_handler( struct page_table *pt, int page )
 	if(!findFreeFrame(pt, &freeFrame)){
 		frameSelecter(pt, ft, &freeFrame, fsData);
 		
-		int tpFrame, bits, oldPage;// = ft->map[freeFrame];
+		int tpFrame, bits, oldPage = ft->map[freeFrame];
 //		printf("Freemframe: %d \n", freeFrame);
 		page_table_get_entry(pt, oldPage, &tpFrame, &bits);
 	
@@ -118,7 +121,7 @@ void page_fault_handler( struct page_table *pt, int page )
 
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
 	
-	//ft->map[freeFrame] = page;
+	ft->map[freeFrame] = page;
 	
 	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
 	page_table_set_entry(pt, page, freeFrame, PROT_READ);

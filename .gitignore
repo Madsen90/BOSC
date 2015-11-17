@@ -19,6 +19,7 @@
 *.so
 *.so.*
 *.dylib
+myvirtualdisk
 
 # Executables
 *.exe
