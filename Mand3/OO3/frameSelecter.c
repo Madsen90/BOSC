@@ -21,7 +21,7 @@ void frameSelectCust(struct frame_table *ft, int npages, int nframes, int* freeF
 	for(f = 0; f < nframes; f++){
 		int page = ft->map[f];
 		unsigned int hist = LRUData->page_history[page];
-		if(hist <= min){
+		if(hist < min){
 			*freeFrame = f;
 			min = hist;
 		}

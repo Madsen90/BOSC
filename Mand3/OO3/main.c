@@ -17,7 +17,7 @@ how to use the page table and disk interfaces.
 #include "program.h"
 #include "frameSelecter.h"
 
-#define LRUTIME 200
+#define LRUTIME 500
 
 //ressources
 struct frame_table *ft;
@@ -33,6 +33,18 @@ int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0, LRUFaults = 0;
 void* fsData;
 
 void (*frameSelecter)(struct frame_table*, int, int, int*,  void*);
+
+char *int2bit(int a, char *buffer, int buf_size) {
+    buffer += (buf_size - 1);
+    int i;
+    for (i = 31; i >= 0; i--) {
+        *buffer-- = (a & 1) + '0';
+
+        a >>= 1;
+    }
+
+    return buffer;
+}
 
 void print_mapping(struct page_table *pt){
 	int npages = page_table_get_npages(pt);
@@ -112,7 +124,6 @@ void standard_page_fault_handler( struct page_table * pt, int page ){
     diskReads++;
 
 	// 3. Continue the user process
-
 }
 
 void LRU_page_fault_handler( struct page_table * pt, int page ){
@@ -134,6 +145,10 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	if(c - LRUData->timestamp > LRUTIME){
 		LRUData->timestamp = c;
 		for(p = 0; p < npages; p++){
+			// char print[33];
+			// print[32] = '\0';
+			// int2bit(LRUData->page_history[p], print, 32);	
+			//printf("%d: %s\n", p, print);
 			LRUData->page_history[p] = LRUData->page_history[p]>>1; 
 			page_table_get_entry(pt, p, &tempFrame, &tempbits);
 			tempbits = (LRUData->page_bits[p] > tempbits) ? LRUData->page_bits[p] : tempbits;
@@ -141,11 +156,12 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 			page_table_set_entry(pt, p, tempFrame, 0);
 		}
 	}
+	//printf("\n");
 	
 	//Checking if this request is caused by a LRU reset
 	if(bits == 0 && LRUData->page_bits[page] > 0){
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
-		LRUData->page_bits[page] = 0;
+		//LRUData->page_bits[page] = 0;
 		LRUFaults++;
 		return;
 	}
@@ -181,13 +197,11 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	}
 
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
-	
 	ft->map[freeFrame] = page;
-	
 	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
 	page_table_set_entry(pt, page, freeFrame, PROT_READ);
+	
     diskReads++;
-
 	// 3. Continue the user process
 }
  
