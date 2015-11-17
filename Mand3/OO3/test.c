@@ -39,7 +39,7 @@ static char * test_FIFO() {
 		results[i] = returnFrame;
 	}
 
-	for(i = 0; i < FIFORUNS-1; i++){
+	for(i = 0; i < FIFORUNS; i++){
 		if(results[i] != (i%FIFOFRAMES))
 			break;
 	}

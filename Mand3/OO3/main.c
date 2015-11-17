@@ -67,6 +67,10 @@ int findFreeFrame(struct page_table *pt, int* retFrame){
 	return 0;
 }
 
+void standard_page_fault_handler( struct page_table *pt, int page ){
+	
+}
+
 void page_fault_handler( struct page_table *pt, int page )
 {	
 
@@ -76,7 +80,7 @@ void page_fault_handler( struct page_table *pt, int page )
 	page_table_get_entry(pt, page, &frame, &bits );
 
 	//Markere at denne page er blevet efterspurgt i denne periode
-	LRUData->page_history[page] = LRUData->page_history[page] | (1 << 31);
+	LRUData->page_history[page] = LRUData->page_history[page] | (0x80000000);
 	
 	int npages, nframes;
 	npages = page_table_get_npages(pt);
