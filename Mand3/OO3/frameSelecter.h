@@ -1,4 +1,3 @@
-
 #ifndef FRAME_SELECTER_H
 #define FRAME_SELECTER_H
 #include "page_table.h"
@@ -18,9 +17,10 @@ struct frame_table{
 	int *map;
 };
 
-void (*getFifo()) 	(struct page_table*, struct frame_table*, int*, void*);
-void (*getRand()) 	(struct page_table*, struct frame_table*, int*, void*);
-void (*getCustom()) (struct page_table*, struct frame_table*, int*, void*);
-
+void (*getFifo()) 	(struct frame_table*, int, int, int*, void*);
+void (*getRand()) 	(struct frame_table*, int, int, int*, void*);
+void (*getCustom()) (struct frame_table*, int, int, int*, void*);
+struct LRUData* createLRUData(int);
+struct frame_table* createFrameTable(int);
 
 #endif

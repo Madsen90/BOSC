@@ -17,11 +17,8 @@ how to use the page table and disk interfaces.
 #include "program.h"
 #include "frameSelecter.h"
 
-
 #define LRUTIME 100
 int k = 1;
-
-
 
 struct frame_table *ft;
 struct disk *disk;
@@ -32,8 +29,7 @@ int diskWrites = 0, diskReads = 0, pageReq = 0, writeReq = 0, LRUFaults = 0;
 
 void* fsData;
 
-void (*frameSelecter)(struct page_table*, struct frame_table*, int*,  void*);
-
+void (*frameSelecter)(struct frame_table*, int, int, int*,  void*);
 
 void print_mapping(struct page_table *pt){
 	int npages = page_table_get_npages(pt);
@@ -124,7 +120,7 @@ void page_fault_handler( struct page_table *pt, int page )
 	// 	b. If there is no free frame 
 	// 		b1. Use a page-replacement algorithm to select a victim frame
 	if(!findFreeFrame(pt, &freeFrame)){
-		frameSelecter(pt, ft, &freeFrame, fsData);
+		frameSelecter(ft, npages, nframes, &freeFrame, fsData);
 		
 		int tempFrame, bits, oldPage = ft->map[freeFrame];
 //		printf("Freemframe: %d \n", freeFrame);
@@ -178,17 +174,14 @@ int main( int argc, char *argv[] )
 	const char *program = argv[4];
 
 	//Initialising LRUData
-	if(   !(LRUData = malloc(sizeof (struct LRUData)))
-       || !(LRUData->page_history = malloc(sizeof (int) * npages))
-       || !(LRUData->page_bits = malloc(sizeof (int) * npages))){
+	if(!createLRUData(LRUData, npages)){
 		printf("LRUData couldn't be allocated\n");
 		return 1;
 	}
 	LRUData->timestamp = clock();
 	
 	//Initialising Frame table
-	if(   !(ft = malloc(sizeof (struct frame_table)))
-       || !(ft->map = malloc(sizeof (int) * nframes))){
+	if(!createFrameTable(ft, nframes)){
 		printf("Frame table couldn't be allocated\n");
 		return 1;
 	}
@@ -219,7 +212,6 @@ int main( int argc, char *argv[] )
 		printf("Algorithms to choose from are rand|fifo|custom\n");
 		return 1;
 	}
-
 
 	disk = disk_open("myvirtualdisk",npages);
 

@@ -2,37 +2,21 @@
 #include <stdlib.h>
 #define LRUTIME 200
 
-void frameSelectFifo(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
+void frameSelectFifo(struct frame_table *ft, int nframes, int npages, int* freeFrame, void* data){
 	struct FIFOData* fifdat = data;
-	int nframes = page_table_get_nframes(pt);
 	*freeFrame = fifdat->nextFrame;
 	fifdat->nextFrame = (*freeFrame + 1) % nframes;
 }
 
-void frameSelectRand(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
-	int nframes;
-	nframes = page_table_get_nframes(pt);
-	*freeFrame = lrand48()%nframes;
+void frameSelectRand(struct frame_table *ft, int nframes, int npages, int* freeFrame, void* data){
+	*freeFrame = lrand48() % nframes;
 }
 
-char *int2bin(int a, char *buffer, int buf_size) {
-    buffer += (buf_size - 1);
-    int i;
-    for (i = 31; i >= 0; i--) {
-        *buffer-- = (a & 1) + '0';
 
-        a >>= 1;
-    }
-
-    return buffer;
-}
-
-void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
+void frameSelectCust(struct frame_table *ft, int nframes, int npages, int* freeFrame, void* data){
 	struct LRUData* LRUData = data;
-	int npages, nframes, p,f, frame, bits;
-	nframes = page_table_get_nframes(pt);
-	npages = page_table_get_npages(pt);
-
+	int f, frame, bits;
+	
 	//Find den page der har den laveste history, af pages der er mappet til frames.  
 	unsigned int min = 0xffffffff;
 	for(f = 0; f < nframes; f++){
@@ -42,19 +26,53 @@ void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFra
 			*freeFrame = f;
 			min = hist;
 		}
-	}
-
-	
+	}	
 }
 
-void (*getFifo()) (struct page_table*, struct frame_table*, int*, void*){
+struct LRUData* createLRUData(int pages){
+	struct LRUData *LRUData;
+
+	if (!(LRUData = malloc(sizeof (struct LRUData) ) ) ){
+		printf("Fejl\n");
+		return 0;
+	}
+
+	if (!(LRUData->page_history = malloc(sizeof (int) * pages) ) ){
+		printf("Fejl\n");
+		return 0;
+	}
+
+	if (!(LRUData->page_bits = malloc(sizeof (int) * pages) ) ){
+		printf("Fejl\n");
+		return 0;
+	}
+
+	return LRUData;
+}
+
+struct frame_table* createFrameTable(int frames){
+	struct frame_table* ft;
+
+	if(!(ft = malloc(sizeof (struct frame_table)))){
+		printf("Fejl\n");
+		return 0;
+	}
+	if(!(ft->map = malloc(sizeof (int) * frames))){
+		printf("Fejl\n");
+		return 0;
+	}
+
+	return ft;
+}
+
+void (*getFifo()) (struct frame_table*, int nframes, int npages, int*, void*){
 	return &frameSelectFifo;
 }
 
-void (*getRand()) (struct page_table*, struct frame_table*, int*, void*){
+void (*getRand()) (struct frame_table*, int nframes, int npages, int*, void*){
 	return &frameSelectRand;
 }
 
-void (*getCustom()) (struct page_table*, struct frame_table*, int*, void*){
+void (*getCustom()) (struct frame_table*, int nframes, int npages, int*, void*){
 	return &frameSelectCust;
 }
