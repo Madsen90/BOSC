@@ -18,6 +18,10 @@ how to use the page table and disk interfaces.
 #include "frameSelecter.h"
 
 
+#define LRUTIME 100
+int k = 1;
+
+
 
 struct frame_table *ft;
 struct disk *disk;
@@ -72,10 +76,33 @@ void page_fault_handler( struct page_table *pt, int page )
 	page_table_get_entry(pt, page, &frame, &bits );
 
 	//Markere at denne page er blevet efterspurgt i denne periode
-	LRUData->page_history[page] = LRUData->page_history[page] |= 1 << 31;
-
+	LRUData->page_history[page] = LRUData->page_history[page] | (1 << 31);
 	
-	//Checking if this request is caused by a LRU
+	int npages, nframes;
+	npages = page_table_get_npages(pt);
+	nframes = page_table_get_nframes(pt);
+
+//Skal ikke ligge her, men sætter alle skriveretigheder til 0 og bitshifter alt page_history
+	//Burde nok ikke kun kunne blive triggered af en efterspørgsel på en ny side
+	// int p, tempbits;
+	// double c = clock(); 
+	// if(c - LRUData->timestamp > LRUTIME){
+	// 	LRUData->timestamp = c;
+	// 	printf("%dth time\n", k++);
+	// 	for(p = 0; p < npages; p++){
+	// 		// char print[33];
+	// 		// print[32] = '\0';
+	// 		// int2bin(LRUData->page_history[p], print, 32);
+	// 		// printf("%s%d%s%s\n", "page_history: ", p, " is: ", print); 
+	// 		LRUData->page_history[p] = LRUData->page_history[p]>>1; 
+	// 		page_table_get_entry(pt, p, &frame, &tempbits);
+	// 		tempbits = (LRUData->page_bits[p] > tempbits) ? LRUData->page_bits[p] : tempbits;
+	// 		LRUData->page_bits[p] = tempbits; 
+	// 		page_table_set_entry(pt, p, frame, 0);
+	// 	}
+	// }
+	
+	//Checking if this request is caused by a LRU reset
 	if(bits == 0 && LRUData->page_bits[page] > 0){
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
 		LRUData->page_bits[page] = 0;
@@ -90,11 +117,6 @@ void page_fault_handler( struct page_table *pt, int page )
 		return;
 	}
 	
-	// return;
-	int npages, nframes;
-	npages = page_table_get_npages(pt);
-	nframes = page_table_get_nframes(pt);
-	
 	// 1. Find a frame
 	// 	a. If there is a free frame
 	int freeFrame;
@@ -104,11 +126,11 @@ void page_fault_handler( struct page_table *pt, int page )
 	if(!findFreeFrame(pt, &freeFrame)){
 		frameSelecter(pt, ft, &freeFrame, fsData);
 		
-		int tpFrame, bits, oldPage = ft->map[freeFrame];
+		int tempFrame, bits, oldPage = ft->map[freeFrame];
 //		printf("Freemframe: %d \n", freeFrame);
-		page_table_get_entry(pt, oldPage, &tpFrame, &bits);
+		page_table_get_entry(pt, oldPage, &tempFrame, &bits);
 	
-		//  b2. Write the victim frame to the diske; change the page and frame tables accordingly	
+		//  b2. Write the victim frame to the diske; update the page and frame tables accordingly	
 		if((bits & PROT_WRITE) == PROT_WRITE || 
 			(LRUData->page_bits[oldPage] & PROT_WRITE) == PROT_WRITE ){
 			//printf("write\n");
@@ -122,6 +144,17 @@ void page_fault_handler( struct page_table *pt, int page )
 	// 2. Read the desired page into the selected frame; change the page and frame tables.
 	
 	ft->map[freeFrame] = page;
+	// int k;
+	// for(k = 0; k < nframes; k++){
+	// 	printf("Map[%d] is: %d\n", k, ft->map[k]);
+	// 	int l;
+	// 	for(l = k+1; l < nframes; l++){
+	// 		if(ft->map[k] == ft->map[l] && ft->map[k] != -1){
+	// 			printf("Map[%d] is equal to Map[%d]\n", k, l);
+	// 			abort();
+	// 		}
+	// 	}
+	// }
 	
 	disk_read(disk, page, &physmem[freeFrame * PAGE_SIZE]);
 	page_table_set_entry(pt, page, freeFrame, PROT_READ);
@@ -209,6 +242,7 @@ int main( int argc, char *argv[] )
 		sort_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"scan")) {
+		printf("Scanning pages\n");
 		scan_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"focus")) {
@@ -225,8 +259,12 @@ int main( int argc, char *argv[] )
 	printf("diskReads: %d\n", diskReads);
 	printf("LRUFaults: %d\n", LRUFaults);
 
-	//FREE FRAME TABLE AND LRUDATA
-
+	//freeing mem
+	free(ft->map);
+	free(ft);
+	free(LRUData->page_history);
+	free(LRUData->page_bits);
+	free(LRUData);
 
 	page_table_delete(pt);
 	disk_close(disk);

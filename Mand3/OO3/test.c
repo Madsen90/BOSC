@@ -26,7 +26,7 @@ static char * test_FIFO() {
 	fifdat->nextFrame = 0;
 	void* data = fifdat;
 
-	//mocks:
+	//mocks
 	struct page_table* mockPageTable = page_table_create( FIFOPAGES, FIFOFRAMES, page_fault_handler_mock);
 	struct frame_table* mockFrameTable;
 	
