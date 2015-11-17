@@ -1,1 +1,32 @@
 \section{Opgave beskrivelse}
+
+I denne opgave bliver der implementeret en simpel virtuel hukommelse. Den virtuelle hukommelse er baseret på demand paging, og løsningen gør brug at allerede udlevert kode.
+
+Den udleverede kode består af en virtuel side tabel, en virtuel disk og en ufulstændig main metode.
+
+Main metoden tager fire parametre som input
+
+\begin{itemize}
+\item Antal virtuelle sider (pages)
+\item Antal fysiske sider (frames)
+\item Hvilken sideskiftning algoritme der skal bruges (rand|fifo|custom)
+\item Hvilken simuleret programkørsel der skal udføres(focus|sort|scan)
+\end{itemize} 
+
+Vores opgaver er således at:
+
+\begin{itemize}
+\item Implementere en page fault handler, der skifter sider ind og ud, når sidetabellen er fuld.
+
+\item Implementere tre sideskiftnings algoritmer: 
+
+\begin{description}
+\item[fifo] - Algoritmen skal virke som en FIFO kø, hvor den side der er kommet i brug først, er den første der skiftes ud. 
+\item[rand] - Ikke en engentlig algoritme, da den bare skal vælge en vilkårlig side, der skal skiftes ud.
+\item[custom] - Vores egne algoritme, der skal lave færre disk tilgange end de to andre algoritmer.
+\end{description}
+
+\item Ændre main metoden, så den parser tekststrengen fra kommanolinjen, så man kan vælge hvilken sideskiftnings algoritme programmet skal bruge.
+
+\item Lave noget statestik over hvor mange disk tilgange hver algoritme laver, så vi rent faktisk ved, at vores custom algoritme er bedre end de andre to.
+\end{itemize}

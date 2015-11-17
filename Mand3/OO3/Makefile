@@ -18,6 +18,6 @@ test: page_table.o disk.o frameSelecter.o test.o
 
 test.o: test.c
 	gcc -w -Wall -g -c test.c -o test.o
-
+	
 clean:
 	rm -f *.o virtmem
