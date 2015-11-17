@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #define LRUTIME 200
 
-void frameSelectFifo(struct frame_table *ft, int nframes, int npages, int* freeFrame, void* data){
+void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
 	struct FIFOData* fifdat = data;
 	*freeFrame = fifdat->nextFrame;
 	fifdat->nextFrame = (*freeFrame + 1) % nframes;
 }
 
-void frameSelectRand(struct frame_table *ft, int nframes, int npages, int* freeFrame, void* data){
+void frameSelectRand(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
 	*freeFrame = lrand48() % nframes;
 }
 
-void frameSelectCust(struct frame_table *ft, int nframes, int npages, int* freeFrame, void* data){
+void frameSelectCust(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
 	struct LRUData* LRUData = data;
 	int f, frame, bits;
 	

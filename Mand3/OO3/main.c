@@ -17,7 +17,7 @@ how to use the page table and disk interfaces.
 #include "program.h"
 #include "frameSelecter.h"
 
-#define LRUTIME 100
+#define LRUTIME 200
 
 //ressources
 struct frame_table *ft;
@@ -91,7 +91,7 @@ void standard_page_fault_handler( struct page_table * pt, int page ){
 	// 	b. If there is no free frame 
 	// 		b1. Use a page-replacement algorithm to select a victim frame
 	if(!findFreeFrame(pt, &freeFrame)){
-		frameSelecter(pt, ft, &freeFrame, fsData);
+		frameSelecter(ft, npages, nframes,&freeFrame, fsData);
 		
 		int tempFrame, bits, oldPage = ft->map[freeFrame];
 		page_table_get_entry(pt, oldPage, &tempFrame, &bits);
@@ -164,7 +164,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	// 	b. If there is no free frame 
 	// 		b1. Use a page-replacement algorithm to select a victim frame
 	if(!findFreeFrame(pt, &freeFrame)){
-		frameSelecter(ft, npages, nframes, &freeFrame, fsData);
+		frameSelecter(ft, npages, nframes,&freeFrame, fsData);
 		
 		int bits, oldPage = ft->map[freeFrame];
 		page_table_get_entry(pt, oldPage, &tempFrame, &bits);
@@ -205,7 +205,7 @@ int main( int argc, char *argv[] )
 	const char *program = argv[4];
 	
 	//Initialising Frame table
-	if(!createFrameTable(ft, nframes)){
+	if(!(ft = createFrameTable(nframes))){
 		printf("Frame table couldn't be allocated\n");
 		return 1;
 	}
@@ -219,7 +219,7 @@ int main( int argc, char *argv[] )
 		printf("%s\n", "Custom algorithm - LRU:");
 		
 		//Initialising LRUData
-		if(! LRUData = createLRUData(npages)){
+		if(! (LRUData = createLRUData(npages))){
 			printf("LRUData couldn't be allocated\n");
 			return 1;
 		}
