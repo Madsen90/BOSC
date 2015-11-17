@@ -130,7 +130,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	nframes = page_table_get_nframes(pt);
 
     //sætter alle skriveretigheder til 0 og bitshifter alt page_history
-	int p, tempbits;
+	int p, tempbits, tempFrame;
 	double c = clock(); 
 	if(c - LRUData->timestamp > LRUTIME){
 		LRUData->timestamp = c;
@@ -167,7 +167,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	if(!findFreeFrame(pt, &freeFrame)){
 		frameSelecter(pt, ft, &freeFrame, fsData);
 		
-		int tempFrame, bits, oldPage = ft->map[freeFrame];
+		int bits, oldPage = ft->map[freeFrame];
 		page_table_get_entry(pt, oldPage, &tempFrame, &bits);
 	
 		//  b2. Write the victim frame to the diske; update the page and frame tables accordingly	
