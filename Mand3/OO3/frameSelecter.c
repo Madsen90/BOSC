@@ -12,7 +12,6 @@ void frameSelectRand(struct frame_table *ft, int nframes, int npages, int* freeF
 	*freeFrame = lrand48() % nframes;
 }
 
-
 void frameSelectCust(struct frame_table *ft, int nframes, int npages, int* freeFrame, void* data){
 	struct LRUData* LRUData = data;
 	int f, frame, bits;

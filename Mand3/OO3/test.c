@@ -96,7 +96,6 @@ static char * test_custom() {
 	frameSelecter(ft, 5, 3, &freeFrame, (void*) LRUData );
 
 	mu_assert("Selected wrong crossed frame table", freeFrame == 3);
-
 	return 0;
 }
 
