@@ -8,14 +8,14 @@ struct FIFOData {
 };
 
 struct LRUData{
-	int *page_history;
+	unsigned int *page_history;
 	int *page_bits;
 	double timestamp;
 };
 
 
 struct frame_table{
-	unsigned int *map;
+	int *map;
 };
 
 void (*getFifo()) 	(struct page_table*, struct frame_table*, int*, void*);

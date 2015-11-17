@@ -1,32 +1,30 @@
 #include "frameSelecter.h"
+#include <stdlib.h>
+#define LRUTIME 200
 
-#define LRUTIME 100
-
-void frameSelectFifo(struct page_table *pt, int* freeFrame, void* data){
+void frameSelectFifo(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
 	struct FIFOData* fifdat = data;
 	int nframes = page_table_get_nframes(pt);
 	*freeFrame = fifdat->nextFrame;
 	fifdat->nextFrame = (*freeFrame + 1) % nframes;
-
 }
 
 void frameSelectRand(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
-	// int npages, p, frame;
+	int nframes;
+	nframes = page_table_get_nframes(pt);
+	*freeFrame = lrand48()%nframes;
+}
 
-	// *freeFrame = 1;
-	// npages = page_table_get_npages(pt);
+char *int2bin(int a, char *buffer, int buf_size) {
+    buffer += (buf_size - 1);
+    int i;
+    for (i = 31; i >= 0; i--) {
+        *buffer-- = (a & 1) + '0';
 
-	// for(p = 0; p < npages; p++){
-	// 	page_table_get_entry(pt, p, &frame, bits);	
+        a >>= 1;
+    }
 
-	// 	if(frame == *freeFrame){
-	// 		*oldPage = p;
-	// 		return;
-	// 	}
-	// }
-
-	// printf("Should not be possible, didn't find page\n");
-	// abort();
+    return buffer;
 }
 
 void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
@@ -40,26 +38,13 @@ void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFra
 	for(f = 0; f < nframes; f++){
 		int page = ft->map[f];
 		unsigned int hist = LRUData->page_history[page];
-		if(hist < min){
+		if(hist <= min){
 			*freeFrame = f;
 			min = hist;
 		}
-
 	}
 
-	//Skal ikke ligge her, men sætter alle skriveretigheder til 0 og bitshifter alt page_history
-	//Burde nok ikke kun kunne blive triggered af en efterspørgsel på en ny side
-	double c = clock();
-	if(c - LRUData->timestamp > LRUTIME){
-		LRUData->timestamp = c;
-		for(p = 0; p < npages; p++){
-			LRUData->page_history[p] = LRUData->page_history[p]>>1; 
-			page_table_get_entry(pt, p, &frame, &bits);
-			bits = (LRUData->page_bits[p] > bits) ? LRUData->page_bits[p] : bits;
-			LRUData->page_bits[p] = bits; 
-			page_table_set_entry(pt, p, frame, 0);
-		}
-	}
+	
 }
 
 void (*getFifo()) (struct page_table*, struct frame_table*, int*, void*){
