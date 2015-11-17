@@ -15,18 +15,6 @@ void frameSelectRand(struct page_table *pt, struct frame_table *ft, int* freeFra
 	*freeFrame = lrand48()%nframes;
 }
 
-char *int2bin(int a, char *buffer, int buf_size) {
-    buffer += (buf_size - 1);
-    int i;
-    for (i = 31; i >= 0; i--) {
-        *buffer-- = (a & 1) + '0';
-
-        a >>= 1;
-    }
-
-    return buffer;
-}
-
 void frameSelectCust(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
 	struct LRUData* LRUData = data;
 	int npages, nframes, p,f, frame, bits;
