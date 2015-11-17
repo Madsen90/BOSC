@@ -1,5 +1,5 @@
 #include "frameSelecter.h"
-
+#include <stdlib.h>
 #define LRUTIME 200
 
 void frameSelectFifo(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
@@ -10,22 +10,9 @@ void frameSelectFifo(struct page_table *pt, struct frame_table *ft, int* freeFra
 }
 
 void frameSelectRand(struct page_table *pt, struct frame_table *ft, int* freeFrame, void* data){
-	// int npages, p, frame;
-
-	// *freeFrame = 1;
-	// npages = page_table_get_npages(pt);
-
-	// for(p = 0; p < npages; p++){
-	// 	page_table_get_entry(pt, p, &frame, bits);	
-
-	// 	if(frame == *freeFrame){
-	// 		*oldPage = p;
-	// 		return;
-	// 	}
-	// }
-
-	// printf("Should not be possible, didn't find page\n");
-	// abort();
+	int nframes;
+	nframes = page_table_get_nframes(pt);
+	*freeFrame = lrand48()%nframes;
 }
 
 char *int2bin(int a, char *buffer, int buf_size) {
