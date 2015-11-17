@@ -136,10 +136,10 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 		LRUData->timestamp = c;
 		for(p = 0; p < npages; p++){
 			LRUData->page_history[p] = LRUData->page_history[p]>>1; 
-			page_table_get_entry(pt, p, &frame, &tempbits);
+			page_table_get_entry(pt, p, &tempFrame, &tempbits);
 			tempbits = (LRUData->page_bits[p] > tempbits) ? LRUData->page_bits[p] : tempbits;
 			LRUData->page_bits[p] = tempbits; 
-			page_table_set_entry(pt, p, frame, 0);
+			page_table_set_entry(pt, p, tempFrame, 0);
 		}
 	}
 	
