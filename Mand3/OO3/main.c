@@ -230,7 +230,7 @@ int main( int argc, char *argv[] )
 	struct page_table* pt;
 
 	if (!strcmp(algorithm,"custom")){
-		printf("%s\n", "Custom algorithm - LRU:");
+		//printf("%s\n", "Custom algorithm - LRU:");
 		
 		//Initialising LRUData
 		if(! (LRUData = createLRUData(npages))){
@@ -255,7 +255,7 @@ int main( int argc, char *argv[] )
 
 		fifdat->nextFrame = 0;
 		fsData = (void*)fifdat;
-		printf("%s\n", "Fifo algorithm:");
+		//printf("%s\n", "Fifo algorithm:");
 		frameSelecter = getFifo();
 
 		//setting pagetable
@@ -263,7 +263,7 @@ int main( int argc, char *argv[] )
 	}
 	else if (!strcmp(algorithm,"rand"))
 	{
-		printf("%s\n", "Random algorithm:");
+		//printf("%s\n", "Random algorithm:");
 		frameSelecter = getRand();
 
 		//setting pagetable
@@ -290,13 +290,15 @@ int main( int argc, char *argv[] )
 	physmem = page_table_get_physmem(pt);
 
 	if(!strcmp(program,"sort")) {
+		printf("sort:\n");
 		sort_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"scan")) {
-		printf("Scanning pages\n");
+		printf("scan:\n");
 		scan_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"focus")) {
+		printf("focus:\n");
 		focus_program(virtmem,npages*PAGE_SIZE);
 
 	}else if(!strcmp(program,"test")){
@@ -306,11 +308,11 @@ int main( int argc, char *argv[] )
 		fprintf(stderr,"unknown program: %s\n",argv[3]);		
 	}
 
-	printf("PageRequests: %d\n", pageReq);
-	printf("writeReq: %d\n", writeReq);
+	//printf("PageRequests: %d\n", pageReq);
+	//printf("writeReq: %d\n", writeReq);
 	printf("diskWrites: %d\n", diskWrites);
 	printf("diskReads: %d\n", diskReads);
-	printf("LRUFaults: %d\n", LRUFaults);
+	//printf("LRUFaults: %d\n", LRUFaults);
 
 	//freeing mem
 	free(ft->map);

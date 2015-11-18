@@ -1,0 +1,3136 @@
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 940
+diskReads: 2178
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 199
+diskReads: 299
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 1024
+diskReads: 11568
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 199
+diskReads: 299
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 844
+diskReads: 1616
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 198
+diskReads: 298
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 854
+diskReads: 6564
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 198
+diskReads: 298
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 716
+diskReads: 1344
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 198
+diskReads: 298
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 727
+diskReads: 2093
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 197
+diskReads: 297
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 716
+diskReads: 1232
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 196
+diskReads: 295
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 697
+diskReads: 1603
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 197
+diskReads: 297
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 716
+diskReads: 1232
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 194
+diskReads: 293
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 677
+diskReads: 1377
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 196
+diskReads: 296
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 604
+diskReads: 1112
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 194
+diskReads: 293
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 608
+diskReads: 1120
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 195
+diskReads: 294
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 604
+diskReads: 1008
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 193
+diskReads: 292
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 601
+diskReads: 1113
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 193
+diskReads: 293
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 604
+diskReads: 1008
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 190
+diskReads: 289
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 596
+diskReads: 1076
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 193
+diskReads: 293
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 604
+diskReads: 1008
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 189
+diskReads: 288
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 594
+diskReads: 1062
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 190
+diskReads: 290
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 604
+diskReads: 1008
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 189
+diskReads: 288
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 583
+diskReads: 1022
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 190
+diskReads: 290
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 604
+diskReads: 1008
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 188
+diskReads: 287
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 558
+diskReads: 973
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 185
+diskReads: 284
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 900
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 185
+diskReads: 284
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 504
+diskReads: 868
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 186
+diskReads: 284
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 184
+diskReads: 283
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 501
+diskReads: 861
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 184
+diskReads: 283
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 181
+diskReads: 280
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 862
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 184
+diskReads: 282
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 181
+diskReads: 279
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 502
+diskReads: 855
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 186
+diskReads: 282
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 181
+diskReads: 279
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 501
+diskReads: 850
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 184
+diskReads: 281
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 181
+diskReads: 278
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 837
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 177
+diskReads: 275
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 181
+diskReads: 276
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 836
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 181
+diskReads: 277
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 181
+diskReads: 275
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 830
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 182
+diskReads: 277
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 179
+diskReads: 273
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 498
+diskReads: 818
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 175
+diskReads: 271
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 178
+diskReads: 273
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 490
+diskReads: 799
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 177
+diskReads: 273
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 177
+diskReads: 271
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 473
+diskReads: 781
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 179
+diskReads: 272
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 500
+diskReads: 800
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 177
+diskReads: 271
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 455
+diskReads: 751
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 179
+diskReads: 273
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 700
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 177
+diskReads: 270
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 402
+diskReads: 680
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 174
+diskReads: 266
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 698
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 176
+diskReads: 269
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 678
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 177
+diskReads: 268
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 175
+diskReads: 268
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 674
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 172
+diskReads: 263
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 175
+diskReads: 268
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 675
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 168
+diskReads: 259
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 173
+diskReads: 266
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 674
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 165
+diskReads: 258
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 164
+diskReads: 257
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 671
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 166
+diskReads: 257
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 160
+diskReads: 253
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 667
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 166
+diskReads: 256
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 160
+diskReads: 253
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 661
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 166
+diskReads: 257
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 160
+diskReads: 253
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 665
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 165
+diskReads: 255
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 159
+diskReads: 252
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 655
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 163
+diskReads: 254
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 159
+diskReads: 251
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 645
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 161
+diskReads: 251
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 159
+diskReads: 251
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 647
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 161
+diskReads: 251
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 159
+diskReads: 251
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 399
+diskReads: 643
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 159
+diskReads: 249
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 159
+diskReads: 251
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 398
+diskReads: 630
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 160
+diskReads: 250
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 155
+diskReads: 249
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 397
+diskReads: 625
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 155
+diskReads: 245
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 154
+diskReads: 247
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 397
+diskReads: 619
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 155
+diskReads: 244
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 154
+diskReads: 247
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 395
+diskReads: 616
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 243
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 154
+diskReads: 247
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 388
+diskReads: 596
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 151
+diskReads: 239
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 154
+diskReads: 244
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 392
+diskReads: 603
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 152
+diskReads: 241
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 154
+diskReads: 244
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 383
+diskReads: 586
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 151
+diskReads: 241
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 244
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 372
+diskReads: 576
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 146
+diskReads: 234
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 244
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 375
+diskReads: 577
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 144
+diskReads: 232
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 238
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 369
+diskReads: 573
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 147
+diskReads: 234
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 236
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 359
+diskReads: 560
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 149
+diskReads: 237
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 400
+diskReads: 600
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 236
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 355
+diskReads: 555
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 144
+diskReads: 230
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 500
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 236
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 317
+diskReads: 516
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 144
+diskReads: 231
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 499
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 234
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 319
+diskReads: 507
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 146
+diskReads: 230
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 230
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 326
+diskReads: 521
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 144
+diskReads: 230
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 153
+diskReads: 228
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 313
+diskReads: 492
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 139
+diskReads: 227
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 152
+diskReads: 215
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 323
+diskReads: 516
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 142
+diskReads: 228
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 148
+diskReads: 203
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 311
+diskReads: 492
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 143
+diskReads: 229
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 146
+diskReads: 202
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 320
+diskReads: 491
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 139
+diskReads: 224
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 145
+diskReads: 202
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 315
+diskReads: 482
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 138
+diskReads: 222
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 142
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 306
+diskReads: 487
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 137
+diskReads: 221
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 141
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 313
+diskReads: 485
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 136
+diskReads: 219
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 140
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 307
+diskReads: 474
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 134
+diskReads: 217
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 139
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 306
+diskReads: 480
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 131
+diskReads: 214
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 138
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 299
+diskReads: 464
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 130
+diskReads: 212
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 137
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 304
+diskReads: 470
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 126
+diskReads: 210
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 136
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 297
+diskReads: 462
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 126
+diskReads: 209
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 135
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 291
+diskReads: 442
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 124
+diskReads: 206
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 134
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 299
+diskReads: 451
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 123
+diskReads: 204
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 133
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 293
+diskReads: 457
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 120
+diskReads: 206
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 132
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 283
+diskReads: 431
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 117
+diskReads: 201
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 131
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 281
+diskReads: 430
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 117
+diskReads: 199
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 130
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 281
+diskReads: 421
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 114
+diskReads: 196
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 129
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 279
+diskReads: 414
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 112
+diskReads: 197
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 128
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 276
+diskReads: 414
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 109
+diskReads: 194
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 127
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 274
+diskReads: 405
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 107
+diskReads: 193
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 126
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 272
+diskReads: 401
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 100
+diskReads: 187
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 125
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 269
+diskReads: 396
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 100
+diskReads: 186
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 123
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 266
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 98
+diskReads: 186
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 122
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 265
+diskReads: 391
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 98
+diskReads: 184
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 121
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 263
+diskReads: 383
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 87
+diskReads: 177
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 120
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 261
+diskReads: 381
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 89
+diskReads: 178
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 120
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 260
+diskReads: 380
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 85
+diskReads: 176
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 118
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 257
+diskReads: 374
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 85
+diskReads: 174
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 118
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 255
+diskReads: 374
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 76
+diskReads: 169
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 116
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 249
+diskReads: 363
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 78
+diskReads: 169
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 116
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 249
+diskReads: 364
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 77
+diskReads: 168
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 115
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 247
+diskReads: 360
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 74
+diskReads: 165
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1099
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 113
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 243
+diskReads: 354
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 72
+diskReads: 164
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 113
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 241
+diskReads: 350
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 66
+diskReads: 161
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 112
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 239
+diskReads: 348
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 63
+diskReads: 157
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1097
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 111
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 233
+diskReads: 342
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 63
+diskReads: 157
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1093
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 110
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 218
+diskReads: 326
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 61
+diskReads: 155
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1082
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 109
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 229
+diskReads: 336
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 58
+diskReads: 154
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1080
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 108
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 225
+diskReads: 326
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 55
+diskReads: 152
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1083
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 107
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 214
+diskReads: 317
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 53
+diskReads: 148
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1066
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 106
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 219
+diskReads: 321
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 49
+diskReads: 148
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1062
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 105
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 206
+diskReads: 308
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 46
+diskReads: 146
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1053
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 104
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 190
+diskReads: 290
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 47
+diskReads: 144
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1023
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 103
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 196
+diskReads: 296
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 46
+diskReads: 145
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1011
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 102
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 178
+diskReads: 278
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 44
+diskReads: 143
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 987
+FIFO
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 300
+diskReads: 400
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 101
+diskReads: 200
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+Creating table with PAGE_SIZE: 4096
+sort:
+sort result is -311357
+diskWrites: 153
+diskReads: 253
+Creating table with PAGE_SIZE: 4096
+focus:
+focus result is -2533
+diskWrites: 39
+diskReads: 139
+Creating table with PAGE_SIZE: 4096
+scan:
+scan result is 522240000
+diskWrites: 96
+diskReads: 923
