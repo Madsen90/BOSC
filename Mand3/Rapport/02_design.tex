@@ -1,9 +1,17 @@
 \section{Design}
 \label{sec:design}
 
-\subsection{Parsing af kommandoer}
-
 \subsection{Page fault handler}
-Der er lavet to forskellige page fault handlers, da Custom kræver, at nogle datastrukturer bliver oprettet. Kørslen af Custom og de to andre algoritmer fraviger så meget fra hinanden, at det giver mening at have to forskellige page fault handlers.
+Der er lavet to forskellige page fault handlers, da LRU kræver, at nogle datastrukturer bliver oprettet. Kørslen af Custom og de to andre algoritmer fraviger ikke meget fra hinanden, men LRU kræver at der opretholdes en datastruktur, som der ikke er behov for i de andre sideudskiftningsalgoritmer. Der er derfor truffet et designvalg om at den kodedublikation der nu må optræde, bliver opvejet af ikke at opretholde en datastruktur som ikke bliver brugt.  
 
-\subsection{Sideskrifnings algoritmer}
+\subsection{Sideudskifningsalgoritmer}
+Herunder findes en kort beskrivelse af hver algoritmes design. Det skal nævnes at det er gældende for dem alle at alle frames først bliver mappet til pages sekventielt. Sagt på en anden måde, så når der tilgåes en ny page, så bliver den først sekventielt ledige frame tildelt til den page. Det er først når der ikke er flere frames at nedenstående træder i kraft.   
+	
+	\subsubsection{FIFO}
+	Fist-in-first-out algoritmen er bygget på at det frame der givet i den første frame-anmodning også er den frame der bliver frigivet først. Der er konceptuelt tale om en kø-struktur, hvor hver page-til-frame mapping lægges bagerst i køen når den bliver oprettet, således at alle frames skal mappes til andre pages før den første page-til-frame mapping bliver fjernet, og framet kan gives til en ny page. Dette betyder at alle page-til-frame mappings får lov til at eksistere i det samme antal page-swaps, hvilket bør give færre disk tilgange for programmer hvor hver variabel bruges meget i kort tid, og derefter ikke. 
+	\subsubsection{Random}
+	Random er, som navnet antyder, en algoritme der vælger en tilfældig frame ud til page-swappet. Her er det, i sagens natur, svært at give et kvalificeret bud på et optimalt kørselsforløb.
+	\subsubsection{Least Recently Used}
+	LRU (også kaldet custom) er en algoritme der returnerer den page-til-frame-mapping der er brugt mindst indenfor et givet tidsinterval. Vi har fundet det optimale tidsinterval til være ~500 ms. Da vi ikke har adgang til CPU-bits, er der tale om en approksimation, og kan således kun finde ud om en page er blevet brugt indenfor intervallet, men ikke hvor mange gange. Dette er forsøgt løst ved at gemme informationen om hvorvidt hver mapping er blevet brugt, og så vælge den mapping der blev brugt for længst tid siden. Informationen gemmer hvornår 
+	\subsubsection{Optimeret random}
+
