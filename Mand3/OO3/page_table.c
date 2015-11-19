@@ -54,7 +54,7 @@ static void internal_fault_handler( int signum, siginfo_t *info, void *context )
 
 struct page_table * page_table_create( int npages, int nframes, page_fault_handler_t handler )
 {
-	printf("Creating table with PAGE_SIZE: %d\n",PAGE_SIZE );
+//	printf("Creating table with PAGE_SIZE: %d\n",PAGE_SIZE );
 	int i;
 	struct sigaction sa;
 	struct page_table *pt;
