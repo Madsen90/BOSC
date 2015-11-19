@@ -155,12 +155,12 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	}
 	//printf("\n");
 	
+	//Markere at denne page er blevet efterspurgt i perioden, ved at saette leftmost bit til 1
+	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 	
 	//Checking if this request is caused by a LRU reset
 	if(bits == 0 && LRUData->page_bits[page] > 0){
 	
-	//Markere at denne page er blevet efterspurgt i perioden, ved at saette leftmost bit til 1
-		LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
 		//LRUData->page_bits[page] = 0;
 		LRUFaults++;
@@ -174,8 +174,6 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 		return;
 	}
 	
-	//Markere at denne page er blevet efterspurgt i denne periode, ved at saette leftmost bit til 1
-	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 	// 1. Find a frame
 	// 	a. If there is a free frame
 	int freeFrame;
