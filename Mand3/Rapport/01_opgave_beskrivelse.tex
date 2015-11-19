@@ -2,7 +2,7 @@
 
 I denne opgave bliver der implementeret en simpel virtuel hukommelse. Den virtuelle hukommelse er baseret på demand paging, og løsningen gør brug at allerede udlevert kode.
 
-Den udleverede kode består af en virtuel side tabel, en virtuel disk og en ufulstændig main metode. Det der mangler i main metoden er en måde at håndtere page faults på.
+Den udleverede kode består af en virtuel side tabel, en virtuel disk og en ufulstændig main metode. Det der mangler i main metoden er en måde at håndtere page faults på, og en måde at parse valget af sideskiftnings algoritme.
 
 Main metoden tager fire parametre som input
 
@@ -26,9 +26,9 @@ Vores opgaver er således at:
 \item[custom] - Vores egne algoritme, herefter Custom, der skal lave færre disk tilgange end de to andre algoritmer.
 \end{description}
 
-\item Test vores sideskiftnings algoritmer
+\item Teste vores sideskiftnings algoritmer
 
 \item Ændre main metoden, så den parser tekststrengen fra kommanolinjen, så man kan vælge hvilken sideskiftnings algoritme programmet skal bruge.
 
-\item Lave noget statestik over hvor mange disk tilgange hver algoritme laver, så vi rent faktisk ved, at vores custom algoritme er bedre end de andre to.
+\item Lave noget statestik over hvor mange disk tilgange hver algoritme laver, så vi rent faktisk ved, at Custom er bedre end de andre to.
 \end{itemize}
