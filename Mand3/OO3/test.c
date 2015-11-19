@@ -98,7 +98,16 @@ static char * test_custom() {
 	ft->map[2] = 2;
 
 	frameSelecter(ft, 5, 3, &freeFrame, (void*) LRUData );
-	mu_assert("Empty history error", freeFrame == 0);
+	mu_assert("Empty history error", freeFrame == 2);
+
+	LRUData->page_history[0] = 0xffffffff;
+	LRUData->page_history[1] = 0xffffffff;
+	LRUData->page_history[2] = 0xffffffff;
+	LRUData->page_history[3] = 0xffffffff;
+	LRUData->page_history[4] = 0xffffffff;
+
+	frameSelecter(ft, 5, 3, &freeFrame, (void*) LRUData );
+	mu_assert("Full history error", freeFrame == 2);
 
 	free(ft->map);
 	free(ft);
