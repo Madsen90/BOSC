@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include "page_table.h"
-#define LRUTIME 500
 
 void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
 	struct FIFOData* fifdat = data;
