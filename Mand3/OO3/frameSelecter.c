@@ -1,5 +1,6 @@
 #include "frameSelecter.h"
 #include <stdlib.h>
+#include <time.h>
 #define LRUTIME 200
 
 void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
@@ -9,6 +10,7 @@ void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeF
 }
 
 void frameSelectRand(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
+	srand48(clock());
 	*freeFrame = lrand48() % nframes;
 }
 
