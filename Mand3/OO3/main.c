@@ -17,7 +17,7 @@ how to use the page table and disk interfaces.
 #include "program.h"
 #include "frameSelecter.h"
 
-#define LRUTIME 500
+#define LRUTIME 40
 
 //ressources
 struct frame_table *ft;
@@ -132,8 +132,6 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	int bits, frame, history;
 	page_table_get_entry(pt, page, &frame, &bits );
 
-	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
-	LRUData->page_history[page] = LRUData->page_history[page] | (0x80000000); 
 	
 	int npages, nframes;
 	npages = page_table_get_npages(pt);
@@ -143,7 +141,6 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	int p, tempbits, tempFrame;
 	double c = clock(); 
 	if(c - LRUData->timestamp > LRUTIME){
-		LRUData->timestamp = c;
 		for(p = 0; p < npages; p++){
 			// char print[33];
 			// print[32] = '\0';
@@ -155,9 +152,14 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 			LRUData->page_bits[p] = tempbits; 
 			page_table_set_entry(pt, p, tempFrame, 0);
 		}
+		LRUData->timestamp = c;
 	}
 	//printf("\n");
 	
+	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
+	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
+	
+
 	//Checking if this request is caused by a LRU reset
 	if(bits == 0 && LRUData->page_bits[page] > 0){
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
@@ -290,15 +292,15 @@ int main( int argc, char *argv[] )
 	physmem = page_table_get_physmem(pt);
 
 	if(!strcmp(program,"sort")) {
-		printf("sort:\n");
+	//	printf("sort:\n");
 		sort_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"scan")) {
-		printf("scan:\n");
+	//	printf("scan:\n");
 		scan_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"focus")) {
-		printf("focus:\n");
+	//	printf("focus:\n");
 		focus_program(virtmem,npages*PAGE_SIZE);
 
 	}else if(!strcmp(program,"test")){
@@ -308,11 +310,11 @@ int main( int argc, char *argv[] )
 		fprintf(stderr,"unknown program: %s\n",argv[3]);		
 	}
 
-	//printf("PageRequests: %d\n", pageReq);
-	//printf("writeReq: %d\n", writeReq);
-	printf("diskWrites: %d\n", diskWrites);
-	printf("diskReads: %d\n", diskReads);
-	//printf("LRUFaults: %d\n", LRUFaults);
+ //printf("PageRequests: %d\n", pageReq);
+ //printf("writeReq: %d\n", writeReq);
+printf("diskWrites: %d\n", diskWrites);
+printf("diskReads: %d\n", diskReads);
+//printf("LRUFaults: %d\n", LRUFaults);
 
 	//freeing mem
 	free(ft->map);

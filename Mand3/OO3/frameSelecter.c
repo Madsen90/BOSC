@@ -1,7 +1,7 @@
 #include "frameSelecter.h"
 #include <stdlib.h>
 #include <time.h>
-#define LRUTIME 200
+#define LRUTIME 500
 
 void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
 	struct FIFOData* fifdat = data;
@@ -20,6 +20,7 @@ void frameSelectCust(struct frame_table *ft, int npages, int nframes, int* freeF
 	
 	//Find den page der har den laveste history, af pages der er mappet til frames.  
 	unsigned int min = 0xffffffff;
+	double c;
 	for(f = 0; f < nframes; f++){
 		int page = ft->map[f];
 		unsigned int hist = LRUData->page_history[page];
@@ -29,6 +30,7 @@ void frameSelectCust(struct frame_table *ft, int npages, int nframes, int* freeF
 		}
 	}	
 }
+
 
 struct LRUData* createLRUData(int pages){
 	struct LRUData *LRUData;
@@ -47,7 +49,7 @@ struct LRUData* createLRUData(int pages){
 		printf("Fejl\n");
 		return 0;
 	}
-
+	
 	return LRUData;
 }
 
