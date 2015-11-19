@@ -11,6 +11,9 @@ struct LRUData{
 	int *page_bits;
 	double timestamp;
 };
+struct RANDData{
+	struct page_table* pt;
+};
 
 
 struct frame_table{
@@ -19,6 +22,7 @@ struct frame_table{
 
 void (*getFifo()) 	(struct frame_table*, int, int, int*, void*);
 void (*getRand()) 	(struct frame_table*, int, int, int*, void*);
+void (*getRandOpt())(struct frame_table*, int, int, int*, void*);
 void (*getCustom()) (struct frame_table*, int, int, int*, void*);
 struct LRUData* createLRUData(int);
 struct frame_table* createFrameTable(int);
