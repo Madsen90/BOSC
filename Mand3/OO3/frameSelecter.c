@@ -17,7 +17,7 @@ void frameSelectRand(struct frame_table *ft, int npages, int nframes, int* freeF
 void frameSelectRandOpt(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
 	struct RANDData* randdat = data;
 	int frame, page, bits, i;
-	for(i = 0; i < (nframes / 3); i++){
+	for(i = 0; i < (nframes+1 / 3); i++){
 		frame = lrand48() % nframes;
 		page = ft->map[frame];
 		page_table_get_entry(randdat->pt, page, &frame, &bits );
