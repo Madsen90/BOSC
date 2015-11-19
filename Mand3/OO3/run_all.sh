@@ -1,6 +1,8 @@
-echo "Custom scan"
-./stat.sh custom scan > stat/custom_scan.txt
-echo "Custom focus"
-./stat.sh custom focus > stat/custom_focus.txt
+echo "Cust2 sort"
+./stat.sh randopt sort > stat/opt_sort.txt
+echo "Cust2 sort"
+./stat.sh randopt scan > stat/opt_scan.txt
+echo "Cust2 sort"
+./stat.sh randopt focus > stat/opt_focus.txt
 echo "Rand sort"
 ./stat.sh rand sort > stat/rand_sort.txt

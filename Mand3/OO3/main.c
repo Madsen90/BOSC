@@ -210,6 +210,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
  
 int main( int argc, char *argv[] )
 {
+	srand48(time(NULL));
 	int freeLRU = 0;
 	if(argc!=5) {
 		printf("use: virtmem <npages> <nframes> <rand|fifo|custom> <sort|scan|focus>\n");
@@ -305,15 +306,15 @@ int main( int argc, char *argv[] )
 	physmem = page_table_get_physmem(pt);
 
 	if(!strcmp(program,"sort")) {
-		printf("sort:\n");
+//		printf("sort:\n");
 		sort_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"scan")) {
-		printf("scan:\n");
+//		printf("scan:\n");
 		scan_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"focus")) {
-		printf("focus:\n");
+//		printf("focus:\n");
 		focus_program(virtmem,npages*PAGE_SIZE);
 
 	}else if(!strcmp(program,"test")){
@@ -325,8 +326,8 @@ int main( int argc, char *argv[] )
 
  //printf("PageRequests: %d\n", pageReq);
  //printf("writeReq: %d\n", writeReq);
-printf("diskWrites: %d\n", diskWrites);
-printf("diskReads: %d\n", diskReads);
+printf("%d;", diskWrites);
+printf("%d\n", diskReads);
 //printf("LRUFaults: %d\n", LRUFaults);
 
 	//freeing mem
