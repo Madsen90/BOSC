@@ -316,10 +316,10 @@ int main( int argc, char *argv[] )
 		fprintf(stderr,"unknown program: %s\n",argv[3]);		
 	}
 
- //printf("PageRequests: %d\n", pageReq);
+ printf("Page faults: %d\n", pageReq);
  //printf("writeReq: %d\n", writeReq);
-printf("%d;", diskWrites);
-printf("%d\n", diskReads);
+printf("Disk writes: %d\n", diskWrites);
+printf("Disk reads: %d\n", diskReads);
 //printf("LRUFaults: %d\n", LRUFaults);
 
 	//freeing mem
