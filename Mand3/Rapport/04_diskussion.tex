@@ -1,5 +1,5 @@
 \section{Diskussion}
-De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange med de tre forskellige sideskiftnings algoritmer. Der er samlet statestik over hvor mange disk tilgange de forskellige algoritmer har med et skiftende antal fysiske sider. Programkørslerne resulterede i meget forskellig opførsel i antallet af disk tilgange. I dette afsnit beskrives diskuteres de forskellige resulteter, alle kørslerne i en graf kan ses i figur \ref{fig:all}.
+De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange med de tre forskellige sideudskiftningsalgoritmer. Der er samlet statistik over hvor mange disktilgange, de forskellige algoritmer har med et skiftende antal fysiske sider. Programkørslerne resulterede i meget forskellig opførsel i antallet af disk tilgange. I dette afsnit beskrives diskuteres de forskellige resultater, alle kørslerne i en graf kan ses i figur \ref{fig:all}.
 
 \begin{figure}[ht]
 \centerline{\includegraphics[scale=1]{graph/stat_all}}
@@ -9,7 +9,7 @@ De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange 
 \end{figure}
 
 \subsubsection{Sekventielle løb}
-Programmet "Scan" består af 10 sekventielle løb gennem alt data. Det er håndtere hverken FIFO eller LRU særlig godt da begge algoritmer bygge på den antagelse at der er størst sandsynlighed for at data der lige er blevet brugt, snart skal bruges igen. Ved sekventielle gennemløb er det det omvendte der er tilfældet. 
+Programmet "Scan" består af 10 sekventielle løb gennem alt data. Det kan  hverken FIFO eller LRU håndtere særlig godt, da begge algoritmer bygger på den antagelse at der er størst sandsynlighed for at data der lige er blevet brugt, snart skal bruges igen. Ved sekventielle gennemløb er det det omvendte der er tilfældet. 
 
 \begin{figure}[ht]
 \centerline{\includegraphics[scale=1]{graph/stat_scan}}
