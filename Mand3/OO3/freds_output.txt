@@ -1,0 +1,2156 @@
+NumberOfFrames: 2
+FIFO
+diskWrites: 940
+diskReads: 2164
+diskWrites: 199
+diskReads: 299
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 1008
+diskReads: 2610
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 968
+diskReads: 2264
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 3
+FIFO
+diskWrites: 844
+diskReads: 1616
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 911
+diskReads: 1881
+diskWrites: 191
+diskReads: 291
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 837
+diskReads: 1581
+diskWrites: 194
+diskReads: 294
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 4
+FIFO
+diskWrites: 716
+diskReads: 1344
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 828
+diskReads: 1594
+diskWrites: 192
+diskReads: 292
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 716
+diskReads: 1353
+diskWrites: 198
+diskReads: 298
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 5
+FIFO
+diskWrites: 716
+diskReads: 1232
+diskWrites: 194
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 763
+diskReads: 1406
+diskWrites: 195
+diskReads: 294
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 717
+diskReads: 1292
+diskWrites: 194
+diskReads: 294
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 6
+FIFO
+diskWrites: 716
+diskReads: 1232
+diskWrites: 192
+diskReads: 292
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 744
+diskReads: 1340
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 709
+diskReads: 1254
+diskWrites: 192
+diskReads: 292
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 7
+FIFO
+diskWrites: 604
+diskReads: 1112
+diskWrites: 192
+diskReads: 292
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 683
+diskReads: 1229
+diskWrites: 190
+diskReads: 290
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 615
+diskReads: 1129
+diskWrites: 192
+diskReads: 292
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 8
+FIFO
+diskWrites: 604
+diskReads: 1008
+diskWrites: 189
+diskReads: 288
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 682
+diskReads: 1163
+diskWrites: 186
+diskReads: 286
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 605
+diskReads: 1086
+diskWrites: 189
+diskReads: 288
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 9
+FIFO
+diskWrites: 604
+diskReads: 1008
+diskWrites: 190
+diskReads: 290
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 648
+diskReads: 1111
+diskWrites: 191
+diskReads: 291
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 607
+diskReads: 1072
+diskWrites: 190
+diskReads: 290
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 10
+FIFO
+diskWrites: 604
+diskReads: 1008
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 649
+diskReads: 1085
+diskWrites: 189
+diskReads: 288
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 602
+diskReads: 1048
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 11
+FIFO
+diskWrites: 604
+diskReads: 1008
+diskWrites: 191
+diskReads: 291
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 615
+diskReads: 1045
+diskWrites: 190
+diskReads: 290
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 600
+diskReads: 1029
+diskWrites: 191
+diskReads: 291
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 12
+FIFO
+diskWrites: 604
+diskReads: 1008
+diskWrites: 192
+diskReads: 291
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 606
+diskReads: 1015
+diskWrites: 193
+diskReads: 291
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 595
+diskReads: 1003
+diskWrites: 193
+diskReads: 293
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 13
+FIFO
+diskWrites: 500
+diskReads: 900
+diskWrites: 192
+diskReads: 292
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 621
+diskReads: 1006
+diskWrites: 189
+diskReads: 288
+diskWrites: 100
+diskReads: 1100
+CUSTOM
+diskWrites: 550
+diskReads: 948
+diskWrites: 187
+diskReads: 286
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 14
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 190
+diskReads: 289
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 575
+diskReads: 958
+diskWrites: 188
+diskReads: 286
+diskWrites: 100
+diskReads: 1099
+CUSTOM
+diskWrites: 590
+diskReads: 967
+diskWrites: 186
+diskReads: 284
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 15
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 180
+diskReads: 280
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 566
+diskReads: 914
+diskWrites: 183
+diskReads: 281
+diskWrites: 100
+diskReads: 1099
+CUSTOM
+diskWrites: 538
+diskReads: 915
+diskWrites: 190
+diskReads: 290
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 16
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 190
+diskReads: 290
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 573
+diskReads: 912
+diskWrites: 183
+diskReads: 280
+diskWrites: 100
+diskReads: 1096
+CUSTOM
+diskWrites: 579
+diskReads: 946
+diskWrites: 187
+diskReads: 287
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 17
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 179
+diskReads: 279
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 523
+diskReads: 864
+diskWrites: 179
+diskReads: 278
+diskWrites: 100
+diskReads: 1096
+CUSTOM
+diskWrites: 537
+diskReads: 897
+diskWrites: 178
+diskReads: 277
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 18
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 179
+diskReads: 276
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 532
+diskReads: 870
+diskWrites: 181
+diskReads: 279
+diskWrites: 100
+diskReads: 1096
+CUSTOM
+diskWrites: 548
+diskReads: 893
+diskWrites: 178
+diskReads: 277
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 19
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 181
+diskReads: 279
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 527
+diskReads: 836
+diskWrites: 180
+diskReads: 276
+diskWrites: 100
+diskReads: 1095
+CUSTOM
+diskWrites: 522
+diskReads: 855
+diskWrites: 187
+diskReads: 286
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 20
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 180
+diskReads: 278
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 523
+diskReads: 835
+diskWrites: 181
+diskReads: 276
+diskWrites: 100
+diskReads: 1095
+CUSTOM
+diskWrites: 536
+diskReads: 861
+diskWrites: 174
+diskReads: 270
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 21
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 172
+diskReads: 267
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 513
+diskReads: 805
+diskWrites: 169
+diskReads: 266
+diskWrites: 100
+diskReads: 1088
+CUSTOM
+diskWrites: 496
+diskReads: 796
+diskWrites: 173
+diskReads: 271
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 22
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 174
+diskReads: 273
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 494
+diskReads: 775
+diskWrites: 174
+diskReads: 266
+diskWrites: 100
+diskReads: 1088
+CUSTOM
+diskWrites: 507
+diskReads: 821
+diskWrites: 175
+diskReads: 274
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 23
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 176
+diskReads: 274
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 497
+diskReads: 774
+diskWrites: 173
+diskReads: 269
+diskWrites: 100
+diskReads: 1093
+CUSTOM
+diskWrites: 510
+diskReads: 847
+diskWrites: 182
+diskReads: 279
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 24
+FIFO
+diskWrites: 500
+diskReads: 800
+diskWrites: 180
+diskReads: 277
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 491
+diskReads: 774
+diskWrites: 183
+diskReads: 276
+diskWrites: 100
+diskReads: 1077
+CUSTOM
+diskWrites: 533
+diskReads: 841
+diskWrites: 179
+diskReads: 275
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 25
+FIFO
+diskWrites: 400
+diskReads: 700
+diskWrites: 181
+diskReads: 277
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 492
+diskReads: 766
+diskWrites: 174
+diskReads: 267
+diskWrites: 100
+diskReads: 1076
+CUSTOM
+diskWrites: 489
+diskReads: 784
+diskWrites: 182
+diskReads: 281
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 26
+FIFO
+diskWrites: 400
+diskReads: 698
+diskWrites: 176
+diskReads: 273
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 472
+diskReads: 730
+diskWrites: 176
+diskReads: 269
+diskWrites: 100
+diskReads: 1079
+CUSTOM
+diskWrites: 488
+diskReads: 781
+diskWrites: 178
+diskReads: 273
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 27
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 173
+diskReads: 264
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 479
+diskReads: 732
+diskWrites: 169
+diskReads: 256
+diskWrites: 100
+diskReads: 1080
+CUSTOM
+diskWrites: 489
+diskReads: 795
+diskWrites: 173
+diskReads: 271
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 28
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 171
+diskReads: 268
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 452
+diskReads: 702
+diskWrites: 167
+diskReads: 260
+diskWrites: 100
+diskReads: 1070
+CUSTOM
+diskWrites: 456
+diskReads: 735
+diskWrites: 170
+diskReads: 267
+diskWrites: 100
+diskReads: 1100
+NumberOfFrames: 29
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 174
+diskReads: 269
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 471
+diskReads: 714
+diskWrites: 175
+diskReads: 264
+diskWrites: 100
+diskReads: 1060
+CUSTOM
+diskWrites: 458
+diskReads: 741
+diskWrites: 173
+diskReads: 270
+diskWrites: 99
+diskReads: 1090
+NumberOfFrames: 30
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 173
+diskReads: 271
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 450
+diskReads: 677
+diskWrites: 168
+diskReads: 260
+diskWrites: 100
+diskReads: 1059
+CUSTOM
+diskWrites: 458
+diskReads: 767
+diskWrites: 165
+diskReads: 263
+diskWrites: 98
+diskReads: 1080
+NumberOfFrames: 31
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 172
+diskReads: 267
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 452
+diskReads: 678
+diskWrites: 172
+diskReads: 264
+diskWrites: 100
+diskReads: 1053
+CUSTOM
+diskWrites: 478
+diskReads: 747
+diskWrites: 169
+diskReads: 265
+diskWrites: 97
+diskReads: 1070
+NumberOfFrames: 32
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 169
+diskReads: 259
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 437
+diskReads: 670
+diskWrites: 174
+diskReads: 266
+diskWrites: 100
+diskReads: 1049
+CUSTOM
+diskWrites: 452
+diskReads: 739
+diskWrites: 166
+diskReads: 260
+diskWrites: 96
+diskReads: 1060
+NumberOfFrames: 33
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 169
+diskReads: 259
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 448
+diskReads: 684
+diskWrites: 156
+diskReads: 249
+diskWrites: 100
+diskReads: 1036
+CUSTOM
+diskWrites: 479
+diskReads: 733
+diskWrites: 154
+diskReads: 252
+diskWrites: 95
+diskReads: 1050
+NumberOfFrames: 34
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 166
+diskReads: 257
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 437
+diskReads: 659
+diskWrites: 154
+diskReads: 245
+diskWrites: 100
+diskReads: 1041
+CUSTOM
+diskWrites: 456
+diskReads: 696
+diskWrites: 161
+diskReads: 261
+diskWrites: 94
+diskReads: 1040
+NumberOfFrames: 35
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 164
+diskReads: 263
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 426
+diskReads: 632
+diskWrites: 170
+diskReads: 262
+diskWrites: 100
+diskReads: 1017
+CUSTOM
+diskWrites: 430
+diskReads: 695
+diskWrites: 167
+diskReads: 260
+diskWrites: 93
+diskReads: 1030
+NumberOfFrames: 36
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 174
+diskReads: 263
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 416
+diskReads: 625
+diskWrites: 164
+diskReads: 256
+diskWrites: 100
+diskReads: 1026
+CUSTOM
+diskWrites: 436
+diskReads: 710
+diskWrites: 163
+diskReads: 259
+diskWrites: 92
+diskReads: 1020
+NumberOfFrames: 37
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 165
+diskReads: 250
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 421
+diskReads: 623
+diskWrites: 160
+diskReads: 247
+diskWrites: 100
+diskReads: 1019
+CUSTOM
+diskWrites: 414
+diskReads: 655
+diskWrites: 149
+diskReads: 247
+diskWrites: 91
+diskReads: 1010
+NumberOfFrames: 38
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 155
+diskReads: 244
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 415
+diskReads: 610
+diskWrites: 154
+diskReads: 245
+diskWrites: 100
+diskReads: 1007
+CUSTOM
+diskWrites: 410
+diskReads: 645
+diskWrites: 149
+diskReads: 244
+diskWrites: 90
+diskReads: 1000
+NumberOfFrames: 39
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 158
+diskReads: 248
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 411
+diskReads: 597
+diskWrites: 162
+diskReads: 250
+diskWrites: 100
+diskReads: 1000
+CUSTOM
+diskWrites: 435
+diskReads: 694
+diskWrites: 152
+diskReads: 247
+diskWrites: 89
+diskReads: 990
+NumberOfFrames: 40
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 161
+diskReads: 249
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 415
+diskReads: 604
+diskWrites: 156
+diskReads: 244
+diskWrites: 100
+diskReads: 1000
+CUSTOM
+diskWrites: 383
+diskReads: 624
+diskWrites: 139
+diskReads: 233
+diskWrites: 88
+diskReads: 980
+NumberOfFrames: 41
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 167
+diskReads: 261
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 403
+diskReads: 587
+diskWrites: 156
+diskReads: 245
+diskWrites: 100
+diskReads: 984
+CUSTOM
+diskWrites: 429
+diskReads: 704
+diskWrites: 155
+diskReads: 253
+diskWrites: 87
+diskReads: 970
+NumberOfFrames: 42
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 165
+diskReads: 255
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 404
+diskReads: 592
+diskWrites: 153
+diskReads: 241
+diskWrites: 100
+diskReads: 972
+CUSTOM
+diskWrites: 393
+diskReads: 632
+diskWrites: 142
+diskReads: 239
+diskWrites: 86
+diskReads: 960
+NumberOfFrames: 43
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 157
+diskReads: 248
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 388
+diskReads: 563
+diskWrites: 156
+diskReads: 239
+diskWrites: 100
+diskReads: 965
+CUSTOM
+diskWrites: 393
+diskReads: 659
+diskWrites: 155
+diskReads: 248
+diskWrites: 85
+diskReads: 950
+NumberOfFrames: 44
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 161
+diskReads: 247
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 368
+diskReads: 551
+diskWrites: 150
+diskReads: 232
+diskWrites: 100
+diskReads: 952
+CUSTOM
+diskWrites: 368
+diskReads: 610
+diskWrites: 139
+diskReads: 237
+diskWrites: 84
+diskReads: 940
+NumberOfFrames: 45
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 159
+diskReads: 242
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 401
+diskReads: 577
+diskWrites: 153
+diskReads: 237
+diskWrites: 100
+diskReads: 940
+CUSTOM
+diskWrites: 363
+diskReads: 595
+diskWrites: 137
+diskReads: 235
+diskWrites: 83
+diskReads: 930
+NumberOfFrames: 46
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 154
+diskReads: 234
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 362
+diskReads: 534
+diskWrites: 140
+diskReads: 222
+diskWrites: 100
+diskReads: 946
+CUSTOM
+diskWrites: 396
+diskReads: 631
+diskWrites: 146
+diskReads: 238
+diskWrites: 82
+diskReads: 920
+NumberOfFrames: 47
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 154
+diskReads: 233
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 358
+diskReads: 525
+diskWrites: 146
+diskReads: 232
+diskWrites: 100
+diskReads: 928
+CUSTOM
+diskWrites: 389
+diskReads: 617
+diskWrites: 138
+diskReads: 233
+diskWrites: 81
+diskReads: 910
+NumberOfFrames: 48
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 152
+diskReads: 234
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 374
+diskReads: 529
+diskWrites: 144
+diskReads: 230
+diskWrites: 100
+diskReads: 927
+CUSTOM
+diskWrites: 395
+diskReads: 631
+diskWrites: 131
+diskReads: 229
+diskWrites: 80
+diskReads: 900
+NumberOfFrames: 49
+FIFO
+diskWrites: 400
+diskReads: 600
+diskWrites: 152
+diskReads: 220
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 356
+diskReads: 511
+diskWrites: 146
+diskReads: 229
+diskWrites: 100
+diskReads: 905
+CUSTOM
+diskWrites: 369
+diskReads: 567
+diskWrites: 135
+diskReads: 229
+diskWrites: 79
+diskReads: 890
+NumberOfFrames: 50
+FIFO
+diskWrites: 300
+diskReads: 500
+diskWrites: 148
+diskReads: 210
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 363
+diskReads: 521
+diskWrites: 137
+diskReads: 224
+diskWrites: 100
+diskReads: 882
+CUSTOM
+diskWrites: 389
+diskReads: 616
+diskWrites: 130
+diskReads: 223
+diskWrites: 79
+diskReads: 881
+NumberOfFrames: 51
+FIFO
+diskWrites: 300
+diskReads: 499
+diskWrites: 157
+diskReads: 241
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 348
+diskReads: 499
+diskWrites: 136
+diskReads: 222
+diskWrites: 100
+diskReads: 878
+CUSTOM
+diskWrites: 315
+diskReads: 528
+diskWrites: 131
+diskReads: 230
+diskWrites: 78
+diskReads: 871
+NumberOfFrames: 52
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 156
+diskReads: 240
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 322
+diskReads: 463
+diskWrites: 138
+diskReads: 215
+diskWrites: 100
+diskReads: 880
+CUSTOM
+diskWrites: 364
+diskReads: 567
+diskWrites: 125
+diskReads: 220
+diskWrites: 76
+diskReads: 860
+NumberOfFrames: 53
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 153
+diskReads: 227
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 346
+diskReads: 491
+diskWrites: 132
+diskReads: 214
+diskWrites: 100
+diskReads: 866
+CUSTOM
+diskWrites: 325
+diskReads: 532
+diskWrites: 120
+diskReads: 216
+diskWrites: 75
+diskReads: 850
+NumberOfFrames: 54
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 145
+diskReads: 201
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 337
+diskReads: 476
+diskWrites: 124
+diskReads: 207
+diskWrites: 100
+diskReads: 871
+CUSTOM
+diskWrites: 327
+diskReads: 527
+diskWrites: 115
+diskReads: 207
+diskWrites: 74
+diskReads: 840
+NumberOfFrames: 55
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 140
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 324
+diskReads: 466
+diskWrites: 133
+diskReads: 219
+diskWrites: 100
+diskReads: 842
+CUSTOM
+diskWrites: 315
+diskReads: 515
+diskWrites: 120
+diskReads: 212
+diskWrites: 73
+diskReads: 830
+NumberOfFrames: 56
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 138
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 326
+diskReads: 477
+diskWrites: 124
+diskReads: 207
+diskWrites: 100
+diskReads: 834
+CUSTOM
+diskWrites: 316
+diskReads: 505
+diskWrites: 125
+diskReads: 216
+diskWrites: 72
+diskReads: 820
+NumberOfFrames: 57
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 137
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 314
+diskReads: 459
+diskWrites: 119
+diskReads: 204
+diskWrites: 100
+diskReads: 817
+CUSTOM
+diskWrites: 292
+diskReads: 493
+diskWrites: 109
+diskReads: 203
+diskWrites: 71
+diskReads: 810
+NumberOfFrames: 58
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 135
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 311
+diskReads: 442
+diskWrites: 118
+diskReads: 198
+diskWrites: 100
+diskReads: 790
+CUSTOM
+diskWrites: 284
+diskReads: 479
+diskWrites: 120
+diskReads: 211
+diskWrites: 70
+diskReads: 800
+NumberOfFrames: 59
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 141
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 314
+diskReads: 448
+diskWrites: 127
+diskReads: 210
+diskWrites: 100
+diskReads: 799
+CUSTOM
+diskWrites: 284
+diskReads: 473
+diskWrites: 117
+diskReads: 209
+diskWrites: 69
+diskReads: 790
+NumberOfFrames: 60
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 132
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 301
+diskReads: 433
+diskWrites: 113
+diskReads: 198
+diskWrites: 100
+diskReads: 768
+CUSTOM
+diskWrites: 312
+diskReads: 513
+diskWrites: 104
+diskReads: 196
+diskWrites: 68
+diskReads: 780
+NumberOfFrames: 61
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 139
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 286
+diskReads: 410
+diskWrites: 122
+diskReads: 209
+diskWrites: 100
+diskReads: 753
+CUSTOM
+diskWrites: 281
+diskReads: 464
+diskWrites: 107
+diskReads: 197
+diskWrites: 67
+diskReads: 770
+NumberOfFrames: 62
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 135
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 277
+diskReads: 401
+diskWrites: 112
+diskReads: 192
+diskWrites: 100
+diskReads: 751
+CUSTOM
+diskWrites: 252
+diskReads: 436
+diskWrites: 115
+diskReads: 202
+diskWrites: 66
+diskReads: 760
+NumberOfFrames: 63
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 135
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 262
+diskReads: 387
+diskWrites: 117
+diskReads: 195
+diskWrites: 100
+diskReads: 729
+CUSTOM
+diskWrites: 246
+diskReads: 412
+diskWrites: 108
+diskReads: 203
+diskWrites: 65
+diskReads: 750
+NumberOfFrames: 64
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 136
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 272
+diskReads: 392
+diskWrites: 107
+diskReads: 192
+diskWrites: 100
+diskReads: 734
+CUSTOM
+diskWrites: 239
+diskReads: 408
+diskWrites: 99
+diskReads: 194
+diskWrites: 64
+diskReads: 740
+NumberOfFrames: 65
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 126
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 279
+diskReads: 394
+diskWrites: 115
+diskReads: 200
+diskWrites: 100
+diskReads: 692
+CUSTOM
+diskWrites: 267
+diskReads: 433
+diskWrites: 103
+diskReads: 195
+diskWrites: 63
+diskReads: 730
+NumberOfFrames: 66
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 134
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 258
+diskReads: 367
+diskWrites: 106
+diskReads: 189
+diskWrites: 100
+diskReads: 680
+CUSTOM
+diskWrites: 284
+diskReads: 467
+diskWrites: 108
+diskReads: 200
+diskWrites: 62
+diskReads: 720
+NumberOfFrames: 67
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 133
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 253
+diskReads: 362
+diskWrites: 107
+diskReads: 188
+diskWrites: 100
+diskReads: 672
+CUSTOM
+diskWrites: 270
+diskReads: 450
+diskWrites: 94
+diskReads: 191
+diskWrites: 61
+diskReads: 710
+NumberOfFrames: 68
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 132
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 241
+diskReads: 355
+diskWrites: 98
+diskReads: 176
+diskWrites: 100
+diskReads: 668
+CUSTOM
+diskWrites: 208
+diskReads: 366
+diskWrites: 96
+diskReads: 190
+diskWrites: 60
+diskReads: 700
+NumberOfFrames: 69
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 131
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 259
+diskReads: 370
+diskWrites: 105
+diskReads: 187
+diskWrites: 100
+diskReads: 654
+CUSTOM
+diskWrites: 218
+diskReads: 386
+diskWrites: 98
+diskReads: 198
+diskWrites: 59
+diskReads: 690
+NumberOfFrames: 70
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 124
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 261
+diskReads: 373
+diskWrites: 96
+diskReads: 180
+diskWrites: 100
+diskReads: 614
+CUSTOM
+diskWrites: 218
+diskReads: 376
+diskWrites: 88
+diskReads: 181
+diskWrites: 59
+diskReads: 681
+NumberOfFrames: 71
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 128
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 220
+diskReads: 331
+diskWrites: 88
+diskReads: 173
+diskWrites: 100
+diskReads: 630
+CUSTOM
+diskWrites: 205
+diskReads: 360
+diskWrites: 80
+diskReads: 177
+diskWrites: 57
+diskReads: 670
+NumberOfFrames: 72
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 128
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 210
+diskReads: 318
+diskWrites: 92
+diskReads: 175
+diskWrites: 99
+diskReads: 604
+CUSTOM
+diskWrites: 198
+diskReads: 351
+diskWrites: 85
+diskReads: 184
+diskWrites: 56
+diskReads: 660
+NumberOfFrames: 73
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 125
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 205
+diskReads: 308
+diskWrites: 81
+diskReads: 160
+diskWrites: 100
+diskReads: 591
+CUSTOM
+diskWrites: 226
+diskReads: 390
+diskWrites: 83
+diskReads: 180
+diskWrites: 56
+diskReads: 643
+NumberOfFrames: 74
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 125
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 198
+diskReads: 299
+diskWrites: 84
+diskReads: 167
+diskWrites: 100
+diskReads: 577
+CUSTOM
+diskWrites: 207
+diskReads: 358
+diskWrites: 79
+diskReads: 170
+diskWrites: 55
+diskReads: 625
+NumberOfFrames: 75
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 125
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 195
+diskReads: 305
+diskWrites: 79
+diskReads: 160
+diskWrites: 100
+diskReads: 561
+CUSTOM
+diskWrites: 164
+diskReads: 301
+diskWrites: 71
+diskReads: 163
+diskWrites: 54
+diskReads: 607
+NumberOfFrames: 76
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 120
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 196
+diskReads: 295
+diskWrites: 79
+diskReads: 160
+diskWrites: 100
+diskReads: 522
+CUSTOM
+diskWrites: 182
+diskReads: 318
+diskWrites: 73
+diskReads: 168
+diskWrites: 55
+diskReads: 591
+NumberOfFrames: 77
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 123
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 188
+diskReads: 284
+diskWrites: 75
+diskReads: 158
+diskWrites: 100
+diskReads: 526
+CUSTOM
+diskWrites: 164
+diskReads: 313
+diskWrites: 72
+diskReads: 162
+diskWrites: 54
+diskReads: 572
+NumberOfFrames: 78
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 122
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 187
+diskReads: 289
+diskWrites: 72
+diskReads: 160
+diskWrites: 100
+diskReads: 520
+CUSTOM
+diskWrites: 178
+diskReads: 315
+diskWrites: 72
+diskReads: 168
+diskWrites: 50
+diskReads: 552
+NumberOfFrames: 79
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 119
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 189
+diskReads: 291
+diskWrites: 73
+diskReads: 160
+diskWrites: 100
+diskReads: 484
+CUSTOM
+diskWrites: 154
+diskReads: 286
+diskWrites: 72
+diskReads: 168
+diskWrites: 54
+diskReads: 533
+NumberOfFrames: 80
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 120
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 177
+diskReads: 273
+diskWrites: 68
+diskReads: 153
+diskWrites: 100
+diskReads: 477
+CUSTOM
+diskWrites: 170
+diskReads: 304
+diskWrites: 62
+diskReads: 159
+diskWrites: 54
+diskReads: 522
+NumberOfFrames: 81
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 119
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 171
+diskReads: 274
+diskWrites: 70
+diskReads: 155
+diskWrites: 97
+diskReads: 455
+CUSTOM
+diskWrites: 160
+diskReads: 298
+diskWrites: 65
+diskReads: 162
+diskWrites: 53
+diskReads: 496
+NumberOfFrames: 82
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 118
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 160
+diskReads: 260
+diskWrites: 67
+diskReads: 152
+diskWrites: 99
+diskReads: 437
+CUSTOM
+diskWrites: 151
+diskReads: 281
+diskWrites: 64
+diskReads: 160
+diskWrites: 49
+diskReads: 474
+NumberOfFrames: 83
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 112
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 143
+diskReads: 242
+diskWrites: 58
+diskReads: 146
+diskWrites: 98
+diskReads: 426
+CUSTOM
+diskWrites: 135
+diskReads: 263
+diskWrites: 60
+diskReads: 156
+diskWrites: 50
+diskReads: 467
+NumberOfFrames: 84
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 116
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 144
+diskReads: 240
+diskWrites: 53
+diskReads: 144
+diskWrites: 98
+diskReads: 384
+CUSTOM
+diskWrites: 142
+diskReads: 268
+diskWrites: 56
+diskReads: 152
+diskWrites: 53
+diskReads: 442
+NumberOfFrames: 85
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 112
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 123
+diskReads: 217
+diskWrites: 55
+diskReads: 141
+diskWrites: 95
+diskReads: 384
+CUSTOM
+diskWrites: 135
+diskReads: 259
+diskWrites: 47
+diskReads: 143
+diskWrites: 54
+diskReads: 437
+NumberOfFrames: 86
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 112
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 119
+diskReads: 218
+diskWrites: 45
+diskReads: 135
+diskWrites: 97
+diskReads: 360
+CUSTOM
+diskWrites: 116
+diskReads: 241
+diskWrites: 54
+diskReads: 149
+diskWrites: 54
+diskReads: 419
+NumberOfFrames: 87
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 113
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 125
+diskReads: 224
+diskWrites: 46
+diskReads: 136
+diskWrites: 96
+diskReads: 367
+CUSTOM
+diskWrites: 108
+diskReads: 232
+diskWrites: 47
+diskReads: 146
+diskWrites: 41
+diskReads: 387
+NumberOfFrames: 88
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 109
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 98
+diskReads: 189
+diskWrites: 49
+diskReads: 141
+diskWrites: 90
+diskReads: 328
+CUSTOM
+diskWrites: 110
+diskReads: 232
+diskWrites: 47
+diskReads: 145
+diskWrites: 53
+diskReads: 380
+NumberOfFrames: 89
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 110
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 95
+diskReads: 193
+diskWrites: 28
+diskReads: 121
+diskWrites: 95
+diskReads: 300
+CUSTOM
+diskWrites: 98
+diskReads: 219
+diskWrites: 51
+diskReads: 148
+diskWrites: 45
+diskReads: 343
+NumberOfFrames: 90
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 110
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 90
+diskReads: 182
+diskWrites: 36
+diskReads: 127
+diskWrites: 88
+diskReads: 301
+CUSTOM
+diskWrites: 86
+diskReads: 206
+diskWrites: 37
+diskReads: 136
+diskWrites: 52
+diskReads: 333
+NumberOfFrames: 91
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 109
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 91
+diskReads: 188
+diskWrites: 28
+diskReads: 120
+diskWrites: 88
+diskReads: 263
+CUSTOM
+diskWrites: 86
+diskReads: 204
+diskWrites: 48
+diskReads: 142
+diskWrites: 50
+diskReads: 319
+NumberOfFrames: 92
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 108
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 73
+diskReads: 169
+diskWrites: 26
+diskReads: 119
+diskWrites: 82
+diskReads: 252
+CUSTOM
+diskWrites: 75
+diskReads: 191
+diskWrites: 46
+diskReads: 143
+diskWrites: 54
+diskReads: 298
+NumberOfFrames: 93
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 107
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 61
+diskReads: 155
+diskWrites: 23
+diskReads: 117
+diskWrites: 79
+diskReads: 235
+CUSTOM
+diskWrites: 65
+diskReads: 179
+diskWrites: 19
+diskReads: 116
+diskWrites: 53
+diskReads: 285
+NumberOfFrames: 94
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 105
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 44
+diskReads: 139
+diskWrites: 28
+diskReads: 122
+diskWrites: 72
+diskReads: 228
+CUSTOM
+diskWrites: 62
+diskReads: 174
+diskWrites: 38
+diskReads: 137
+diskWrites: 54
+diskReads: 267
+NumberOfFrames: 95
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 105
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 42
+diskReads: 138
+diskWrites: 19
+diskReads: 114
+diskWrites: 68
+diskReads: 204
+CUSTOM
+diskWrites: 68
+diskReads: 178
+diskWrites: 29
+diskReads: 128
+diskWrites: 49
+diskReads: 239
+NumberOfFrames: 96
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 104
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 35
+diskReads: 131
+diskWrites: 15
+diskReads: 112
+diskWrites: 61
+diskReads: 185
+CUSTOM
+diskWrites: 51
+diskReads: 159
+diskWrites: 23
+diskReads: 122
+diskWrites: 40
+diskReads: 215
+NumberOfFrames: 97
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 103
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 27
+diskReads: 124
+diskWrites: 13
+diskReads: 110
+diskWrites: 47
+diskReads: 156
+CUSTOM
+diskWrites: 45
+diskReads: 151
+diskWrites: 10
+diskReads: 108
+diskWrites: 47
+diskReads: 203
+NumberOfFrames: 98
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 102
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 20
+diskReads: 118
+diskWrites: 9
+diskReads: 107
+diskWrites: 42
+diskReads: 145
+CUSTOM
+diskWrites: 40
+diskReads: 144
+diskWrites: 4
+diskReads: 104
+diskWrites: 53
+diskReads: 191
+NumberOfFrames: 99
+FIFO
+diskWrites: 300
+diskReads: 400
+diskWrites: 100
+diskReads: 200
+diskWrites: 100
+diskReads: 1100
+RAND
+diskWrites: 6
+diskReads: 105
+diskWrites: 3
+diskReads: 102
+diskWrites: 19
+diskReads: 120
+CUSTOM
+diskWrites: 34
+diskReads: 136
+diskWrites: 2
+diskReads: 102
+diskWrites: 29
+diskReads: 147
