@@ -137,7 +137,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	npages = page_table_get_npages(pt);
 	nframes = page_table_get_nframes(pt);
 
-    //sætter alle skriveretigheder til 0 og bitshifter alt page_history
+    //saetter alle skriveretigheder til 0 og bitshifter alt page_history
 	int p, tempbits, tempFrame;
 	double c = clock(); 
 	if(c - LRUData->timestamp > LRUTIME){
@@ -159,7 +159,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	//Checking if this request is caused by a LRU reset
 	if(bits == 0 && LRUData->page_bits[page] > 0){
 	
-	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
+	//Markere at denne page er blevet efterspurgt i perioden, ved at saette leftmost bit til 1
 		LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
 		//LRUData->page_bits[page] = 0;
@@ -174,7 +174,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 		return;
 	}
 	
-	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
+	//Markere at denne page er blevet efterspurgt i denne periode, ved at saette leftmost bit til 1
 	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 	// 1. Find a frame
 	// 	a. If there is a free frame
@@ -188,7 +188,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 		int bits, oldPage = ft->map[freeFrame];
 		page_table_get_entry(pt, oldPage, &tempFrame, &bits);
 	
-		//  b2. Write the victim frame to the diske; update the page and frame tables accordingly	
+		// b2. Write the victim frame to the diske; update the page and frame tables accordingly	
 		if((bits & PROT_WRITE) == PROT_WRITE || 
 		   (LRUData->page_bits[oldPage] & PROT_WRITE) == PROT_WRITE ){
 
