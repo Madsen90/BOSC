@@ -1,4 +1,8 @@
-\section{Diskussion}
+\section{Diskusion}
+\label{sec:diskusion}
+Vi har implementeret en virtuel hukommelse, der har de tre foreslåede sideudskiftningsalgoritmer random, fifo og custom til rådighed. Derudover har vi implementeret en fjerde algoritme, som vi kalder Optimeret random, der laver færre disktilgange end de andre tre.
+
+Der er lavet statestik over hvor ofte disken tilgås, når sideudskiftningsalgoritmerne kører de tre testprogrammer, der alle har vidt forskellige hukommelseadgangs mønstre. 
 
 \subsection{Statistik}
 \label{subsec:statistik}
@@ -12,7 +16,7 @@ De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange 
 \end{figure}
 
 \subsubsection{Sekventielle løb}
-Programmet "Scan" består af 10 sekventielle løb gennem alt data. Det kan  hverken FIFO eller LRU håndtere særlig godt, da begge algoritmer bygger på den antagelse at der er størst sandsynlighed for at data der lige er blevet brugt, snart skal bruges igen. Ved sekventielle gennemløb er det det omvendte der er tilfældet. 
+Programmet "Scan" består af 10 sekventielle løb gennem alt data. Det kan hverken FIFO eller LRU håndtere særlig godt, da begge algoritmer bygger på den antagelse at der er størst sandsynlighed for at data der lige er blevet brugt, snart skal bruges igen. Ved sekventielle gennemløb er det det omvendte der er tilfældet. 
 
 \begin{figure}[ht]
 \centerline{\includegraphics[scale=1]{graph/stat_scan}}
@@ -29,3 +33,5 @@ Programmet "Scan" består af 10 sekventielle løb gennem alt data. Det kan  hver
 
 \subsection{Diskussion af resultater}
 At rand algoritmen er den hurtigste er en gåde for os....!
+
+
