@@ -1,18 +1,17 @@
 \section{Implementation}
+I dette afsnit vil vi gå lidt mere i dybden med hvordan vi har implementeret vores løsninger som omtalt i afsnit \ref{sec:design} om design.
 
 \subsection{Page fault handler}
-Page handleren er den metode, der bliver kaldt, når vi får en page fault. \textbf{Et eller andet med read request}.
+Page handleren er den metode, der bliver kaldt, når vi får en page fault. Første bliver der checket, om page fault'en er en write request, hvilket ville gøre sideskiftning unødvændig, da vi i dette tilfælde bare ville sætte skrive rettighederne på den pågældende page.
 
-Sidenhen checkes der, om der er nogen fri fysisk side, ved at gennemløbe vores frametable (map) og chekke om der er nogen side, der aldrig har været brugt; at de peger på en .\footnote{Her kunne en optimering være ikke at gennemløbe map'et, efter at der ikke var nogle "uinitialiserede" fysiske sider, eftersom de aldrig ville blive} 
+Sidenhen checkes der, om der er nogen fri frame, ved at gennemløbe vores frametable (map). Her chekkes der om der er nogen side, der aldrig har været brugt; at den i frametable er -1.\footnote{Her kunne en optimering være ikke at gennemløbe map'et, efter at der ikke var nogle "uinitialiserede" fysiske sider, eftersom de aldrig ville blive "uinitialiserede" igen}
 
-Hvis der er en fri fysisk side, så opdateres vores frametable og sætter indexet på den frie side til at være den side, der har fremprovokeret en page fault.
-
-Hvis der ikke er nogen fri frame, kommer frameSelecter i brug, og den bruger en af sideskiftning algoritmerne til at finde den optimale frame at skifte ud. Data på den frame bliver skrevet til disken, og den pågældende frame sættes til at være fri. 
+Hvis der ikke er nogen "uinitialiseret" frame, kommer frameSelecter i brug, og den bruger en af sideskiftning algoritmerne til at finde den optimale frame at skifte ud. Data på den frame bliver skrevet til disken, og den pågældende frame sættes til at være fri. Så opdateres vores frametable og sætter indexet på den frie side til at være den side, der har fremprovokeret en page fault.
 
 Derefter læses det ønskede data ind fra disken til den nu fundne freeframe.
 
 \subsection{Sideskrifnings algoritmer}
-
+Der er implementeret tre sideskiftnings algoritmer. Deres implementation bliver kort beskrevet nedenfor.
 
 \subsubsection{Rand}
 Rand algoritmen sætter bare pointeren til den frie fysiske side til et vilkårligt tal fra 0-N, hvor N er tallet af fysiske sider. Funktionen srand48 bliver brugt til seeding og lrand48 bliver brugt til at generere tal.
@@ -20,6 +19,9 @@ Rand algoritmen sætter bare pointeren til den frie fysiske side til et vilkårl
 \subsection{FIFO}
 FIFO algoritmen virker som en FIFO kø. Hvis ingen fysisk side er tilgængelig og en side skal skiftes ud, så skifter algoritmen den først brugte side ud med en ny.
 
+Det gøres ved at opretholde datastrukturen FIFOData, der rent faktisk kun består af et heltal. Det heltal bliver incrementeret hver gang der er brug for en side indtil vi rammer tallet npages, tallet af fysiske sider, så starter vi fra 0, den første side, igen ved hjælp af modulo operatoren.
+
+\subsection{Custom}
 Det gøres ved at opretholde datastrukturen FIFOData, der rent faktisk kun består af et heltal. Det heltal bliver incrementeret hver gang der er brug for en side indtil vi rammer tallet npages, tallet af fysiske sider, så starter vi fra 0, den første side, igen ved hjælp af modulo operatoren. Implementationen virker under den antagelse at sider aldrig frigives og at frie frames uddelles i rækkefølge.
 
 \subsection{Custom}
