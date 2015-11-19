@@ -148,20 +148,19 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 			//printf("%d: %s\n", p, print);
 			LRUData->page_history[p] = LRUData->page_history[p]>>1; 
 			page_table_get_entry(pt, p, &tempFrame, &tempbits);
-			tempbits = (LRUData->page_bits[p] > tempbits) ? LRUData->page_bits[p] : tempbits;
-			LRUData->page_bits[p] = tempbits; 
+			LRUData->page_bits[p] = (LRUData->page_bits[p] > tempbits) ? LRUData->page_bits[p] : tempbits;
 			page_table_set_entry(pt, p, tempFrame, 0);
 		}
 		LRUData->timestamp = c;
 	}
 	//printf("\n");
 	
-	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
-	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 	
-
 	//Checking if this request is caused by a LRU reset
 	if(bits == 0 && LRUData->page_bits[page] > 0){
+	
+	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
+		LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
 		//LRUData->page_bits[page] = 0;
 		LRUFaults++;
@@ -175,6 +174,8 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 		return;
 	}
 	
+	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
+	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 	// 1. Find a frame
 	// 	a. If there is a free frame
 	int freeFrame;
@@ -209,6 +210,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
  
 int main( int argc, char *argv[] )
 {
+	srand48(time(NULL));
 	int freeLRU = 0;
 	if(argc!=5) {
 		printf("use: virtmem <npages> <nframes> <rand|fifo|custom> <sort|scan|focus>\n");
@@ -304,15 +306,15 @@ int main( int argc, char *argv[] )
 	physmem = page_table_get_physmem(pt);
 
 	if(!strcmp(program,"sort")) {
-		printf("sort:\n");
+//		printf("sort:\n");
 		sort_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"scan")) {
-		printf("scan:\n");
+//		printf("scan:\n");
 		scan_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"focus")) {
-		printf("focus:\n");
+//		printf("focus:\n");
 		focus_program(virtmem,npages*PAGE_SIZE);
 
 	}else if(!strcmp(program,"test")){
@@ -324,8 +326,8 @@ int main( int argc, char *argv[] )
 
  //printf("PageRequests: %d\n", pageReq);
  //printf("writeReq: %d\n", writeReq);
-printf("diskWrites: %d\n", diskWrites);
-printf("diskReads: %d\n", diskReads);
+printf("%d;", diskWrites);
+printf("%d\n", diskReads);
 //printf("LRUFaults: %d\n", LRUFaults);
 
 	//freeing mem

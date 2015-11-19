@@ -10,13 +10,11 @@ void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeF
 }
 
 void frameSelectRand(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
-	srand48(clock());
 	*freeFrame = lrand48() % nframes;
 }
 
 void frameSelectRandOpt(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
 	struct RANDData* randdat = data;
-	srand48(clock());
 	int frame, page, bits, i;
 	for(i = 0; i < (nframes / 3); i++){
 		frame = lrand48() % nframes;
