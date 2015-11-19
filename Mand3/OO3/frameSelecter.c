@@ -1,5 +1,7 @@
 #include "frameSelecter.h"
 #include <stdlib.h>
+#include <time.h>
+#include "page_table.h"
 #define LRUTIME 500
 
 void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
@@ -9,7 +11,25 @@ void frameSelectFifo(struct frame_table *ft, int npages, int nframes, int* freeF
 }
 
 void frameSelectRand(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
+	srand48(clock());
 	*freeFrame = lrand48() % nframes;
+}
+
+void frameSelectRandOpt(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
+	struct RANDData* randdat = data;
+	srand48(clock());
+	int frame, page, bits, i;
+	for(i = 0; i < (nframes / 3); i++){
+		frame = lrand48() % nframes;
+		page = ft->map[frame];
+		page_table_get_entry(randdat->pt, page, &frame, &bits );
+		if((bits & PROT_WRITE) != PROT_WRITE){
+			*freeFrame = frame;
+			return;
+		}
+	}
+	*freeFrame = frame;
+
 }
 
 void frameSelectCust(struct frame_table *ft, int npages, int nframes, int* freeFrame, void* data){
@@ -72,6 +92,10 @@ void (*getFifo()) (struct frame_table*, int nframes, int npages, int*, void*){
 
 void (*getRand()) (struct frame_table*, int nframes, int npages, int*, void*){
 	return &frameSelectRand;
+}
+
+void (*getRandOpt()) (struct frame_table*, int nframes, int npages, int*, void*){
+	return &frameSelectRandOpt;
 }
 
 void (*getCustom()) (struct frame_table*, int nframes, int npages, int*, void*){

@@ -271,9 +271,21 @@ int main( int argc, char *argv[] )
 
 		//setting pagetable
 		pt = page_table_create( npages, nframes, standard_page_fault_handler );
+	}else if (!strcmp(algorithm,"randopt"))
+	{
+		//printf("%s\n", "Random algorithm:");
+		frameSelecter = getRandOpt();
+
+		//setting pagetable
+		pt = page_table_create( npages, nframes, standard_page_fault_handler );
+
+		//setting data
+		struct RANDData* dat = malloc(sizeof(struct RANDData));
+		dat->pt = pt;
+		fsData = (void*)dat;
 	}
 	else{
-		printf("Algorithms to choose from are rand|fifo|custom\n");
+		printf("Algorithms to choose from are rand|fifo|custom|randopt\n");
 		return 1;
 	}
 
@@ -293,15 +305,15 @@ int main( int argc, char *argv[] )
 	physmem = page_table_get_physmem(pt);
 
 	if(!strcmp(program,"sort")) {
-	//	printf("sort:\n");
+		printf("sort:\n");
 		sort_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"scan")) {
-	//	printf("scan:\n");
+		printf("scan:\n");
 		scan_program(virtmem,npages*PAGE_SIZE);
 
 	} else if(!strcmp(program,"focus")) {
-	//	printf("focus:\n");
+		printf("focus:\n");
 		focus_program(virtmem,npages*PAGE_SIZE);
 
 	}else if(!strcmp(program,"test")){
@@ -311,11 +323,11 @@ int main( int argc, char *argv[] )
 		fprintf(stderr,"unknown program: %s\n",argv[3]);		
 	}
 
-	//printf("PageRequests: %d\n", pageReq);
-	//printf("writeReq: %d\n", writeReq);
-	printf("%d;", diskWrites);
-	printf("%d;", diskReads);
-//	printf("%d\n", LRUFaults);
+ //printf("PageRequests: %d\n", pageReq);
+ //printf("writeReq: %d\n", writeReq);
+printf("diskWrites: %d\n", diskWrites);
+printf("diskReads: %d\n", diskReads);
+//printf("LRUFaults: %d\n", LRUFaults);
 
 	//freeing mem
 	free(ft->map);
