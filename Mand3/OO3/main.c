@@ -284,7 +284,7 @@ int main( int argc, char *argv[] )
 		fsData = (void*)dat;
 	}
 	else{
-		printf("Algorithms to choose from are rand|fifo|custom\n");
+		printf("Algorithms to choose from are rand|fifo|custom|randopt\n");
 		return 1;
 	}
 
