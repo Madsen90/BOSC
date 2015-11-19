@@ -6,8 +6,7 @@ Der er lavet statestik over hvor ofte disken tilgås, når sideudskiftningsalgor
 
 \subsection{Statistik for sideudskiftningsalgoritmer}
 \label{subsec:statistik}
-De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange med de tre forskellige sideskiftningsalgoritmer. Der er samlet statistik over hvor mange disktilgange de forskellige algoritmer har med et skiftende antal fysiske sider. Programkørslerne resulterede i meget forskellig opførsel i antallet af disk tilgange. I dette afsnit beskrives diskuteres de forskellige resultater, alle kørslerne i en graf kan ses i figur \ref{fig:all}. Vi vil udelukkende forholde os til disktilgange, selvom det også er relevant at se på hvilket overhead en algoritme tilføjer systemet.
-
+De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange med de tre forskellige sideskiftningsalgoritmer. Der er samlet statistik over hvor mange disktilgange de forskellige algoritmer har med et skiftende antal fysiske sider. Programkørslerne resulterede i meget forskellig opførsel i antallet af disk tilgange. I dette afsnit beskrives diskuteres de forskellige resultater, alle kørslerne i en graf kan ses i figur \ref{fig:all}. Vi vil udelukkende forholde os til disktilgange, selvom det også er relevant at se på hvilket overhead en algoritme tilføjer systemet.\footnote{Koden der er brugt til at lave statistik er i appendix i afsnit \ref{app:statestik}}
 
 \begin{figure}[ht]
 \centerline{\includegraphics[scale=0.8]{graph/stat_all}}
@@ -25,7 +24,7 @@ Programmet "Scan" består af 10 sekventielle løb gennem alt data. Det kan hverk
 \end{figure}
 
 \subsubsection{Anden programkørsel}
-Selvom det ikke er unormalt for programmer at have sekventielle gennemløb af data, så er det ikke nødvendigvis normal programkørsel. Programmerne "Focus" og "Sort" har en anden hukkomelses opførsel, der stadigvæk har sekventielle løb, men indenfor mindre dataområder\footnote{Ingen af programmerne har dog et mønster der minder om det der ses i "Operating System Concepts", side 420}. Med disse adgangsmønstre fungerer både FIFO og LRU væsenligt bedre som set i nedenstående figurer. Dog virker de to algoritmer der basere sig på tilfældighed stadigvæk bedre når 50\%+ af siderne er dækket af frames. 
+Selvom det ikke er unormalt for programmer at have sekventielle gennemløb af data, så er det ikke nødvendigvis normal programkørsel. Programmerne "Focus" og "Sort" har en anden hukkomelses opførsel, der stadigvæk har sekventielle løb, men indenfor mindre dataområder\footnote{Ingen af programmerne har dog et mønster der minder om det der ses i "Operating System Concepts", side 420}. Med disse adgangsmønstre fungerer både FIFO og LRU væsenligt bedre som set i nedenstående figurer. Dog virker de to algoritmer der basere sig på tilfældighed stadigvæk bedre når 50\%+ af siderne er dækket af frames.
 
 \begin{figure}[ht]
 \centerline{\includegraphics[scale=0.8]{graph/stat_focus}}
