@@ -142,10 +142,6 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	double c = clock(); 
 	if(c - LRUData->timestamp > LRUTIME){
 		for(p = 0; p < npages; p++){
-			// char print[33];
-			// print[32] = '\0';
-			// int2bit(LRUData->page_history[p], print, 32);	
-			//printf("%d: %s\n", p, print);
 			LRUData->page_history[p] = LRUData->page_history[p]>>1; 
 			page_table_get_entry(pt, p, &tempFrame, &tempbits);
 			LRUData->page_bits[p] = (LRUData->page_bits[p] > tempbits) ? LRUData->page_bits[p] : tempbits;
@@ -153,14 +149,12 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 		}
 		LRUData->timestamp = c;
 	}
-	//printf("\n");
 	
 	//Markere at denne page er blevet efterspurgt i perioden, ved at saette leftmost bit til 1
 	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 	
 	//Checking if this request is caused by a LRU reset
 	if(bits == 0 && LRUData->page_bits[page] > 0){
-	
 		page_table_set_entry(pt, page, frame, LRUData->page_bits[page]);
 		//LRUData->page_bits[page] = 0;
 		LRUFaults++;
