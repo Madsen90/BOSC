@@ -13,7 +13,7 @@ Derefter læses det ønskede data ind fra disken til den nu mappede frame.
 \subsection{Sideudskifningsalgoritmer}
 Der er implementeret tre sideskiftnings algoritmer. Deres implementation bliver kort beskrevet nedenfor.
 
-\subsubsection{Rand}
+\subsubsection{Random}
 Rand algoritmen sætter bare pointeren til den frie frame til et vilkårligt tal fra 0-N, hvor N er tallet af frames. Funktionen srand48 bliver brugt til seeding og lrand48 bliver brugt til at generere tal.
 
 \subsubsection{FIFO}
@@ -24,9 +24,9 @@ Det gøres i praksis ved at opretholde datastrukturen FIFOData, der rent faktisk
 Implementationen virker som beskrevet, under den antagelse at sider aldrig frigives og at frie frames uddelles i rækkefølge. Og da alle frie frames først bliver tildelt sekventielt og aldrig frigivet, må antagelsen holde vand.
 
 
-\subsubsection{Custom}
+\subsubsection{Least Recently Used}
 \label{subsubsec:custom}
-Custom algoritmen er en version af en tilnærmet "Last recently used"-algoritme (LRU). For at kunne få et billede af hvornår en side sidst har læst eller skrevet til hukommelsen, så fjernes alle siders skriverettigheder med et fast interval (LRUTIME). Alle sider, der nu enten vil skrive eller læse fra hukommelsen, vil nu blive fanget i page\_fault\_handleren(). Her registreres det, at siden er blevet tilgået indenfor denne periode. For at undgå at disse fremprovokerede faults ikke ender i flere disk tilgange, holdes der styr på, om en pågældende side allerede er mappet til den fysiske hukomelse, og hvilke rettigheder den har haft tidligere.
+Custom algoritmen er en version af en tilnærmet "Least recently used"-algoritme (LRU). For at kunne få et billede af hvornår en side sidst har læst eller skrevet til hukommelsen, så fjernes alle siders skriverettigheder med et fast interval (LRUTIME). Alle sider, der nu enten vil skrive eller læse fra hukommelsen, vil nu blive fanget i page\_fault\_handleren(). Her registreres det, at siden er blevet tilgået indenfor denne periode. For at undgå at disse fremprovokerede faults ikke ender i flere disk tilgange, holdes der styr på, om en pågældende side allerede er mappet til den fysiske hukomelse, og hvilke rettigheder den har haft tidligere.
 
 Hver side i den virtuelle hukkomelse bliver tildelt to heltal, som bruges til at holde styr på, hvornår siden sidst er blevet tilgået, dens historie og hvilke rettigheder siden havde sidst, den havde adgang til den fysiske hukommelse. Historikken bliver brugt som beskrevet i "Operating System Concepts" på side 410. Hvis flere sider har samme laveste historik, så vælges den som er koblet til den laveste frame. Det betyder, at en fifo-struktur ved samme historik ikke er garanteret. Det kunne være løst ved at bruge en hægtet liste som historik.
 
