@@ -2,16 +2,16 @@
 I dette afsnit vil der gås lidt mere i dybden med hvordan de nævnte løsninger er implementeret (se afsnit \ref{sec:design}).
 
 \subsection{Page fault handler}
-Page handleren er den metode, der bliver kaldt, når der smides en page fault. Først bliver der checket, om page fault'en er en write request, hvilket ville gøre sideudskiftning unødvendig.
+Page handleren er den metode, der bliver kaldt, når der smides en page fault. Først bliver der checket, om page fault'en er en write request, hvilket gør sideudskiftning unødvendig.
 
 Sidenhen checkes der, om der er nogen fri frame, ved at gennemløbe vores frametable (map). Her chekkes der om der er nogen frame, der aldrig har været brugt; at den i frametable er -1.\footnote{Her kunne en optimering være ikke at gennemløbe map'et, efter alle frames er blevet tildelt første gang, eftersom de aldrig vil blive frie igen før programmets afslutning}
 
-Hvis der ikke er nogen frame, der ikke er i brug, kommer frameSelecter i brug. Den bruger en af sideudskiftningsalgoritmerne til at finde den optimale frame at skifte ud. Hvis pagen der er mappet til det pågældende frame har skrive-rettigheder, bliver dataet på framet skrevet til disken, og den pågældende frame sættes til at være fri. Dette sker fordi vi antager at enhver page der har fået skriverettigheder også rent faktisk har skrevet til framet, og således er data blevet ændret ift. til hvad der ligger på disken. Derefter opdateres vores frametable og den frie frame mappes den page, der har fremprovokeret en page fault.
+Hvis der ikke er nogen frame, der ikke er i brug, kommer frameSelecter i brug. Den bruger en af sideudskiftningsalgoritmerne til at finde den optimale frame at skifte ud. Hvis pagen der tidligere var mappet til det pågældende frame har skrive-rettigheder, bliver dataet på framet skrevet til disken, og den pågældende frame sættes til at være fri. Dette sker fordi vi antager at enhver page der har fået skriverettigheder også rent faktisk har skrevet til framet, og således er data blevet ændret ift. til hvad der ligger på disken. Derefter opdateres vores frametable og den frie frame mappes den page, der har fremprovokeret en page fault.
 
-Derefter læses det ønskede data ind fra disken til den nu mappede frame.
+Til sidst læses det ønskede data ind fra disken til den nu mappede frame.
 
 \subsection{Sideudskifningsalgoritmer}
-Der er implementeret tre sideskiftnings algoritmer. Deres implementation bliver kort beskrevet nedenfor.
+Der er implementeret tre sideudskiftningsalgoritmer. Deres implementation bliver kort beskrevet nedenfor.
 
 \subsubsection{Random}
 Rand algoritmen sætter bare pointeren til den frie frame til et vilkårligt tal fra 0-N, hvor N er tallet af frames. Funktionen srand48 bliver brugt til seeding og lrand48 bliver brugt til at generere tal.
@@ -21,22 +21,22 @@ FIFO algoritmen virker som en FIFO kø. Hvis ingen frame er tilgængelig og en f
 
 Det gøres i praksis ved at opretholde datastrukturen FIFOData, der rent faktisk kun består af et heltal. Det heltal bliver inkrementeret hver gang der er brug for at loade nyt data ind på en frame indtil vi rammer tallet nframes, antallet af frames, så starter vi fra 0, den første side, igen ved hjælp af modulo operatoren.
 
-Implementationen virker som beskrevet, under den antagelse at sider aldrig frigives og at frie frames uddelles i rækkefølge. Og da alle frie frames først bliver tildelt sekventielt og aldrig frigivet, må antagelsen holde vand.
+Implementationen virker som beskrevet, under den antagelse at sider aldrig frigives og at frie frames uddeles i rækkefølge. Og da alle frie frames først bliver tildelt sekventielt og aldrig frigivet, må antagelsen holde vand.
 
 
 \subsubsection{Least Recently Used}
 \label{subsubsec:custom}
-Custom algoritmen er en version af en tilnærmet "Least recently used"-algoritme (LRU). For at kunne få et billede af hvornår en side sidst har læst eller skrevet til hukommelsen, så fjernes alle siders skriverettigheder med et fast interval (LRUTIME). Alle sider, der nu enten vil skrive eller læse fra hukommelsen, vil nu blive fanget i page\_fault\_handleren(). Her registreres det, at siden er blevet tilgået indenfor denne periode. For at undgå at disse fremprovokerede faults ikke ender i flere disk tilgange, holdes der styr på, om en pågældende side allerede er mappet til den fysiske hukomelse, og hvilke rettigheder den har haft tidligere.
+Custom algoritmen er en version af en tilnærmet "Least recently used"-algoritme (LRU). For at kunne få et billede af hvornår en page sidst har læst eller skrevet til hukommelsen, så fjernes alle pages's skriverettigheder med et fast interval (LRUTIME). Alle pages, der nu enten vil skrive eller læse fra hukommelsen, vil nu blive fanget i page\_fault\_handler(). Her registreres det, at pagen er blevet tilgået indenfor denne periode. For at undgå at disse fremprovokerede faults ikke ender i flere disk tilgange, holdes der styr på, om en pågældende page allerede er mappet til den fysiske hukomelse, og hvilke rettigheder den i så fald havde før rettighederne blev fjernet.
 
-Hver side i den virtuelle hukkomelse bliver tildelt to heltal, som bruges til at holde styr på, hvornår siden sidst er blevet tilgået, dens historie og hvilke rettigheder siden havde sidst, den havde adgang til den fysiske hukommelse. Historikken bliver brugt som beskrevet i "Operating System Concepts" på side 410. Hvis flere sider har samme laveste historik, så vælges den som er koblet til den laveste frame. Det betyder, at en fifo-struktur ved samme historik ikke er garanteret. Det kunne være løst ved at bruge en hægtet liste som historik.
+Hver page i den virtuelle hukommelse bliver tildelt to heltal, som bruges til at holde styr på, hvornår pagen sidst er blevet tilgået, dens historie og hvilke rettigheder pagen havde sidst, den havde adgang til den fysiske hukommelse. Historikken bliver brugt som beskrevet i "Operating System Concepts" på page 410. Hvis flere pages har samme laveste historik, så vælges den som er koblet til den laveste frame. Det betyder, at en fifo-struktur ved samme historik ikke er garanteret. Det kunne være løst ved at bruge en hægtet liste som historik.
 
 \subsubsection{Optimeret random}
-Den optimerede random algoritme er implementeret ved en simpel for-løkke, som køres nframes/3 gange. I for-løkken vælges en tilfældig frame, og så tjekkes den mappede page har skrive-rettigheder. Hvis den har skrive rettigheder, prøves igen. Hvis den kun har læserettigheder, så vælges den frame til at blive frigivet. 
-Som ses i graferne i afsnit \ref{subsec:statistik}, kører den væsentligt bedre end både FIFO, random og LRU algoritmerne. Det kan skyldes en blanding af 3 ting i de programmer som der er testet med: 
+Den optimerede random algoritme er implementeret ved en simpel for-løkke, som køres nframes/3 gange. Antallet nframes/3 er fundet ved flere gennemkørsler for at finde et nogenlunde optimalt antal. I for-løkken vælges en tilfældig frame, og så tjekkes om den mappede page har skrive-rettigheder. Hvis den har skriverettigheder, prøves igen. Hvis den kun har læserettigheder, så vælges den frame til at blive frigivet. I tilfælde af at alle pages har skrive rettigheder, vælges blot den sidste tilfældigt valgte frame.
+Som ses i graferne i afsnit \ref{subsec:statistik}, kører den optimerede random væsentligt bedre end både FIFO, random og LRU algoritmerne. Det kan skyldes en blanding af 3 ting i de programmer som der er testet med: 
 
 \begin{enumerate}
 	\item De har en overvægt af variabler som der kun læses fra få gange, end de har variabler som der kun skrives til få gange
 	\item De har en overvægt af variabler som der skrives til mange gange, end de har variabler som der læses fra mange gange
-	\item De er forholdsvis korte, således at den omtalte overvægt af skrivepages \ref{sec:design} ikke når at blive en realitet
+	\item De er forholdsvis korte, således at den omtalte overvægt af pages med skriverettigheder \ref{sec:design} ikke når at blive en realitet
 \end{enumerate}
 
