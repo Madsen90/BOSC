@@ -2,7 +2,7 @@
 \label{sec:design}
 
 \subsection{Page fault handler}
-Der er lavet to forskellige page fault handlers, da vores custom-algoritme, en LRU-tilnærmelse, kræver, at nogle datastrukturer bliver oprettet og opdateret. Kørslen af Custom og de to andre algoritmer fraviger ikke meget fra hinanden, men LRU kræver, at der opretholdes en datastruktur, som der ikke er behov for i de andre sideudskiftningsalgoritmer. Der er derfor truffet et designvalg om, at den kodeduplikation, der nu må optræde, bliver opvejet af simplere kode der er tale om når datastrukturen ikke indgår.  
+Der er lavet to forskellige page fault handlers, da vores custom-algoritme, en LRU-tilnærmelse, kræver, at nogle datastrukturer bliver oprettet og opdateret. Kørslen af Custom og de to andre algoritmer fraviger ikke meget fra hinanden, men LRU kræver, at der opretholdes en datastruktur, som der ikke er behov for i de andre sideudskiftningsalgoritmer. Dette var ikke ønskværdigt, og der blev derfor oprettet to forskeliige handlere. Der er truffet et designvalg om, at den kodeduplikation, der nu må optræde, bliver opvejet af simplere kode der er tale om når datastrukturen ikke indgår.  
 
 \subsection{Sideudskifningsalgoritmer}
 Herunder findes en kort beskrivelse af hver algoritmes design. Det skal nævnes, at det er gældende for dem alle, at alle frames først bliver mappet til pages sekventielt. Sagt på en anden måde: Når der tilgåes en ny page, så bliver den først ledige frame sekventielt tildelt til den page. Det er først når der ikke er flere frames at nedenstående træder i kraft.
