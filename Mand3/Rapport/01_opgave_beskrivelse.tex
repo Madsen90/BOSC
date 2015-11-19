@@ -1,8 +1,8 @@
 \section{Opgave beskrivelse}
 
-I denne opgave bliver der implementeret en simpel virtuel hukommelse. Den virtuelle hukommelse er baseret på demand paging, og løsningen gør brug at allerede udlevert kode.
+I denne opgave bliver der implementeret en simpel virtuel hukommelse. Den virtuelle hukommelse skal kunne håndtere demand paging. Løsningen baserer sig på udleveret kode.
 
-Den udleverede kode består af en virtuel side tabel, en virtuel disk og en ufulstændig main metode. Det der mangler i main metoden er en måde at håndtere page faults på.
+Den udleverede kode består af en virtuel side tabel, en virtuel disk og en ufuldstændig main metode. Det der mangler i main metoden er en måde at håndtere page faults på, og en måde at parse valget af sideskiftnings algoritme.
 
 Main metoden tager fire parametre som input
 
@@ -23,12 +23,12 @@ Vores opgaver er således at:
 \begin{description}
 \item[fifo] - Algoritmen skal virke som en FIFO kø, hvor den side der er kommet i brug først, er den første der skiftes ud. 
 \item[rand] - Ikke en engentlig algoritme, da den bare skal vælge en vilkårlig side, der skal skiftes ud.
-\item[custom] - Vores egne algoritme, herefter Custom, der skal lave færre disk tilgange end de to andre algoritmer.
+\item[custom] - Vores egne algoritme, herefter Custom, der skal lave færre disk tilgange end de to andre algoritmer. 
 \end{description}
 
-\item Test vores sideskiftnings algoritmer
+\item Teste vores sideudskiftningsalgoritmer
 
-\item Ændre main metoden, så den parser tekststrengen fra kommanolinjen, så man kan vælge hvilken sideskiftnings algoritme programmet skal bruge.
+\item Ændre main metoden, så den parser tekststrengen fra kommandolinjen, så man kan vælge hvilken sideudskiftningsalgoritme, programmet skal bruge.
 
-\item Lave noget statestik over hvor mange disk tilgange hver algoritme laver, så vi rent faktisk ved, at vores custom algoritme er bedre end de andre to.
+\item Lave noget statistik over hvor mange disktilgange hver algoritme laver, så vi kan se sammenligne vores custom algoritme med de to andre.
 \end{itemize}

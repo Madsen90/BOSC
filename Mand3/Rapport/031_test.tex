@@ -1,0 +1,8 @@
+\section{Test}
+Den virtuelle hukommelse er blevet testet på to måder, som burde være bevis for, at i hvert fald størstedelen af programmet fungerer korrekt.
+
+For det første er de forskellige programkørsler blevet kørt uden nogen sideudskiftning, og resultatet af disse kørsler er blevet noteret for et par værdier. Efter en sideudskiftningsalgoritme er blevet implementeret, er det blevet tjekket at programkørslerne, nu med sideudskiftninger, giver samme resultat. Når dette virker, er det et tegn på, at selve sideudskiftningen virker uden at overskrive data i brug.
+
+For det andet er de forskellige sideudskiftningsalgoritmer blevet testet med simple unit-tests. Her er der kun tale om FIFO og Custom (LRU), da det ikke gav mening at skrive unit test for Random - den returnerer tilfældige kun værdier. Testene er små, men nok til at overbevise os selv om, at sider der skal udskiftes vælges korrekt. Test koden findes i Appendix \ref{app:test}
+
+Tilsammen er de to test nok til at overbevise os om, at den virtuelle hukommelse virker korrekt i de fleste henseender. Dog er der noget opdatering og vedligeholdelse af data i Custom implementationen, som ikke direkte er testet.
