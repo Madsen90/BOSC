@@ -17,7 +17,7 @@ how to use the page table and disk interfaces.
 #include "program.h"
 #include "frameSelecter.h"
 
-#define LRUTIME 500
+#define LRUTIME 300
 
 //ressources
 struct frame_table *ft;
@@ -133,7 +133,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	page_table_get_entry(pt, page, &frame, &bits );
 
 	//Markere at denne page er blevet efterspurgt i denne periode, ved at sætte leftmost bit til 1
-	LRUData->page_history[page] = LRUData->page_history[page] | (0x80000000); 
+	LRUData->page_history[page] = LRUData->page_history[page] | (0x8000000); 
 	
 	int npages, nframes;
 	npages = page_table_get_npages(pt);
@@ -143,7 +143,6 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 	int p, tempbits, tempFrame;
 	double c = clock(); 
 	if(c - LRUData->timestamp > LRUTIME){
-		LRUData->timestamp = c;
 		for(p = 0; p < npages; p++){
 			// char print[33];
 			// print[32] = '\0';
@@ -155,6 +154,7 @@ void LRU_page_fault_handler( struct page_table * pt, int page ){
 			LRUData->page_bits[p] = tempbits; 
 			page_table_set_entry(pt, p, tempFrame, 0);
 		}
+		LRUData->timestamp = c;
 	}
 	//printf("\n");
 	
