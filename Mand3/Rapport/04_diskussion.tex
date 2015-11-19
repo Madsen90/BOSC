@@ -6,9 +6,7 @@ Der er lavet statistik over hvor ofte disken tilgås, når sideudskiftningsalgor
 
 \subsection{Statistik for sideudskiftningsalgoritmer}
 \label{subsec:statistik}
-De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange med de tre forskellige sideudskiftningsalgoritmer. Dette er blevet gjort med frames fra 2 til 99. Således dækker statistikken over 100 * 98 kørsler. 
-Programkørslerne resulterede i meget forskellig opførsel i antallet af disktilgange. I dette afsnit beskrives og diskuteres de forskellige resultater. Alle kørslerne i en graf kan ses i figur \ref{fig:all}. Vi vil udelukkende forholde os til disktilgange, selvom det også er relevant at se på hvilket overhead en algoritme tilføjer til systemet.
-
+De tre simulerede programkørsler rand, scan og focus er blevet kørt 100 gange med de tre forskellige sideskiftningsalgoritmer. Der er samlet statistik over hvor mange disktilgange de forskellige algoritmer har med et skiftende antal fysiske sider. Programkørslerne resulterede i meget forskellig opførsel i antallet af disk tilgange. I dette afsnit beskrives diskuteres de forskellige resultater, alle kørslerne i en graf kan ses i figur \ref{fig:all}. Vi vil udelukkende forholde os til disktilgange, selvom det også er relevant at se på hvilket overhead en algoritme tilføjer systemet.\footnote{Koden der er brugt til at lave statistik er i appendix i afsnit \ref{app:statestik}}
 
 \begin{figure}[ht]
 \centerline{\includegraphics[scale=0.8]{graph/stat_all}}
